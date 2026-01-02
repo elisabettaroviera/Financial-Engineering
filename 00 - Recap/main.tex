@@ -1,0 +1,391 @@
+\documentclass[a4paper,12pt]{article}
+
+% Preambolo
+\usepackage[utf8]{inputenc}  % Supporto per caratteri UTF-8
+\usepackage[margin=1cm,includefoot]{geometry}  % Margini ridotti (1 cm su tutti i lati)
+\usepackage{titlesec}  % Personalizzazione dei titoli
+\usepackage{setspace}  % Controllo della spaziatura
+%\usepackage{parskip}   % Evita indentazioni, aggiunge spazio tra i paragrafi
+\usepackage{enumitem}  % Per personalizzare gli elenchi
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{amsmath,amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{subcaption}
+
+% Spaziatura paragrafi
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+% Paragrafi compatti
+\titlespacing*{\paragraph}{0pt}{4pt}{6pt}
+
+% Liste senza spaziatura extra
+\setlist{
+  topsep=0pt,
+  partopsep=0pt,
+  itemsep=0pt,
+  parsep=0pt
+}
+
+
+
+
+% --- LISTINGS (MATLAB look) ---
+\usepackage[T1]{fontenc}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+
+% Colori simili a MATLAB editor
+\definecolor{MatlabBlue}{RGB}{0,0,255}
+\definecolor{MatlabGreen}{RGB}{0,153,0}
+\definecolor{MatlabPurple}{RGB}{153,0,153}
+\definecolor{MatlabGray}{RGB}{120,120,120}
+
+\lstdefinestyle{matlabStyle}{
+  language=Matlab,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{MatlabBlue},
+  commentstyle=\color{MatlabGreen},
+  stringstyle=\color{MatlabPurple},
+  numbers=none,              % come MATLAB: niente numeri
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,              % riquadro
+  rulecolor=\color{MatlabGray},
+  tabsize=4,
+  columns=fullflexible,
+  keepspaces=true,
+  % --- accenti robusti dentro lstlisting ---
+  literate=
+    {à}{{\`a}}1 {è}{{\`e}}1 {é}{{\'e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+    {À}{{\`A}}1 {È}{{\`E}}1 {É}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+}
+
+
+
+
+% Operatore "opt" (max o min a seconda del contesto)
+\DeclareMathOperator*{\opt}{opt}
+
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage[dvipsnames,svgnames]{xcolor}
+
+% ------------------------------
+% INDICE: solo section, senza titolo
+% ------------------------------
+\setcounter{tocdepth}{1}      % mostra solo \section
+\renewcommand{\contentsname}{} % rimuove "Contents"
+
+% Personalizzazione del titolo in alto
+\makeatletter
+\renewcommand{\maketitle}{
+    \begin{center}
+        \vspace{-2cm}
+        {\LARGE \textbf{\@title}} \\[-0.2cm]
+    \end{center}
+}
+
+
+% Impostazioni per i numeri di pagina
+\pagestyle{empty}
+
+
+% Dettagli del documento
+\title{Financial Engineering}
+\date{}
+\titlespacing*{\section}{0pt}{-20pt}{4pt}
+
+
+\begin{document}
+
+%\maketitle
+%\tableofcontents
+
+%\vspace{-5cm}
+\textcolor{NavyBlue}{\section{Recap Lezione 1 -- Financial Instruments and Markets}}
+
+\paragraph{Idea generale della lezione}
+La lezione introduce i \textbf{financial instruments} e i \textbf{financial markets}, presentando le principali categorie di \textbf{securities e contratti}, con particolare attenzione a \textbf{bonds}, \textbf{stocks}, \textbf{derivatives}, \textbf{forwards}, \textbf{futures} e \textbf{options}.  
+L’obiettivo è fornire le definizioni di base, chiarire le differenze tra strumenti e introdurre i concetti di \textbf{payoff}, \textbf{price}, \textbf{risk} e \textbf{posizioni long/short}.
+
+\paragraph{Securities e contratti}
+Una \textbf{security} è un documento che conferisce diritti di proprietà su un \textbf{financial claim}.  
+I mercati finanziari vengono classificati in base alle caratteristiche degli strumenti dal punto di vista dell’investitore.
+
+\paragraph{Classificazione principale}
+\begin{itemize}[label=-]
+\item \textbf{Basic securities}
+  \begin{itemize}[label=-]
+  \item \textbf{Stocks} Securities che rappresentano una quota di proprietà di un’impresa
+  \item \textbf{Fixed income (bonds)} Securities di debito che prevedono pagamenti determinati o predeterminabili
+  \item \textbf{Foreign exchange (FX)} Strumenti legati allo scambio tra valute diverse
+  \item \textbf{Commodities} Beni fisici standardizzati scambiati nei mercati finanziari
+  \end{itemize}
+\item \textbf{Derivatives and contracts}
+  \begin{itemize}[label=-]
+  \item \textbf{Forwards e futures} Contratti che fissano oggi le condizioni di uno scambio futuro
+  \item \textbf{Options (call e put)} Contratti che conferiscono il diritto, ma non l’obbligo, di comprare o vendere un underlying
+  \end{itemize}
+\end{itemize}
+
+\paragraph{Bonds}
+Un \textbf{bond} è una security che rappresenta uno strumento di debito e conferisce al detentore il diritto a ricevere flussi di cassa futuri determinati.
+
+\begin{itemize}[label=-]
+\item Un pagamento predeterminato a una data futura detta \textbf{maturity}
+\item Un \textbf{nominal value} detto anche face value, par value o principal
+\end{itemize}
+
+Caratteristiche principali
+\begin{itemize}[label=-]
+\item Il \textbf{bond price} è il prezzo pagato dal creditore al debitore
+\item Il \textbf{nominal value} è l’importo rimborsato alla maturity
+\item L’\textbf{interest rate} è espresso come percentuale del nominal value
+\item I bonds sono soggetti a \textbf{default risk}
+\end{itemize}
+
+\paragraph{Tipologie di bonds}
+\begin{itemize}[label=-]
+\item \textbf{Maturity}
+  \begin{itemize}[label=-]
+  \item Short-term bond con maturity minore o uguale a un anno
+  \item Long-term bond con maturity superiore a un anno
+  \end{itemize}
+\item \textbf{Pure discount bond / zero coupon bond}
+  \begin{itemize}[label=-]
+  \item Bond che prevede un unico pagamento alla maturity
+  \item Prezzo iniziale inferiore al nominal value
+  \end{itemize}
+\item \textbf{Coupon bond}
+  \begin{itemize}[label=-]
+  \item Bond che prevede pagamenti periodici detti \textbf{coupons}
+  \item Alla maturity pagamento dell’ultimo coupon più il nominal value
+  \end{itemize}
+\end{itemize}
+
+\paragraph{Stocks}
+Una \textbf{stock} è una security che conferisce al detentore una quota di proprietà dell’impresa emittente.
+
+\begin{itemize}[label=-]
+\item I profitti possono essere reinvestiti oppure distribuiti come \textbf{dividends}
+\item I dividends non sono garantiti
+\item Il prezzo è noto al tempo iniziale ma non nel futuro
+\end{itemize}
+
+\paragraph{Risk}
+L’acquisto e la successiva vendita di una stock può generare un risultato incerto.
+
+\begin{itemize}[label=-]
+\item \textbf{Profit} Quando il return è positivo
+\item \textbf{Loss} Quando il return è negativo
+\end{itemize}
+
+Il \textbf{return} dipende dalla differenza tra prezzo di vendita e prezzo di acquisto.  
+La \textbf{capital gain} è la differenza tra selling price e initial price, mentre il rapporto tra dividend e prezzo è detto \textbf{dividend yield}.
+
+\paragraph{Posizioni}
+\begin{itemize}[label=-]
+\item \textbf{Long position} Posizione che consiste nell’acquisto di una security
+\item \textbf{Short position} Posizione che consiste nella vendita di una security non posseduta
+\item Il venditore short beneficia di una riduzione del prezzo
+\item Ogni contratto è uno \textbf{zero-sum game}
+\end{itemize}
+
+\paragraph{Derivatives}
+Un \textbf{derivative} è uno strumento finanziario il cui valore dipende dal valore di un \textbf{underlying asset}.  
+I derivatives sono anche detti \textbf{contingent claims} e permettono il trasferimento del rischio tra operatori.
+
+\paragraph{Forwards e Futures}
+Un \textbf{forward contract} è un accordo in cui le parti fissano oggi prezzo, quantità e data futura di consegna, con regolamento alla maturity e tipica negoziazione \textbf{OTC}.  
+Un \textbf{future contract} è un contratto simile ma scambiato in un \textbf{exchange} ed è soggetto a \textbf{marking to market}.
+
+\paragraph{Spot price, forward price e payoff}
+Lo \textbf{spot price} è il prezzo corrente dell’underlying.  
+Il \textbf{forward price} è il prezzo fissato oggi per uno scambio futuro.
+
+\begin{itemize}[label=-]
+\item Payoff long position pari a $S_T - K$
+\item Payoff short position pari a $K - S_T$
+\end{itemize}
+
+Il forward contract è uno \textbf{zero-sum game}.
+
+\paragraph{Options}
+Una \textbf{option} è una security che conferisce al detentore il diritto, ma non l’obbligo, di comprare o vendere un underlying a un prezzo prefissato.
+
+\paragraph{Tipologie di options}
+\begin{itemize}[label=-]
+\item \textbf{Call option} Diritto di acquistare l’underlying
+\item \textbf{Put option} Diritto di vendere l’underlying
+\end{itemize}
+
+\paragraph{Payoff delle options}
+\begin{itemize}[label=-]
+\item Call long con payoff $(S_T - K)^+$
+\item Put long con payoff $(K - S_T)^+$
+\end{itemize}
+
+Il prezzo dell’opzione è detto \textbf{option price} ed è pagato dal buyer al writer.
+
+\newpage
+\textcolor{RoyalBlue}{\section{Recap Lezione 2 -- Time Value of Money and Bonds}}
+\paragraph{Idea generale della lezione}
+La lezione formalizza il concetto di \textbf{time value of money} e introduce gli strumenti base del \textbf{money market}, con focus su \textbf{zero-coupon bonds} e \textbf{coupon bonds}.  
+L’obiettivo è capire come confrontare valori monetari in tempi diversi tramite \textbf{capitalizzazione} e \textbf{sconto}, come definire correttamente un \textbf{return}, e come prezzare e confrontare investimenti tramite \textbf{discount factors}, \textbf{zero rates}, \textbf{yield} e \textbf{par yield}.
+
+\paragraph{Time value of money}
+Si investe oggi un capitale (principal) \(P\) e si vuole determinare il valore futuro \(A(t)\) al tempo \(t\), oppure viceversa si conosce un valore futuro e si vuole trovare il valore equivalente oggi.  
+L’interesse maturato è \(I(t)=A(t)-P\). Per unità di tempo \(t=1\), si ha \(A-P=I\).  
+Il \textbf{tasso di interesse} è definito come
+\[
+r=\frac{I}{P}
+\qquad\Rightarrow\qquad
+I=Pr.
+\]
+
+\paragraph{Simple compounding}
+L’interesse cresce in modo \textbf{lineare} nel tempo, senza ``interesse sull’interesse''.  
+L’ammontare al tempo \(t\) è
+\[
+A(t)=P+Prt=P(1+rt),
+\]
+con \textbf{growth factor} \(1+rt\).  
+Lo sconto corrispondente è
+\[
+P=\frac{A(t)}{1+rt}.
+\]
+La coerenza delle unità di tempo è essenziale, il tasso deve essere espresso nella stessa unità del tempo utilizzato.
+
+\paragraph{Compound compounding}
+L’interesse viene \textbf{capitalizzato periodicamente}, quindi ogni periodo l’interesse maturato entra nel capitale e genera ulteriore interesse.  
+Con \(r\) \textbf{nominal annual rate} convertibile \(m\) volte l’anno, il tasso per periodo è \(\frac{r}{m}\) e dopo \(t\) anni
+\[
+A(t)=P\left(1+\frac{r}{m}\right)^{mt}.
+\]
+Il valore attuale si ottiene con lo sconto
+\[
+P=\frac{A(t)}{\left(1+\frac{r}{m}\right)^{mt}}.
+\]
+
+\paragraph{Nominal annual rate}
+Si introduce un tasso annuo \textbf{nominale} \(r\) quando la capitalizzazione avviene \(m\) volte l’anno, in modo che il tasso per periodo sia \(\frac{r}{m}\) e l’accumulazione su \(t\) anni sia coerente con la convenzione di capitalizzazione periodica
+\[
+A(t)=P\left(1+\frac{r}{m}\right)^{mt}.
+\]
+
+\paragraph{Effective annual rate}
+Si vogliono confrontare investimenti con diverse frequenze di capitalizzazione tramite un unico tasso annuo ``comparabile''.  
+L’\textbf{effective annual rate} \(r_e\) è definito imponendo equivalenza a un anno
+\[
+P(1+r_e)=P\left(1+\frac{r}{m}\right)^m
+\qquad\Rightarrow\qquad
+r_e=\left(1+\frac{r}{m}\right)^m-1.
+\]
+
+\paragraph{Continuous compounding}
+La capitalizzazione avviene in modo ``continuo'' nel tempo.  
+Passando al limite \(m\to\infty\)
+\[
+A(t)=Pe^{rt},
+\qquad
+P=A(t)e^{-rt}.
+\]
+La relazione con l’effective annual rate è
+\[
+Pe^r=P(1+r_e)
+\qquad\Rightarrow\qquad
+r=\ln(1+r_e),
+\quad
+r_e=e^r-1.
+\]
+
+\paragraph{Equation of value}
+Si hanno più flussi di cassa in tempi diversi (prestiti, rimborsi, pagamenti) e si vuole imporre che siano \textbf{equivalenti} rispetto a un tempo di riferimento (tipicamente \(t=0\)).  
+Il principio è riportare tutti i flussi allo stesso tempo con i fattori di sconto e imporre l’uguaglianza tra valori attuali. In forma generale
+\[
+\sum_{i} \text{CF}_i \cdot \text{DF}(t_i)=0,
+\]
+dove \(\text{DF}(t_i)\) è il discount factor coerente con la convenzione di capitalizzazione adottata.
+
+\paragraph{Return: linear return e log-return}
+Si osserva un valore \(V(s)\) al tempo \(s\) e un valore \(V(t)\) al tempo \(t\), e si vuole misurare la performance dell’investimento tra \(s\) e \(t\).  
+Il \textbf{linear return} è
+\[
+LR(s,t)=\frac{V(t)-V(s)}{V(s)}.
+\]
+Nel caso di interesse semplice, il return è coerente con l’additività su intervalli consecutivi. Con capitalizzazione non lineare (es.\ continua) tale additività non vale in generale.  
+Si introduce il \textbf{log-return}
+\[
+R(s,t)=\ln\!\left(\frac{V(t)}{V(s)}\right),
+\]
+che soddisfa sempre l’additività
+\[
+R(t_1,t_2)+R(t_2,t_3)=R(t_1,t_3).
+\]
+
+\paragraph{Money market}
+Si considerano strumenti \textbf{risk-free} che generano flussi deterministici e che vengono usati come ``mattoni'' per prezzare cash flow futuri.  
+Tra gli strumenti si considerano \textbf{zero coupon bonds}, \textbf{coupon bonds}, \textbf{bond forwards}, \textbf{annuities} e \textbf{bank account}.  
+Il formalismo chiave è quello dei \textbf{discount factors} e dei \textbf{zero rates}.
+
+\paragraph{Bank account}
+Si considera un conto bancario come strumento risk-free che permette di accumulare capitale nel tempo secondo una convenzione di capitalizzazione scelta.  
+Indicando con \(A(t)\) l’ammontare al tempo \(t\), le forme tipiche sono \(A(t)=P(1+rt)\), \(A(t)=P\left(1+\frac{r}{m}\right)^{mt}\) oppure \(A(t)=Pe^{rt}\), con attualizzazione ottenuta invertendo la rispettiva relazione.
+
+\paragraph{Annuity}
+Si considera un’\textbf{annuity} come una sequenza di pagamenti deterministici a date prefissate.  
+Il valore oggi è la somma dei valori attuali dei pagamenti, ottenuti scontando ciascun flusso con il fattore di sconto coerente con la struttura dei tassi.
+
+\paragraph{Investment in bond}
+Si interpreta l’acquisto di un bond come un investimento che scambia un esborso certo oggi con una sequenza di flussi futuri deterministici.  
+Il confronto tra investimenti in bond passa attraverso attualizzazione dei flussi, uso di zero rates e sintesi tramite yield e par yield.
+
+\paragraph{Zero-coupon bonds (ZCB)}
+Si vuole prezzare oggi un titolo che paga \textbf{un solo} flusso certo a scadenza \(T\).  
+Indicando con \(B(t,T)\) il valore al tempo \(t<T\)
+\[
+B(T,T)=1.
+\]
+Se il bond è scambiato a mercato, lo \textbf{zero rate} implicito (continuamente composto) è definito da
+\[
+B(0,T)=e^{-r(0,T)T}
+\qquad\Rightarrow\qquad
+r(0,T)=-\ln\big(\frac{B(0,T)}{T}\big),
+\]
+e analogamente
+\[
+B(t,T)=e^{-r(t,T)(T-t)}
+\qquad\Rightarrow\qquad
+r(t,T)=-\ln\big(\frac{B(t,T)}{T-t}\big).
+\]
+
+\paragraph{Coupon bonds}
+Si vuole prezzare oggi un titolo che paga cedole a date intermedie e rimborsa il face value alla maturity.  
+Il prezzo teorico è il valore attuale di tutti i flussi. Se le cedole \(c_i\) sono pagate ai tempi \(t_i\) e \(t_n=T\), con face value \(F=1\)
+\[
+C(0,T)=\sum_{i=1}^{n-1} c_i\,e^{-r_i t_i}+(c_n+1)e^{-r_n t_n},
+\]
+dove \(r_i\) sono i tassi (zero rates) associati alle diverse scadenze.
+
+\paragraph{Bond yield}
+Si osserva un prezzo di mercato di un bond e si vuole riassumere l’intera struttura dei flussi con un \textbf{unico} tasso equivalente.  
+Lo \textbf{yield} \(y\) è il tasso (unico) che, applicato a tutti i flussi del bond, riproduce il prezzo
+\[
+P=\sum_{i=1}^{n} \text{CF}_i\,e^{-y t_i},
+\]
+dove \(\text{CF}_i\) sono i flussi di cassa (cedole e rimborso) ai tempi \(t_i\).
+
+\paragraph{Par yield}
+Si vuole determinare quale tasso cedolare rende un bond scambiato ``alla pari'', cioè con prezzo uguale al face value.  
+Il \textbf{par yield} è il coupon rate \(c\) tale che il prezzo del bond soddisfi
+\[
+P=F,
+\]
+con \(P\) dato dalla somma dei valori attuali dei flussi (cedole costruite con \(c\) e rimborso del face value) scontati tramite la struttura dei tassi.
+
+\end{document}
