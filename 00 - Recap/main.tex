@@ -388,4 +388,177 @@ P=F,
 \]
 con \(P\) dato dalla somma dei valori attuali dei flussi (cedole costruite con \(c\) e rimborso del face value) scontati tramite la struttura dei tassi.
 
+\newpage
+\textcolor{CadetBlue}{\section{Recap Lezione 3 -- Duration and Interest Rate Risk}}
+
+\paragraph{Idea generale della lezione}
+La lezione analizza il \textbf{rischio di tasso di interesse} associato ai bond e introduce strumenti analitici per misurare la \textbf{sensibilità del prezzo di un titolo obbligazionario alle variazioni del rendimento}.  
+Il concetto centrale è la \textbf{duration}, ottenuta a partire da un’approssimazione di primo ordine del prezzo del bond, e il suo utilizzo nella gestione del rischio e nella costruzione di strategie di copertura.
+
+\paragraph{Bond price come funzione del rendimento}
+Il prezzo di un bond può essere visto come una funzione del rendimento \(y\),
+\[
+B(y)=\sum_{i=1}^{n} c_i e^{-y t_i},
+\]
+dove \(c_i\) sono i flussi di cassa pagati ai tempi \(t_i\).
+
+\paragraph{Sviluppo di Taylor del prezzo del bond}
+Si considera lo sviluppo di Taylor del prezzo del bond attorno a un valore \(y_0\),
+\[
+B(y)=B(y_0)-D(y_0)B(y_0)\Delta y+\frac{1}{2}C(y_0)B(y_0)(\Delta y)^2+\dots
+\]
+dove \(D(y_0)\) e \(C(y_0)\) rappresentano rispettivamente duration e convexity valutate in \(y_0\).
+
+\paragraph{Duration}
+La \textbf{duration} è definita come
+\[
+D(y) = -\frac{1}{B(y)}\frac{ dB(y)}{ dy}
+   = \sum_{i=1}^{n} t_i \bigg(\frac{c_i e^{-y t_i}}{B(y)}\bigg).
+\]
+La duration ammette le seguenti interpretazioni
+\begin{itemize}[label=-]
+\item È una \textbf{combinazione convessa dei tempi di pagamento}, poiché i pesi \(\frac{c_i e^{-y t_i}}{B(y)}\) sono positivi e sommano a uno
+\item Misura la \textbf{sensitività del prezzo del bond} rispetto a variazioni del rendimento secondo
+\[
+\frac{\Delta B}{B}\approx -D(y)\,\Delta y
+\]
+\item Costituisce una \textbf{misura di rischio di tasso di interesse}, quantificando l’esposizione del valore del bond a shock sui tassi
+\end{itemize}
+
+\paragraph{Convexity}
+La \textbf{convexity} è definita come
+\[
+C(y) = \frac{1}{B(y)}\frac{d^2 B(y)}{dy^2}
+  = \sum_{i=1}^{n} t_i^2 \bigg(\frac{c_i e^{-y t_i}}{B(y)}\bigg).
+\]
+
+\paragraph{Portfolio of bonds}
+Si considera un portafoglio di \(n\) bond con quantità \(q_i\) e prezzi \(B_i(y)\), per cui il valore del portafoglio è
+\[
+P(y)=\sum_{i=1}^{n} q_i B_i(y).
+\]
+Imponendo che la duration del portafoglio soddisfi
+\[
+-D_p(y)P(y)=\frac{dP(y)}{dy}=-\sum_{i=1}^{n} q_i D_i(y)B_i(y), \qquad
+D_p(y)=\frac{\sum_{i=1}^{n} q_i D_i(y)B_i(y)}{P(y)}
+      =\sum_{i=1}^{n} D_i(y)\bigg(\frac{q_i B_i(y)}{P(y)}\bigg).
+\]
+Si definiscono quindi
+\[
+w_i=\frac{q_i B_i(y)}{P(y)}, \qquad
+D_p(y)=\sum_{i=1}^{n} w_i D_i(y).
+\]
+
+\paragraph{Dynamic hedging}
+La duration fornisce una copertura valida localmente.  
+Poiché il rendimento e il tempo influenzano il valore della duration, è necessario un aggiornamento continuo del portafoglio.  
+Il \textbf{dynamic hedging} consiste nel ribilanciare dinamicamente le posizioni per mantenere sotto controllo l’esposizione al rischio di tasso.
+
+\newpage
+\textcolor{TealBlue}{\section{Recap Lezione 4 -- Term Structure, Bootstrap and Forward Rates}}
+
+\paragraph{Idea generale della lezione}
+La lezione studia la \textbf{struttura a termine dei tassi di interesse} senza imporre l’ipotesi che il rendimento sia indipendente dalla maturity.  
+Si introducono gli \textbf{spot rates}, la costruzione della \textbf{zero curve tramite bootstrap}, le proprietà di non arbitraggio nel caso di struttura a termine deterministica e il concetto di \textbf{forward rate}, con applicazione ai \textbf{Forward Rate Agreements (FRA)}.
+
+\paragraph{Struttura a termine e prezzo dei bond}
+Si considera il prezzo di un zero-coupon bond al tempo \(t\) con maturity \(T\), indicato come \(B(t,T)\), dove \(T-t\) è il \textbf{time-to-maturity}.  
+Senza assumere rendimenti costanti sulle maturity, il prezzo del bond è espresso come
+\[
+B(t,T)=e^{-y(t,T)(T-t)}.
+\]
+
+\paragraph{General term structure of zero-coupon bonds}
+La struttura a termine dei zero-coupon bond è descritta dall’insieme dei prezzi \(B(t,T)\) al variare della maturity \(T\).  
+Essa è equivalente alla struttura a termine dei rendimenti \(y(t,T)\), che sintetizzano l’informazione contenuta nei prezzi dei bond per ogni scadenza.
+
+\paragraph{Spot rate}
+Fissando \(t=0\), il rendimento \(y(0,T)\) associato al bond \(B(0,T)\) è detto \textbf{spot rate}.  
+Gli spot rates descrivono la struttura a termine iniziale dei tassi di interesse.
+
+\paragraph{Prezzo di un coupon bond tramite spot rates}
+Se \(y(0,T)\) dipende solo dalla maturity \(T\), il prezzo di un coupon bond può essere scritto come somma dei valori attuali dei flussi di cassa
+\[
+P = c_1 e^{-y(0,t_1)t_1} + c_2 e^{-y(0,t_2)t_2} + \dots + (c_n+F)e^{-y(0,T)T}.
+\]
+
+\paragraph{Bootstrap method}
+Definendo la funzione \(y(0,T)\) come \textbf{zero curve}, il \textbf{bootstrap method} viene utilizzato per costruirla a partire dai prezzi di mercato dei bond.  
+Si procede in modo sequenziale
+\begin{itemize}[label=-]
+\item Si ricavano gli spot rates associati ai zero-coupon bond
+\item Si utilizzano tali spot rates per scontare i flussi noti dei bond coupon
+\item Si determina iterativamente il nuovo spot rate
+\end{itemize}
+Nel caso di coupon pagati semestralmente, ciascun flusso viene scontato con il tasso corrispondente alla sua maturity.
+
+\paragraph{Term structure deterministica}
+Se la struttura a termine \(y(t,T)\) è deterministica, l’assenza di arbitraggio implica la relazione
+\[
+B(0,T)=B(0,t)\,B(t,T).
+\]
+
+\paragraph{Argomento di non arbitraggio}
+La relazione viene dimostrata tramite la costruzione di un portafoglio che soddisfa le seguenti proprietà
+\begin{itemize}[label=-]
+\item Ha valore nullo a \(t=0\)
+\item Ha valore nullo a \(t\)
+\item Genera un payoff positivo certo a \(T\)
+\end{itemize}
+In violazione dell’assenza di arbitraggio se l’uguaglianza non fosse soddisfatta.
+
+\paragraph{Conseguenze}
+Se i tassi sono deterministici, la struttura a termine futura \(B(t,T)\) è completamente determinata dalla struttura iniziale.  
+Vale inoltre la relazione
+\[
+B(t,T)=\frac{B(0,T)}{B(0,t)}=e^{y(0,t)t-y(0,T)T}.
+\]
+In generale, tuttavia, la struttura a termine futura non dipende interamente da quella iniziale.
+
+\paragraph{Forward rates deterministici}
+Assumendo che
+\[
+B(0,T)=B(0,t)\,B(t,T),
+\]
+i forward rates \(y(t,T)\) risultano deterministici e dipendono solo dalla struttura iniziale.  
+Si sottolinea esplicitamente che questa è un’assunzione utile, ma non necessariamente realistica.
+
+\paragraph{Calcolo dei forward rates}
+Assumendo continuous compounding, dalla relazione
+\[
+e^{-y(0,T)T}=e^{-y(0,t)t}\,e^{-y(t,T)(T-t)}, \qquad
+y(t,T)=\frac{y(0,T)T-y(0,t)t}{T-t}.
+\]
+Conoscendo gli spot rates iniziali è quindi possibile determinare tutti i forward rates.
+
+\paragraph{Forward Rate Agreement (FRA)}
+Un \textbf{Forward Rate Agreement (FRA)} è un contratto derivato in cui le parti si scambiano, alla maturity del contratto, la differenza tra due tassi di interesse
+\begin{itemize}[label=-]
+\item Un tasso fisso detto forward rate
+\item Un tasso variabile di mercato detto settlement rate
+\end{itemize}
+La differenza è moltiplicata per la durata del contratto e per il notional principal.
+
+\paragraph{Interpretazione economica del FRA}
+Le posizioni contrattuali nel FRA sono così definite
+\begin{itemize}[label=-]
+\item Il seller dell’FRA riceve il tasso fisso e paga il tasso variabile
+\item Il buyer dell’FRA riceve il tasso variabile e paga il tasso fisso
+\end{itemize}
+Il FRA consente di coprirsi contro variazioni future dei tassi di interesse e permette di fissare oggi il rendimento di un investimento o di un prestito futuro.
+
+\paragraph{Determinazione anticipata dei forward rates}
+Attraverso gli spot rates osservabili \(y(0,1)\) e \(y(0,2)\), è possibile costruire un’operazione equivalente tramite zero-coupon bond e determinare il forward rate \(y(1,2)\).  
+Il forward rate rappresenta il tasso implicito che rende equivalente il valore attuale dei flussi futuri.
+
+\paragraph{Caratteristiche del FRA}
+Il FRA è un contratto con le seguenti caratteristiche
+\begin{itemize}[label=-]
+\item Non standardizzato
+\item Negoziato over-the-counter (OTC)
+\item Utilizzabile per hedging, speculazione e arbitraggio
+\end{itemize}
+
+
+
 \end{document}
