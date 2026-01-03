@@ -559,6 +559,281 @@ Il FRA è un contratto con le seguenti caratteristiche
 \item Utilizzabile per hedging, speculazione e arbitraggio
 \end{itemize}
 
+\newpage
+\textcolor{MediumSeaGreen}{\section{Recap Lezione 5 -- Forward and Futures Contracts}}
+
+\paragraph{Idea generale della lezione}
+La lezione introduce in modo formale i \textbf{forward contracts} e i \textbf{futures contracts}, analizzandone \textbf{payoff}, \textbf{pricing per assenza di arbitraggio}, \textbf{valore nel tempo} e differenze strutturali.  
+L’attenzione è posta sulla costruzione di strategie di arbitraggio e di \textbf{replicating portfolios}, sul ruolo dei \textbf{dividends}, del \textbf{dividend yield}, dei \textbf{storage costs} e sul funzionamento dei mercati futures con \textbf{marking to market} e \textbf{margin system}.
+
+\paragraph{Forward contract}
+Un \textbf{forward contract} è un accordo tra due parti per acquistare o vendere un asset a una data futura \(T\), detta \textbf{delivery time}, a un prezzo fissato oggi, detto \textbf{forward price}.  
+Alla stipula non avviene alcun pagamento iniziale.
+
+\paragraph{Forward price}
+Il \textbf{forward price} \(F(0,T)\) è il prezzo che rende nullo il valore del forward contract al tempo iniziale.  
+Esso è determinato in modo univoco dall’assenza di arbitraggio e dipende dal prezzo spot dell’asset, dal tasso di interesse e da eventuali flussi intermedi.
+
+\paragraph{Long e short forward position}
+\begin{itemize}[label=-]
+\item \textbf{Long forward position} Obbligo di acquistare l’asset a \(T\) al prezzo \(F(0,T)\)
+\item \textbf{Short forward position} Obbligo di vendere l’asset a \(T\) al prezzo \(F(0,T)\)
+\end{itemize}
+
+\paragraph{Payoff del forward}
+Alla data di consegna \(T\) il payoff è
+\[
+\text{Long}: S(T)-F(0,T),
+\qquad
+\text{Short}: F(0,T)-S(T).
+\]
+Il forward è uno \textbf{zero-sum game}.
+
+\paragraph{Teorema: Pricing del forward su stock senza dividendi}
+Si assume un tasso risk-free costante \(r\) con continuous compounding.  
+Il forward price su uno stock che non paga dividendi è
+\[
+F(0,T)=S(0)e^{rT}.
+\]
+La relazione deriva dall’assenza di arbitraggio e dalla possibilità di replicare il payoff del forward tramite una strategia di trading dinamicamente coerente.
+
+\paragraph{Argomento di non arbitraggio}
+Se \(F(0,T)>S(0)e^{rT}\) oppure \(F(0,T)<S(0)e^{rT}\), è possibile costruire una strategia con valore nullo a \(t=0\) e payoff positivo certo a \(T\), generando arbitraggio.  
+L’assenza di arbitraggio impone l’uguaglianza.
+
+\paragraph{Teorema: Pricing del forward su stock con dividendi discreti}
+Se lo stock paga un dividendo discreto \(d_t\) a una data intermedia \(t\) con \(0<t<T\), il forward price è
+\[
+F(0,T)=\bigl(S(0)-e^{-rt}d_t\bigr)e^{rT}.
+\]
+La dimostrazione utilizza un portafoglio che replica il payoff del forward includendo l’incasso dei dividendi intermedi.
+
+\paragraph{Dividend yield continuo}
+In molti contesti i dividendi sono modellati come pagati continuamente a un tasso costante \(\delta\), detto \textbf{dividend yield}.  
+Una unità di stock detenuta da \(0\) a \(T\) genera un flusso continuo proporzionale al prezzo dell’asset.
+
+\paragraph{Forward su asset con dividend yield}
+Per uno stock che paga dividendi continuamente a tasso \(\delta\), il forward price è
+\[
+F(0,T)=S(0)e^{(r-\delta)T}.
+\]
+
+\paragraph{Valore di un forward contract}
+Alla stipula il valore del forward è nullo.  
+Nel tempo, il valore può diventare positivo o negativo in funzione dell’evoluzione del forward price.
+
+\paragraph{Valore del forward a una data intermedia}
+Per \(0\le t\le T\), il valore al tempo \(t\) di un long forward stipulato a \(t=0\) è
+\[
+V(t)=\bigl[F(t,T)-F(0,T)\bigr]e^{-r(T-t)}.
+\]
+
+\paragraph{Caso specifico senza dividendi}
+Se l’asset non paga dividendi
+\[
+V(t)=S(t)-S(0)e^{rt}.
+\]
+
+\paragraph{Futures contracts}
+Un \textbf{futures contract} è simile a un forward ma è scambiato su un exchange ed è standardizzato.  
+Il rischio di default è eliminato tramite il sistema di \textbf{marking to market} e di margini.
+
+\paragraph{Marking to market}
+\begin{itemize}[label=-]
+\item Regolazione quotidiana di profitti e perdite
+\item Valore nullo della posizione futures a ogni istante
+\end{itemize}
+
+\paragraph{Margin system}
+\begin{itemize}[label=-]
+\item \textbf{Initial margin} Deposito iniziale a garanzia
+\item \textbf{Maintenance margin} Livello minimo del deposito
+\item \textbf{Margin call} Richiesta di reintegro del margine
+\end{itemize}
+Il clearing house chiude la posizione se la margin call non viene soddisfatta, eliminando il rischio di default.
+
+\paragraph{Liquidità nei futures markets}
+Un’importante caratteristica dei futures markets è l’elevata \textbf{liquidity}, dovuta a
+\begin{itemize}[label=-]
+\item Standardizzazione dei contratti che rende gli strumenti omogenei e facilmente scambiabili
+\item Presenza del clearing house che garantisce l’adempimento delle obbligazioni
+\end{itemize}
+
+\paragraph{Pricing dei futures}
+Se il tasso di interesse è costante
+\[
+f(0,T)=F(0,T),
+\qquad
+f(t,T)=S(t)e^{r(T-t)}.
+\]
+Se i tassi sono deterministici ma variabili nel tempo, la relazione rimane valida con opportune modifiche.
+
+\paragraph{Portfolio}
+Un \textbf{portfolio} è un vettore \(h=(x,y)\) che rappresenta le quantità detenute di due asset.  
+Il valore del portafoglio è
+\[
+V_h(t)=xV_X(t)+yV_Y(t).
+\]
+
+\paragraph{Replicating portfolio}
+Un portafoglio è detto \textbf{replicating portfolio} se riproduce esattamente il payoff di un derivato a scadenza.
+
+\paragraph{Portafoglio replicante di un forward}
+Un possibile portafoglio replicante per un long forward è
+\[
+h=\bigl(-F(0,T)e^{-rT},\,1\bigr).
+\]
+Il valore del portafoglio è
+\[
+V_h(0)=-F(0,T)e^{-rT}+S(0),
+\qquad
+V_h(T)=S(T)-F(0,T).
+\]
+
+\paragraph{Principio di no-arbitrage pricing}
+Se un claim è replicabile tramite un portafoglio, allora il suo prezzo iniziale deve coincidere con il valore iniziale del portafoglio.  
+Per un forward
+\[
+V_f(0)=0.
+\]
+
+\paragraph{Consumption assets}
+Un \textbf{consumption asset} è un bene fisico che deve essere stoccato.  
+I forward e futures su tali asset sono rilevanti per imprese industriali.
+
+\paragraph{Investment asset}
+Se l’asset è un investment asset e non genera costi o benefici intermedi
+\[
+F(0,T)=S(0)e^{rT}.
+\]
+
+\paragraph{Storage costs}
+I consumption assets comportano costi di stoccaggio che possono essere interpretati come flussi negativi durante la vita del contratto.  
+Indicando con \(U\) il valore attuale dei storage costs.
+
+\paragraph{Consumption asset}
+Se l’asset è un consumption asset
+\[
+F(0,T)=(S(0)+U)e^{rT}.
+\]
+La formula è ottenuta tramite argomenti di arbitraggio analoghi al caso senza costi.
+
+\newpage
+\textcolor{PineGreen}{\section{Recap Lezione 6 -- Hedging with Futures}}
+
+\paragraph{Idea generale della lezione}
+Si studia come coprire (hedging) un’esposizione al rischio di prezzo di un asset \(S(t)\) usando forward e soprattutto futures.  
+Si evidenzia che il forward può dare copertura perfetta quando l’orizzonte di hedging coincide con la maturity, mentre con i futures in generale compare il \textbf{basis risk}, quindi l’hedging viene impostato come un problema di \textbf{minimizzazione della varianza}.
+
+\paragraph{Scenario e motivazione}
+Un modo semplice per coprire l’esposizione alle variazioni di \(S(t)\) è entrare in un forward, ma un forward può non essere facilmente disponibile e presenta rischio di controparte.  
+Il mercato futures è invece più sviluppato e liquido e, tramite exchange e clearing house, riduce il rischio di default.
+
+\paragraph{Notazione}
+Si indica con \(F(0,T)\) il forward price e con \(f(0,T)\) il futures price.  
+Il valore di un forward stipulato a \(0\) e osservato a \(t\) è
+\[
+V_F(t)=\big(F(t,T)-F(0,T)\big)e^{-r(T-t)}.
+\]
+In modo analogo, il valore del futures (nella formulazione vista a lezione) si scrive
+\[
+V_f(t)=\big(f(t,T)-f(0,T)\big)e^{-r(T-t)},
+\]
+e spesso si usa l’ipotesi operativa \(r=0\), per cui \(e^{rt}=1\).
+
+\paragraph{Hedging con forward e copertura perfetta}
+Si considera un portafoglio \(P=(1,N)\) composto da 1 unità dell’asset e \(N\) forward con maturity \(T\), con \(N>0\) long forward e \(N<0\) short forward.  
+Il valore del portafoglio è \(V_p(t)=V_S(t)+N V_F(t)\). Poiché \(V_p(0)=S(0)\), alla maturity si ha
+\[
+V_p(T)=S(T)+N\big(S(T)-F(0,T)\big).
+\]
+Nel caso \(N=-1\) si ottiene
+\[
+\Delta V_p(T)=F(0,T)-S(0)e^{rT},
+\]
+che diventa costante e pari a zero se vale \(F(0,T)=S(0)e^{rT}\). In tale situazione si ottiene \textbf{perfect hedging} e la varianza della variazione di valore è nulla.
+
+\paragraph{Hedging con futures e basis risk}
+Si introduce un \textbf{hedge horizon} \(t_h<T\), scelto tipicamente vicino a \(T\).  
+Si definisce la \textbf{basis} come \(b(t,T)=S(t)-f(t,T)\). Si ha \(b(T,T)=0\) e \(f(t,T)\to f(T,T)=S(T)\), ma per \(t<t_h<T\) la basis è in generale diversa da zero e può variare nel tempo, generando \textbf{basis risk}.
+
+Si costruisce un portafoglio \(P=(1,N)\) con 1 unità dell’asset e \(N\) futures. Con l’ipotesi operativa \(r=0\), si usa \(V_p(0)=S(0)\) e
+\[
+V_p(t_h)=S(t_h)+N\big(f(t_h,T)-f(0,T)\big),
+\]
+quindi
+\[
+\Delta V_p(t_h)=\big(S(t_h)-S(0)\big)+N\big(f(t_h,T)-f(0,T)\big).
+\]
+Ponendo \(\Delta S(t_h)=S(t_h)-S(0)\) e \(\Delta f(t_h)=f(t_h,T)-f(0,T)\), si ottiene
+\[
+\Delta V_p(t_h)=\Delta S(t_h)+N\Delta f(t_h).
+\]
+
+\paragraph{Obiettivo e funzione varianza}
+Si sceglie \(N\) per minimizzare la varianza della variazione di valore del portafoglio,
+\[
+\operatorname{Var}\big(\Delta V_p(t_h)\big).
+\]
+Usando la formula della varianza della somma di due variabili aleatorie,
+\[
+\operatorname{Var}\big(\Delta V_p(t_h)\big)
+=\operatorname{Var}\big(\Delta S(t_h)\big)
++N^2\operatorname{Var}\big(\Delta f(t_h)\big)
++2N\operatorname{Cov}\big(\Delta S(t_h),\Delta f(t_h)\big).
+\]
+La funzione è convessa in \(N\), quindi il minimo si ottiene imponendo la derivata nulla.
+
+\paragraph{Hedge ratio ottimo}
+Derivando rispetto a \(N\) e imponendo lo zero,
+\[
+\frac{d}{dN}\operatorname{Var}\big(\Delta V_p(t_h)\big)
+=2N\operatorname{Var}\big(\Delta f(t_h)\big)
++2\operatorname{Cov}\big(\Delta S(t_h),\Delta f(t_h)\big)=0,
+\]
+da cui
+\[
+N^*=-\frac{\operatorname{Cov}\big(\Delta S(t_h),\Delta f(t_h)\big)}
+{\operatorname{Var}\big(\Delta f(t_h)\big)}.
+\]
+
+\paragraph{Interpretazione economica di \(N^*\)}
+La quantità \(N^*\) rappresenta il \textbf{numero ottimo di contratti futures} da includere nel portafoglio per ridurre al minimo la variabilità complessiva della variazione di valore sull’orizzonte \((0,t_h)\).  
+Il termine al numeratore misura quanto le variazioni del futures si muovono insieme a quelle dell’asset, mentre il denominatore misura la volatilità del futures stesso.  
+Se la covarianza è elevata in valore assoluto, il futures è efficace nel compensare le fluttuazioni dell’asset; se invece la varianza del futures è grande, ne servono meno contratti in valore assoluto per ottenere lo stesso effetto di copertura.
+
+Se \(\operatorname{Cov}(\Delta S,\Delta f)>0\), allora \(N^*<0\) e si assume una posizione \textbf{short} nei futures, poiché le variazioni positive dell’asset tendono a essere compensate da variazioni negative della componente futures del portafoglio.
+
+Scrivendo \(\operatorname{Cov}(\Delta S,\Delta f)=\rho\,\sigma_S\sigma_f\), si ottiene anche
+\[
+N^*=-\rho\,\frac{\sigma_S}{\sigma_f},
+\]
+che evidenzia come l’hedge ratio dipenda dalla \textbf{correlazione} tra asset e futures e dal rapporto tra le loro deviazioni standard.
+
+\paragraph{Collegamento con regressione lineare}
+La forma di \(N^*\) richiama la regressione lineare
+\[
+\Delta S=\alpha+\beta \Delta f+\varepsilon,
+\]
+in cui
+\[
+\beta=\frac{\operatorname{Cov}(\Delta S,\Delta f)}{\operatorname{Var}(\Delta f)},
+\]
+quindi \(\beta=-N^*\).  
+Il coefficiente di regressione identifica la quantità di futures che minimizza la varianza della variazione di valore del portafoglio sull’intervallo \((0,t_h)\).
+
+\paragraph{Casi notevoli e unitary hedge}
+Se \(N^*=0\), allora \(\beta=0\) e non si riesce a fare hedging in modo efficace.  
+Se \(N^*=1\), allora \(\beta=-1\) e si ha \textbf{unitary hedge}.  
+Il \textbf{perfect hedge} è un caso particolare di unitary hedge quando \(t_h=T\) e l’underlying del derivato coincide con l’asset, condizione che elimina il basis risk.
+
+\paragraph{Effectiveness of the hedge}
+Si definisce l’\textbf{effectiveness} come la riduzione relativa della varianza passando dall’asset non coperto al portafoglio coperto,
+\[
+\frac{\sigma_S^2-\sigma_V^2}{\sigma_S^2}.
+\]
+Usando il valore ottimo \(N^*\), si ottiene che tale quantità coincide con \(\rho^2\) e anche con \(\beta^2\).  
+L’efficacia dell’hedge dipende quindi dalla correlazione lineare tra \(\Delta S\) e \(\Delta f\): maggiore è \(|\rho|\), maggiore è la quota di rischio eliminabile, mentre \(|\rho|<1\) implica varianza residua e quindi presenza di basis risk.
 
 
 \end{document}
