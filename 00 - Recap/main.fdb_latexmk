@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1767462803.31771 "c:/Users/elisa/Desktop/Secondo Anno/03. Financial/Financial-Engineering/00 - Recap/main.tex" "main.pdf" "main" 1767462804.841 0
+["pdflatex"] 1767624354.05463 "c:/Users/elisa/Desktop/Secondo Anno/03. Financial/Financial-Engineering/00 - Recap/main.tex" "main.pdf" "main" 1767624355.13397 0
   "C:/Users/elisa/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1765987961 95356 043d47899ea2cded8f553d8421c1ecba ""
   "C:/Users/elisa/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1200.pk" 1766313867 31952 416e68a167b63a9e50025e419ca6447c ""
   "C:/Users/elisa/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1728.pk" 1766313869 49100 6a8892a8be7b6f6e92fe6efd419adf05 ""
@@ -37,6 +37,7 @@
   "C:/Users/elisa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "C:/Users/elisa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb" 1247596667 32587 65067f817f408bc71a7312f3d9828a9b ""
   "C:/Users/elisa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1247596667 32626 5abc8bb2f28aa647d4c70f8ea38cc0d3 ""
+  "C:/Users/elisa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1247596673 34694 870c211f62cb72718a00e353f14f254d ""
   "C:/Users/elisa/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "C:/Users/elisa/AppData/Local/Programs/MiKTeX/tex/generic/iftex/iftex.sty" 1734114575 7984 7dbb9280f03c0a315425f1b4f35d43ee ""
   "C:/Users/elisa/AppData/Local/Programs/MiKTeX/tex/generic/iftex/ifvtex.sty" 1734114575 1057 525c2192b5febbd8c1f662c9468335bb ""
@@ -147,9 +148,9 @@
   "C:/Users/elisa/AppData/Local/Programs/MiKTeX/tex/latex/titlesec/titlesec.sty" 1736608268 48766 87a17a4ef312a39cd43896e34a679a56 ""
   "C:/Users/elisa/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/svgnam.def" 1729265222 4705 34614fec2d4cfd7794c82198c9076871 ""
   "C:/Users/elisa/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "c:/Users/elisa/Desktop/Secondo Anno/03. Financial/Financial-Engineering/00 - Recap/main.tex" 1767462802 37507 279ae0bfd0f73eba99fc5f07a8f7452d ""
-  "main.aux" 1767462804 9704 5c40bbb9c217ef062fc59638906a1822 "pdflatex"
-  "main.tex" 1767462802 37507 279ae0bfd0f73eba99fc5f07a8f7452d ""
+  "c:/Users/elisa/Desktop/Secondo Anno/03. Financial/Financial-Engineering/00 - Recap/main.tex" 1767624352 47537 e73770d0c7d37623f6f2e67c7db109ed ""
+  "main.aux" 1767624354 13283 0785cadda613a706f2c46f4ec8f32c31 "pdflatex"
+  "main.tex" 1767624352 47537 e73770d0c7d37623f6f2e67c7db109ed ""
   (generated)
   "main.aux"
   "main.log"

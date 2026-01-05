@@ -42,6 +42,7 @@
 \definecolor{MatlabGreen}{RGB}{0,153,0}
 \definecolor{MatlabPurple}{RGB}{153,0,153}
 \definecolor{MatlabGray}{RGB}{120,120,120}
+\definecolor{SoftGold}{RGB}{184,134,11} % Goldenrod
 
 \lstdefinestyle{matlabStyle}{
   language=Matlab,
@@ -99,6 +100,8 @@
 \title{Financial Engineering}
 \date{}
 \titlespacing*{\section}{0pt}{-20pt}{4pt}
+\definecolor{PastelGreenYellow}{RGB}{230,238,156}
+\definecolor{MutedGreenYellow}{RGB}{205,237,176}
 
 
 \begin{document}
@@ -835,5 +838,348 @@ Si definisce l’\textbf{effectiveness} come la riduzione relativa della varianz
 Usando il valore ottimo \(N^*\), si ottiene che tale quantità coincide con \(\rho^2\) e anche con \(\beta^2\).  
 L’efficacia dell’hedge dipende quindi dalla correlazione lineare tra \(\Delta S\) e \(\Delta f\): maggiore è \(|\rho|\), maggiore è la quota di rischio eliminabile, mentre \(|\rho|<1\) implica varianza residua e quindi presenza di basis risk.
 
+\newpage
+\textcolor{MutedGreenYellow}{\section{Recap Lezione 7 -- Options, Payoff, Parity and Bounds}}
+
+\paragraph{Idea generale della lezione}
+La lezione introduce le \textbf{opzioni su azioni}, analizzandone payoff e profitto per le diverse posizioni, e sviluppa i principali risultati di \textbf{non arbitraggio}, in particolare la \textbf{put--call parity}, i \textbf{price bounds} per opzioni europee e americane e il teorema di equivalenza tra call americana ed europea in assenza di dividendi.
+
+\paragraph{Tipologie di opzioni}
+Si considerano opzioni su azioni, distinguendo
+\begin{itemize}[label=-]
+\item \textbf{Call option}: diritto di acquistare l’asset sottostante
+\item \textbf{Put option}: diritto di vendere l’asset sottostante
+\end{itemize}
+
+\paragraph{European e American options}
+\begin{itemize}[label=-]
+\item \textbf{European options}: esercitabili solo a maturity \(T\)
+\item \textbf{American options}: esercitabili in qualunque istante \(t \in [0,T]\)
+\end{itemize}
+
+\paragraph{Assunzioni e notazione}
+Si assume inizialmente \(r=0\).  
+La notazione utilizzata è
+\begin{itemize}[label=-]
+\item \(K\) strike price
+\item \(S(T)\) prezzo dell’asset a maturity
+\item \((x)^+ = \max\{x,0\}\)
+\end{itemize}
+
+\paragraph{Posizioni long e short}
+Per ciascuna opzione si distinguono due posizioni
+\begin{itemize}[label=-]
+\item \textbf{Long}: acquisto (buy) del diritto
+\item \textbf{Short}: vendita (sell) del diritto
+\end{itemize}
+Vale sempre la relazione \(\text{short} = -\,\text{long}\).
+
+\paragraph{Long call}
+Il payoff di una long call è
+\[
+(S(T)-K)^+
+\]
+Il profit è
+\[
+(S(T)-K)^+ - C
+\]
+dove \(C\) è il call price.  
+Si ha perdita limitata pari a \(C\) e profitto potenzialmente illimitato.  
+Il break-even è \(S(T)=K+C\).
+
+\paragraph{Short call}
+Il payoff è
+\[
+-(S(T)-K)^+
+\]
+Il profit è
+\[
+C-(S(T)-K)^+
+\]
+Il guadagno massimo è limitato a \(C\), mentre la perdita è illimitata per \(S(T)\to +\infty\).
+
+\paragraph{Long put}
+Il payoff di una long put è
+\[
+(K-S(T))^+
+\]
+Il profit è
+\[
+(K-S(T))^+ - P
+\]
+dove \(P\) è il put price.  
+Il break-even è \(S(T)=K-P\).
+
+\paragraph{Short put}
+Il payoff è
+\[
+-(K-S(T))^+
+\]
+Il profit è
+\[
+P-(K-S(T))^+
+\]
+Il guadagno massimo è \(P\), mentre la perdita cresce al diminuire di \(S(T)\).
+
+\paragraph{Terminologia}
+Si introducono le seguenti definizioni
+\begin{itemize}[label=-]
+\item \textbf{Intrinsic value}: valore dell’opzione se fosse esercitata immediatamente
+\item \textbf{Time value}: differenza tra market value e intrinsic value
+\end{itemize}
+Inoltre
+\begin{itemize}[label=-]
+\item \textbf{At the money}: cashflow nullo
+\item \textbf{In the money}: cashflow positivo
+\item \textbf{Out of the money}: cashflow negativo
+\end{itemize}
+
+\paragraph{Put--call parity per European options}
+Per opzioni europee su asset che non paga dividendi vale
+\[
+C - P = S(0) - K e^{-rT}
+\]
+La relazione è ottenuta confrontando il payoff di un portafoglio long call e short put con quello di una long forward position.
+
+\paragraph{Put--call parity con dividendi}
+Se l’asset paga dividendi con valore attuale \(\text{div}(0)\), la parità diventa
+\[
+C - P = S(0) - \text{div}(0) - K e^{-rT}
+\]
+
+\paragraph{Bounds per European call}
+Il prezzo di una European call soddisfa
+\[
+S(0) - K e^{-rT} \le C \le S(0)
+\]
+I bounds derivano da argomenti di non arbitraggio.
+
+\paragraph{Bounds per European put}
+Il prezzo di una European put soddisfa
+\[
+- S(0) + K e^{-rT} \le P \le K e^{-rT}
+\]
+
+\paragraph{Bounds e parità per American options}
+Per opzioni americane su asset senza dividendi vale
+\[
+S(0) - K e^{-rT} \ge C^A - P^A \ge S(0) - K
+\]
+Con dividendi
+\[
+S(0) - K e^{-rT} \ge C^A - P^A \ge S(0) - \text{div}(0) - K
+\]
+
+\paragraph{Relazione tra European e American prices}
+Le opzioni europee sono un caso particolare di quelle americane, quindi
+\[
+C \le C^A, \qquad P \le P^A
+\]
+
+\paragraph{No-dividend American call theorem}
+Se l’asset non paga dividendi, il prezzo della call americana coincide con quello della call europea
+\[
+C^A = C^E
+\]
+Ne segue che non è mai ottimale esercitare anticipatamente una American call in assenza di dividendi.
+
+\newpage
+\textcolor{SoftGold}{\section{Recap Lezione 8 -- One-Period Binomial Model, Arbitrage and Risk-Neutral Valuation}}
+
+\paragraph{Idea generale della lezione}
+La lezione introduce il \textbf{modello binomiale a un periodo} come primo modello discreto per la valutazione di asset rischiosi e derivati finanziari.  
+Vengono formalizzati i concetti di \textbf{arbitrage} e \textbf{assenza di arbitrage} e si mostra come, in tale contesto, emergano in modo naturale la \textbf{misura risk-neutral}, i \textbf{contingent claims}, i \textbf{replicating portfolios} e la \textbf{completezza del mercato}.  
+Nel modello binomiale privo di arbitraggio, ogni derivato ammette un \textbf{prezzo unico}.
+
+\paragraph{Asset e dinamica del modello}
+Si considera un mercato con due asset
+\begin{itemize}[label=-]
+\item Un \textbf{bond risk-free} \(B\)
+\item Uno \textbf{stock rischioso} \(S\)
+\end{itemize}
+
+La dinamica è a un solo periodo \(t=0,1\)
+\[
+B(0)=1, \qquad B(1)=1+r
+\]
+\[
+S(0)=S, \qquad 
+S(1)=
+\begin{cases}
+Su & \text{se } p_u\\
+Sd & \text{se } p_d=1-p_u
+\end{cases}
+\]
+È spesso conveniente riscrivere la dinamica dello stock introducendo una variabile aleatoria \(Z\)
+\[
+S(0)=S,
+\qquad
+S(1)=S\cdot Z
+\]
+
+dove \(Z\) è una \textbf{variabile aleatoria} tale che
+\[
+Z =
+\begin{cases}
+u & \text{con probabilità } p_u,\\
+d & \text{con probabilità } p_d,
+\end{cases}
+\qquad
+p_u+p_d=1.
+\]
+
+I parametri \(u\) e \(d\) sono detti rispettivamente \textbf{up factor} e \textbf{down factor} e si assume
+\(
+u>1,
+\;
+d<1.
+\)
+La variabile aleatoria \(Z\) rappresenta quindi il \textbf{fattore moltiplicativo} che governa l’evoluzione dello stock tra \(t=0\) e \(t=1\).
+
+
+\paragraph{Portafoglio e value process}
+Un portafoglio fisso è descritto da \(h=(x,y)\), dove
+\begin{itemize}[label=-]
+\item \(x\) rappresenta la quantità investita nel bond
+\item \(y\) rappresenta la quantità investita nello stock
+\end{itemize}
+
+Il \textbf{value process} del portafoglio è
+\[
+V^h(t)=xB(t)+yS(t), \qquad t=0,1
+\]
+e in particolare
+\[
+V^h(0)=x+yS, \qquad 
+V^h(1)=x(1+r)+ySZ
+\]
+
+\paragraph{Arbitrage}
+Un portafoglio \(h\) è detto un \textbf{arbitrage} se
+\[
+V^h(0)=0
+\]
+\[
+V^h(1)>0 \quad \text{con probabilità } 1
+\]
+
+\paragraph{Assenza di arbitrage}
+Il modello binomiale è \textbf{arbitrage-free} se e solo se
+\[
+d < 1+r < u
+\]
+In tal caso, il fattore risk-free \(1+r\) è una \textbf{combinazione convessa} di \(u\) e \(d\)
+
+\paragraph{Probabilità risk-neutral}
+Se vale \(d < 1+r < u\), esistono \textbf{uniche} probabilità \(q_u,q_d>0\) tali che
+\[
+\begin{cases}
+1+r = q_u u + q_d d\\
+q_u + q_d = 1
+\end{cases}
+\]
+con
+\[
+q_u = \frac{(1+r)-d}{u-d},
+\qquad
+q_d = \frac{u-(1+r)}{u-d}
+\]
+
+\paragraph{Misura risk-neutral}
+La misura di probabilità \(Q\) definita da
+\[
+Q(Z=u)=q_u,
+\qquad
+Q(Z=d)=q_d
+\]
+è detta \textbf{risk-neutral measure} (o \textbf{martingale measure})
+
+Sotto \(Q\) vale
+\[
+S=\mathbb{E}^Q\!\left[\frac{S(1)}{1+r}\right]
+\]
+cioè il \textbf{prezzo scontato dello stock è una martingala}
+
+\paragraph{Risk-neutral valuation formula}
+Nel modello binomiale privo di arbitraggio il prezzo dello stock soddisfa
+\[
+S=\mathbb{E}^Q\!\left[\frac{S(1)}{1+r}\right]
+\]
+La formula è \textbf{indipendente dalle probabilità oggettive} \(P\). 
+Il modello di mercato \((B,S)\) è \textbf{arbitrage-free} se e solo se esiste una \textbf{martingale measure} \(Q\).
+
+
+\paragraph{Contingent claims}
+Un \textbf{contingent claim} è una variabile aleatoria della forma
+\[
+X=\phi(Z)
+\]
+equivalentemente
+\[
+X=\phi(S(1))
+\]
+e rappresenta il payoff di un contratto al tempo \(t=1\)
+
+\paragraph{Replicating portfolio e raggiungibilità}
+Un claim \(X\) è detto \textbf{raggiungibile} se esiste un portafoglio \(h=(x,y)\) tale che
+\[
+V^h(1)=X \quad \text{con probabilità } 1
+\]
+In tal caso \(h\) è detto \textbf{replicating portfolio}
+
+\paragraph{Completezza del mercato}
+Un mercato è detto \textbf{completo} se ogni contingent claim è raggiungibile  
+Nel modello binomiale a un periodo, \textbf{assenza di arbitraggio implica completezza}
+
+\paragraph{Pricing principle}
+Se un claim \(X\) è replicabile da un portafoglio \(h\), allora il suo \textbf{unico prezzo privo di arbitraggio} è
+\[
+\Pi(t,X)=V^h(t), \qquad t=0,1
+\]
+in particolare
+\[
+\Pi(0,X)=V^h(0)
+\]
+
+\paragraph{Pricing tramite sistema lineare}
+Dato \(X=\phi(Z)\), il portafoglio replicante \(h=(x,y)\) risolve il sistema
+\[
+\begin{cases}
+x(1+r)+ySu = \phi(u)\\
+x(1+r)+ySd = \phi(d)
+\end{cases}
+\]
+che ammette soluzione unica
+\[
+x=\frac{1}{1+r}\frac{u\phi(d)-d\phi(u)}{u-d},
+\qquad
+y=\frac{1}{S}\frac{\phi(u)-\phi(d)}{u-d}
+\]
+
+\paragraph{Risk-neutral pricing dei derivati}
+Nel modello binomiale arbitrage-free, il prezzo di un contingent claim è
+\[
+\Pi(0,X)=\frac{1}{1+r}\mathbb{E}^Q[X]
+\]
+ossia il \textbf{valore atteso scontato del payoff sotto la misura risk-neutral}
+
+\paragraph{Call option}
+Una call europea con strike \(K\) ha payoff
+\[
+X=(S(1)-K)^+
+\]
+Il suo prezzo è
+\[
+C=\frac{1}{1+r}\Bigl(q_u(Su-K)^+ + q_d(Sd-K)^+\Bigr)
+\]
+
+\paragraph{Conclusioni}
+\begin{itemize}[label=-]
+\item Le probabilità oggettive determinano solo quali eventi sono possibili
+\item I prezzi si calcolano come se il mondo fosse \textbf{risk-neutral}
+\item La valutazione è indipendente dalle preferenze individuali
+\item Il pricing è detto \textbf{preference-free valuation}
+\item \textbf{Replicating portfolio} e \textbf{risk-neutral valuation} sono metodi equivalenti
+\end{itemize}
 
 \end{document}
