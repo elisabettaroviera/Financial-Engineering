@@ -43,6 +43,7 @@
 \definecolor{MatlabPurple}{RGB}{153,0,153}
 \definecolor{MatlabGray}{RGB}{120,120,120}
 \definecolor{SoftGold}{RGB}{184,134,11} % Goldenrod
+\definecolor{DarkGold}{RGB}{150,110,0}
 
 \lstdefinestyle{matlabStyle}{
   language=Matlab,
@@ -1181,5 +1182,334 @@ C=\frac{1}{1+r}\Bigl(q_u(Su-K)^+ + q_d(Sd-K)^+\Bigr)
 \item Il pricing è detto \textbf{preference-free valuation}
 \item \textbf{Replicating portfolio} e \textbf{risk-neutral valuation} sono metodi equivalenti
 \end{itemize}
+
+\newpage
+\textcolor{DarkGold}{\section{Recap Lezione 9 -- Multi-Period Binomial Model}}
+
+\paragraph{Idea generale della lezione}
+Si estende il modello binomiale a più periodi in tempo discreto \(t=0,\dots,T\), con due asset \((B,S)\).  
+Si introduce la dinamica ad albero (ricombinante), la rappresentazione tramite variabili indicatrici e la definizione formale di strategia di portafoglio, valore del portafoglio, predicibilità e self-financing.
+
+\paragraph{Modello multi-periodo e dinamica dei due asset}
+Si considera un orizzonte fissato \(T\) e un mercato con un bond \(B_t\) e uno stock \(S_t\).  
+Si assume un tasso risk-free costante deterministico \(r\) (simple period rate). La dinamica del bond è
+\[
+B_{n+1}=(1+r)B_n,\qquad B_0=1.
+\]
+La dinamica dello stock è
+\[
+S_{n+1}=S_n Z_n,\qquad S_0=s,
+\]
+dove \(Z_0,\dots,Z_{T-1}\) sono i.i.d. e assumono i due valori \(u\) e \(d\) con probabilità
+\[
+\mathbb{P}(Z_n=u)=p_u,\qquad \mathbb{P}(Z_n=d)=p_d.
+\]
+
+\paragraph{Dinamica ad albero ed esempio \(T=3\)}
+Nel caso \(T=3\), gli stati terminali hanno la forma \(S\,u^k d^{3-k}\).  
+Si definiscono le variabili indicatrici
+\[
+X_i=
+\begin{cases}
+1 & \text{se } Z_i=u,\\
+0 & \text{se } Z_i=d,
+\end{cases}
+\qquad
+Y=\sum_{i=1}^{3}X_i,
+\]
+dove \(Y\) è il numero di up. Allora \(Y\) è binomiale e
+\[
+\mathbb{P}(Y=k)=\binom{3}{k}p_u^{k}p_d^{3-k}.
+\]
+Osservazione: l’indipendenza dei passi è cruciale per calcolare correttamente le probabilità.
+
+\paragraph{Proprietà implicita dell’albero}
+L’albero è ricombinante nel senso che una mossa ``up'' seguita da una ``down'' dà lo stesso risultato di una ``down'' seguita da una ``up'' (up--down \(\equiv\) down--up).
+
+\paragraph{Definizione: Portfolio strategy e value process}
+Una strategia di portafoglio è un processo stocastico \(\{h_t=(x_t,y_t),\ t=1,\dots,T\}\) tale che \(h_t\) è funzione dell’informazione disponibile \((S_0,\dots,S_{t-1})\). Per convenzione si pone \(h_0=h_1\).  
+Il value process associato alla strategia \(h\) è
+\[
+V_t(h)=x_t(1+r)+y_t S_t.
+\]
+Interpretazione: \(x_t\) è l’ammontare investito nel bond tra \(t-1\) e \(t\), \(y_t\) è il numero di azioni detenute tra \(t-1\) e \(t\). La strategia è contingente (non anticipativa): può dipendere solo dall’informazione passata.
+
+\paragraph{Definizione: Predicibilità}
+Un portafoglio è predicibile se \(\forall n=0,1,\dots,T\) il portafoglio \(h_n\) costruito al tempo \(n\) dipende solo dai nodi dell’albero fino al tempo \(n-1\), cioè
+\[
+h_n=\varphi(S_0,\dots,S_{n-1}).
+\]
+Osservazione: una strategia di portafoglio è un portafoglio predicibile.
+
+\paragraph{Convenzioni e notazione sul valore}
+Per ogni strategia, per convenzione
+\[
+h_0=h_1,\qquad V^h(0)=x_1+y_1S(0),\qquad V^h(1)=x_1(1+r)+y_1S(1).
+\]
+
+\paragraph{Definizione: Self-financing}
+Una strategia di investimento è self-financing se il portafoglio costruito al tempo \(n\) per essere mantenuto fino a \(n+1\) è finanziato interamente dalla ricchezza corrente. In particolare,
+\[
+V^h(n)=V^{h_{n+1}}(n).
+\]
+Usando \(V^h(n)=x_n(1+r)+y_n S(n)\) e \(V^{h_{n+1}}(n)=x_{n+1}+y_{n+1}S(n)\), la condizione è equivalente alla budget equation
+\[
+x_n(1+r)+y_n S(n)=x_{n+1}+y_{n+1}S(n).
+\]
+
+\newpage
+\textcolor{Orange!70!Black}{\section{Recap Lezione 10 -- Binomial Model, Contingent Claims and American Options}}
+
+\paragraph{Idea generale della lezione}
+La lezione estende il \textbf{modello binomiale} a più periodi per lo studio sistematico del pricing di derivati finanziari.  
+Vengono introdotti i concetti di \textbf{contingent claim}, \textbf{replicating portfolio}, \textbf{misura risk-neutral} e \textbf{completezza del mercato}.  
+Si studia il pricing di opzioni europee tramite \textbf{backward induction} e si introduce la valutazione delle \textbf{opzioni americane}, evidenziando il ruolo dell’esercizio anticipato.
+
+\paragraph{Contingent claims}
+Un \textbf{contingent claim} è un contratto finanziario il cui payoff a maturity dipende dal valore dell’asset sottostante.  
+Nel modello binomiale multi-periodo, un claim è tipicamente della forma
+\[
+X = \varphi(S(T)),
+\]
+dove \(S(T)\) è il prezzo dello stock al tempo finale \(T\).  
+L’obiettivo del pricing è determinare il valore del claim ai tempi intermedi e al tempo iniziale.
+
+\paragraph{Misura risk-neutral e martingala}
+Nel modello binomiale privo di arbitraggio esiste un’unica \textbf{misura di probabilità risk-neutral} \(Q\).  
+Sotto \(Q\), il prezzo scontato dello stock è una martingala:
+\[
+S(t) = \mathbb{E}^Q\!\left[ \frac{S(t+1)}{1+r} \,\middle|\, \mathcal{F}_t \right].
+\]
+Le probabilità risk-neutral \(q_u\) e \(q_d\) sono determinate imponendo che il rendimento atteso dello stock coincida con il tasso risk-free.
+
+\paragraph{Pricing risk-neutral}
+Il prezzo di un contingent claim replicabile è dato dalla \textbf{valutazione risk-neutral}:
+\[
+\Pi(t,X) = \mathbb{E}^Q\!\left[ \frac{X}{(1+r)^{T-t}} \,\middle|\, \mathcal{F}_t \right].
+\]
+Nel modello binomiale multi-periodo, questa valutazione è implementata operativamente tramite \textbf{backward induction} lungo l’albero dei prezzi.
+
+\paragraph{Backward induction}
+La valutazione procede partendo dai nodi terminali, dove il valore del claim coincide con il payoff, e risalendo l’albero calcolando, a ogni nodo,
+\[
+V(t) = \frac{1}{1+r}\bigl(q_u V_u(t+1) + q_d V_d(t+1)\bigr).
+\]
+Questo metodo permette di ottenere in modo ricorsivo il prezzo del claim a ogni tempo.
+
+\paragraph{Replicating portfolio e completezza}
+Un claim è detto \textbf{replicabile} se esiste una strategia self-financing che ne replica esattamente il payoff finale.  
+Nel modello binomiale multi-periodo, l’assenza di arbitraggio implica la \textbf{completezza del mercato}: ogni contingent claim è replicabile e ammette un prezzo unico.
+
+\paragraph{Opzioni europee}
+Per un’opzione europea, il valore a ogni nodo è dato esclusivamente dal valore di continuazione ottenuto tramite aspettativa risk-neutral scontata.  
+Non è possibile l’esercizio anticipato, quindi il pricing coincide con quello del corrispondente contingent claim.
+
+\paragraph{Opzioni americane}
+Un’opzione americana può essere esercitata in qualunque istante \(t \le T\).  
+Il valore dell’opzione a un nodo intermedio è dato dal massimo tra:
+\[
+\text{payoff immediato} \quad \text{e} \quad \text{continuation value}.
+\]
+Formalmente,
+\[
+V^A(t) = \max\{\varphi(S(t)),\, \text{CV}(t)\}.
+\]
+Questo criterio introduce una differenza strutturale rispetto alle opzioni europee.
+
+\paragraph{Call americana senza dividendi}
+Nel caso di uno stock che non paga dividendi, non è mai ottimale esercitare anticipatamente una call americana.  
+Di conseguenza, il prezzo della call americana coincide con quello della call europea:
+\[
+C^A = C^E.
+\]
+Questo risultato è una conseguenza diretta del confronto tra payoff immediato e valore di continuazione.
+
+\paragraph{Osservazione conclusiva}
+La lezione mostra come il modello binomiale fornisca un quadro completo e coerente per il pricing dei derivati, unificando approcci di arbitraggio, replicazione e valutazione risk-neutral, e costituendo la base concettuale per modelli più avanzati.
+
+\newpage
+\textcolor{Orange}{\section{Recap Lezione 11 -- Delta Hedging, Modello Binomiale e Limite Continuo}}
+
+\paragraph{Obiettivo della lezione}
+La lezione introduce il concetto di \textbf{Delta} come misura di sensibilità del prezzo di un’opzione rispetto al prezzo del sottostante e mostra come sfruttarlo per costruire \textbf{portafogli privi di rischio} (Delta-hedging).  
+Si sviluppa poi il \textbf{modello binomiale multi-periodo} fino al \textbf{modello di Cox--Ross--Rubinstein}, chiarendo il collegamento con il limite continuo e le ipotesi di mercato efficiente.
+
+\paragraph{Delta di un’opzione}
+La \textbf{Delta} di un’opzione è definita come il rapporto tra la variazione del prezzo dell’opzione e la variazione del prezzo del sottostante,
+\[
+\Delta = \frac{\Delta C}{\Delta S}.
+\]
+Nel modello binomiale a un periodo, la Delta si calcola come
+\[
+\Delta = \frac{\phi(S_1(u)) - \phi(S_1(d))}{S_1(u) - S_1(d)},
+\]
+ed è costante nel nodo considerato.  
+Per una call vale \(\Delta>0\), mentre per una put vale \(\Delta<0\).
+
+\paragraph{Delta-hedging e portafoglio riskless}
+L’idea centrale è utilizzare la Delta per costruire un \textbf{portafoglio privo di rischio}.  
+Si considera una strategia del tipo
+\[
+h = (\Delta,-1),
+\]
+ossia una posizione lunga di \(\Delta\) azioni e una posizione corta di una opzione.  
+La Delta viene scelta in modo tale che il valore del portafoglio al tempo \(1\) sia uguale in entrambi gli stati,
+\[
+V_1^h(u)=V_1^h(d),
+\]
+eliminando così l’incertezza.  
+In assenza di arbitraggio, il valore iniziale del portafoglio coincide con il valore attualizzato del payoff certo.
+
+\paragraph{Pricing di un’opzione: tre approcci equivalenti}
+Il prezzo di un’opzione può essere ottenuto in tre modi equivalenti:
+\begin{itemize}[label=-]
+\item valutazione sotto \textbf{misura risk-neutral},
+\item costruzione di un \textbf{portafoglio replicante},
+\item \textbf{argomento di non-arbitraggio} tramite portafoglio riskless.
+\end{itemize}
+Nel modello binomiale, tutti e tre conducono allo stesso prezzo.
+
+\paragraph{Modello binomiale multi-periodo}
+Si estende il modello a più periodi considerando un albero ricombinante con fattori di crescita \(u\) e \(d\).  
+Dopo \(T\) periodi, il prezzo del sottostante è
+\[
+S_T = S_0 u^k d^{T-k}, \qquad k=0,1,\dots,T,
+\]
+dove \(k\) è il numero di movimenti up.  
+La variabile \(k\) segue una distribuzione binomiale.
+
+\paragraph{Interpretazione temporale e passaggio a intervalli brevi}
+Il tempo viene suddiviso in \(n\) intervalli di ampiezza \(h=T/n\).  
+All’aumentare di \(n\), il trading avviene sempre più frequentemente e il modello binomiale approssima l’evoluzione continua dei prezzi.
+
+\paragraph{Rendimenti lineari e rendimenti logaritmici}
+Si distinguono due tipi di rendimenti:
+\[
+R_t^{(L)}=\frac{S(t)-S(t-1)}{S(t-1)}, \qquad
+R_t^{(\log)}=\ln\!\left(\frac{S(t)}{S(t-1)}\right).
+\]
+I rendimenti logaritmici sono \textbf{additivi nel tempo}, a differenza dei rendimenti lineari, e risultano più adatti allo studio del limite continuo.
+
+\paragraph{Scelta di \(u\), \(d\) e probabilità}
+Nel modello di Cox--Ross--Rubinstein, i parametri vengono scelti in funzione di \(h\) in modo che media e varianza dei log-rendimenti convergano a quelle osservate empiricamente.  
+Una possibile scelta è
+\[
+u=e^{\sigma\sqrt{h}}, \qquad d=e^{-\sigma\sqrt{h}},
+\]
+con probabilità tali da riprodurre il drift desiderato.
+
+\paragraph{Ipotesi di mercato efficiente}
+La costruzione del modello si basa sull’ipotesi di \textbf{mercato efficiente}:  
+i prezzi incorporano tutta l’informazione disponibile e le variazioni di prezzo dipendono solo da nuova informazione.  
+Di conseguenza, i rendimenti sono indipendenti e il prezzo futuro dipende solo dal prezzo corrente, non dalla storia passata.
+
+\paragraph{Idea chiave da ricordare}
+La Delta permette di eliminare il rischio localmente nel modello binomiale.  
+Il modello di Cox--Ross--Rubinstein fornisce un ponte naturale tra il mondo discreto e il modello continuo, mantenendo coerenza con assenza di arbitraggio e mercato efficiente.
+
+\newpage
+\textcolor{OrangeRed}{\section{Recap Lezione 12 -- Wiener Process and Stochastic Calculus}}
+
+\paragraph{Obiettivo della lezione}
+La lezione introduce il \textbf{processo di Wiener (o Brownian Motion)} come modello fondamentale per i rendimenti finanziari e come base dello \textbf{stochastic calculus}.  
+Si studiano struttura probabilistica, proprietà di dipendenza, filtrazioni, martingale, irregolarità dei cammini e processi browniani con drift.
+
+\paragraph{Processi stocastici}
+Un processo stocastico è una collezione di variabili aleatorie indicizzate dal tempo:
+\[
+X = \{X_t(\omega),\ t \in T,\ \omega \in \Omega\}.
+\]
+\begin{itemize}[label=-]
+\item Tempo continuo: \(t \in T \subseteq \mathbb{R}_+\)
+\item Tempo discreto: \(t \in \mathbb{Z}_+\)
+\end{itemize}
+Per \(t\) fissato, \(X_t\) è una variabile aleatoria; per \(\omega\) fissato, \(X_t(\omega)\) è una \textbf{traiettoria} (sample path).
+
+\paragraph{Incrementi e dipendenza}
+L’incremento di un processo è \(X(t)-X(s)\).
+\begin{itemize}[label=-]
+\item \textbf{Incrementi stazionari}: la distribuzione dipende solo da \(t-s\)
+\item \textbf{Incrementi indipendenti}: incrementi su intervalli disgiunti sono indipendenti
+\end{itemize}
+Queste sono assunzioni tipiche per i rendimenti finanziari.
+
+\paragraph{Filtrazione e informazione}
+Una filtrazione \(\{\mathcal{F}_t\}_{t\ge0}\) è una famiglia crescente di \(\sigma\)-algebre:
+\[
+\mathcal{F}_s \subseteq \mathcal{F}_t \quad \text{per } s \le t.
+\]
+Rappresenta l’informazione disponibile fino al tempo \(t\).  
+Un processo è \textbf{adattato} se \(X_t\) è \(\mathcal{F}_t\)-misurabile.
+
+\paragraph{Proprietà di Markov}
+Un processo ha la proprietà di Markov se
+\[
+\mathbb{P}(X_t \in A \mid \mathcal{F}_s) = \mathbb{P}(X_t \in A \mid X_s), \quad t \ge s.
+\]
+Il futuro dipende solo dallo stato presente, non dall’intera storia passata.  
+Per i prezzi, questa proprietà è coerente con la \textbf{weak form of market efficiency}.
+
+\paragraph{Martingale}
+Un processo \(X_t\) è una martingala se
+\[
+\mathbb{E}[X_t \mid \mathcal{F}_s] = X_s, \quad t \ge s.
+\]
+Le martingale hanno media costante nel tempo.  
+\textbf{Markov e martingala sono concetti distinti}: un processo può essere uno solo dei due.
+
+\paragraph{Processo di Wiener (Brownian Motion)}
+Il processo di Wiener \(W(t)\) è definito da:
+\begin{itemize}[label=-]
+\item \(W(0)=0\)
+\item Incrementi indipendenti
+\item Incrementi normali: \(W(t)-W(s) \sim \mathcal{N}(0,t-s)\)
+\item Traiettorie continue (a.s.)
+\end{itemize}
+Conseguenze:
+\[
+W(t) \sim \mathcal{N}(0,t), \quad \mathbb{E}[W(t)]=0,\quad \mathrm{Var}(W(t))=t.
+\]
+Le distribuzioni finite-dimensionali sono congiuntamente normali e
+\[
+\mathrm{Cov}(W(t),W(s)) = \min\{t,s\}.
+\]
+
+\paragraph{Irregolarità del moto browniano}
+I cammini sono continui ma \textbf{non derivabili}.
+\begin{itemize}[label=-]
+\item Variazione totale infinita
+\item Variazione quadratica:
+\[
+[W,W](t) = t \quad \text{(a.s.)}
+\]
+\end{itemize}
+La variazione quadratica misura la volatilità ed è centrale nello stochastic calculus.
+
+\paragraph{Moto browniano con drift}
+Si definisce
+\[
+B(t) = x_0 + \mu t + \sigma W(t).
+\]
+Allora
+\[
+B(t) \sim \mathcal{N}(x_0+\mu t,\ \sigma^2 t).
+\]
+Su piccoli intervalli:
+\[
+\Delta B = \mu \Delta t + \sigma \varepsilon \sqrt{\Delta t}, \quad \varepsilon \sim \mathcal{N}(0,1).
+\]
+
+\paragraph{Interpretazione finanziaria}
+Il moto browniano:
+\begin{itemize}[label=-]
+\item non è adatto a modellare direttamente i prezzi (può diventare negativo)
+\item cattura correttamente il comportamento dei \textbf{rendimenti}
+\end{itemize}
+Per questo si modellano i log-rendimenti e non i livelli di prezzo.
+
+\paragraph{Conclusione}
+Il processo di Wiener è il mattone fondamentale della modellistica continua in finanza.  
+Le sue proprietà di incremento, martingala, Markovianità e variazione quadratica permettono lo sviluppo dello stochastic calculus e dei modelli di pricing.
+
 
 \end{document}
