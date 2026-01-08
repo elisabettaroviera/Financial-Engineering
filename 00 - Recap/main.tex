@@ -2261,6 +2261,182 @@ Una procedura efficiente consiste in:
 Questo sfrutta il fatto che lo stock ha Gamma nulla.
 
 
-% MANCANO 19 E 20
+\newpage
+\textcolor{Orchid}{\section{Recap Lezione 19 -- Risk Measures, VaR, ES and Hedging}}
+
+\paragraph{Obiettivo della lezione}
+La lezione introduce misure quantitative di rischio per variabili aleatorie che rappresentano perdite, con focus su \emph{Value at Risk} e \emph{Expected Shortfall}, e ne discute l’uso nella gestione del rischio e nelle strategie di hedging tramite strumenti derivati.
+
+\paragraph{Definizione di Loss}
+Sia \(V(t)\) il valore di un portafoglio al tempo \(t\).  
+Si definisce il profitto come \(V(t+1)-V(t)\) e la perdita (loss) come
+\[
+L(t+1) = -\bigl(V(t+1)-V(t)\bigr).
+\]
+
+\paragraph{Value at Risk (VaR)}
+\paragraph{Definizione}
+Dato un livello di confidenza \(\alpha\in(0,1)\), il \emph{Value at Risk} di una variabile aleatoria \(L\) è definito come
+\[
+\mathrm{VaR}_\alpha(L)
+:= \inf\{y\in\mathbb{R} : \mathbb{P}(L \le y)\ge \alpha\}
+= \inf\{y\in\mathbb{R} : F_L(y)\ge \alpha\}.
+\]
+
+\paragraph{Osservazione}
+Se \(L\) ha distribuzione continua e \(F_L\) è strettamente crescente, allora
+\[
+\mathrm{VaR}_\alpha(L) = F_L^{-1}(\alpha).
+\]
+
+\paragraph{Proposizione (VaR per una variabile normale)}
+Se \(L \sim \mathcal{N}(\mu,\sigma^2)\), allora
+\[
+\mathrm{VaR}_\alpha(L) = \mu + \sigma\,\Phi^{-1}(\alpha),
+\]
+dove \(\Phi\) è la funzione di distribuzione cumulativa della \(\mathcal{N}(0,1)\).
+
+\paragraph{Misure di rischio coerenti}
+Una misura di rischio \(\rho : \mathcal{M}\to\mathbb{R}\) è detta coerente se soddisfa i seguenti assiomi.
+
+\paragraph{A1. Invarianza per traslazione}
+\[
+\rho(L+\ell)=\rho(L)+\ell \qquad \forall\,\ell\in\mathbb{R}.
+\]
+
+\paragraph{A2. Subadditività}
+\[
+\rho(L_1+L_2)\le \rho(L_1)+\rho(L_2).
+\]
+
+\paragraph{A3. Omogeneità positiva}
+\[
+\rho(\lambda L)=\lambda \rho(L) \qquad \forall\,\lambda\ge 0.
+\]
+
+\paragraph{A4. Monotonicità}
+Se \(L_1\le L_2\) quasi sicuramente, allora
+\[
+\rho(L_1)\le \rho(L_2).
+\]
+
+\paragraph{Osservazione}
+Il \(\mathrm{VaR}\) non è una misura di rischio coerente poiché, in generale, non soddisfa la subadditività.
+
+\paragraph{Expected Shortfall (ES)}
+\paragraph{Definizione}
+Dato \(\alpha\in(0,1)\), l’\emph{Expected Shortfall} (o Conditional Value at Risk) è definito come
+\[
+\mathrm{ES}_\alpha(L)
+:= \frac{1}{1-\alpha}\int_\alpha^1 \mathrm{VaR}_u(L)\,du
+= \mathbb{E}\bigl[L \mid L > \mathrm{VaR}_\alpha(L)\bigr].
+\]
+
+\paragraph{Osservazione}
+L’Expected Shortfall misura la perdita media condizionata al superamento del VaR ed è una misura di rischio coerente.
+
+\paragraph{Proposizione (ES per una variabile normale)}
+Se \(L \sim \mathcal{N}(\mu,\sigma^2)\), allora
+\[
+\mathrm{ES}_\alpha(L)
+= \mu + \sigma\,\frac{\varphi\!\left(\Phi^{-1}(\alpha)\right)}{1-\alpha},
+\]
+dove \(\varphi\) è la densità della \(\mathcal{N}(0,1)\).
+
+\paragraph{Portafogli e approssimazione lineare}
+Sia \(V(t)=\sum_{i=1}^n h_i S_i(t)\) il valore di un portafoglio.  
+Indicando con \(R_i(t)\) i rendimenti dei singoli asset e con \(w_i=\frac{h_i S_i(t)}{V(t)}\) i pesi, il rendimento lineare del portafoglio è
+\[
+R_V(t)=\sum_{i=1}^n w_i R_i(t).
+\]
+La perdita è approssimata da
+\[
+L(t+1)\approx -V(t)\,R_V(t).
+\]
+
+\paragraph{Hedging e fattori di rischio}
+Il valore di un portafoglio o di un derivato dipende da un insieme di fattori di rischio \(z=(z_1,\dots,z_m)\).  
+Per piccole variazioni,
+\[
+\Delta V \approx \frac{\partial V}{\partial t}\Delta t
++ \sum_{i=1}^m \frac{\partial V}{\partial z_i}\Delta z_i,
+\]
+che giustifica strategie di hedging basate sulle sensitività (Delta-hedging).
+
+\paragraph{Confronto tra strategie di copertura}
+\begin{itemize}[label=-]
+\item \emph{Forward}: elimina il rischio fissando il tasso futuro, ma rinuncia a qualsiasi beneficio da movimenti favorevoli.
+\item \emph{Opzioni}: consentono una copertura con protezione dal downside e mantenimento dell’upside, al costo del premio.
+\end{itemize}
+
+\paragraph{Conclusione}
+Il confronto tra VaR ed ES evidenzia i limiti del VaR come misura di rischio e motiva l’uso dell’Expected Shortfall nelle decisioni di gestione del rischio e nelle strategie di hedging con derivati.
+
+\newpage
+\textcolor{Orchid}{\section{Recap Lezione 20 -- Speculating with Derivatives}}
+
+\paragraph{Idea generale}
+Si usano i derivati (in particolare le opzioni) come \emph{building blocks} per progettare strumenti/portafogli con un \textbf{payoff prescritto}, coerente con le aspettative dell’investitore sull’andamento futuro del sottostante e con la sua propensione al rischio.
+
+\paragraph{Opzioni come strumenti di costruzione}
+Se l’investitore si attende un rialzo del prezzo del titolo e vuole scommettere su tale evento, una scelta naturale è l’acquisto di una call. Poiché una call con strike \(K\) vicino al prezzo corrente è tipicamente più economica del titolo, essa può generare un’esposizione \emph{leveraged} e quindi più rischiosa. Il premio può essere ridotto combinando posizioni long e short su opzioni con strike diversi, ottenendo payoff a tratti lineari.
+
+\paragraph{Bull spread con call}
+Si considerano due strike \(K_1<K_2\). Un \emph{bull spread} si ottiene con
+\[
+\text{Long Call}(K_1) \;+\; \text{Short Call}(K_2).
+\]
+Il payoff a maturity \(T\) è
+\[
+\Pi_{\text{bull}}(S_T)= (S_T-K_1)^+-(S_T-K_2)^+,
+\]
+quindi cresce per \(K_1<S_T<K_2\) e si \emph{satura} per \(S_T\ge K_2\). È adatto quando si prevede un aumento moderato del prezzo.
+
+\paragraph{Bear spread con put}
+Si considerano due strike \(K_1<K_2\). Un \emph{bear spread} si costruisce con put a strike diversi, con payoff positivo per valori bassi del sottostante
+\[
+\text{Short Put}(K_1)\;+\;\text{Long Put}(K_2),
+\]
+e payoff
+\[
+\Pi_{\text{bear}}(S_T)=-(K_1-S_T)^+ + (K_2-S_T)^+.
+\]
+È coerente con l’aspettativa di un calo moderato del prezzo.
+
+\paragraph{Butterfly spread con call}
+Si scelgono tre strike \(K_1<K_2<K_3\) e si impone \(K_2=\frac{K_1+K_3}{2}\). La \emph{butterfly} si ottiene con
+\[
+\text{Long Call}(K_1)\;-\;2\,\text{Short Call}(K_2)\;+\;\text{Long Call}(K_3),
+\]
+e payoff
+\[
+\Pi_{\text{butterfly}}(S_T)=(S_T-K_1)^+ -2(S_T-K_2)^+ + (S_T-K_3)^+,
+\]
+che è massimo in prossimità di \(S_T=K_2\) e tende a \(0\) fuori dall’intervallo \([K_1,K_3]\). È coerente con l’idea che il prezzo rimanga circa stabile (o vari poco).
+
+\paragraph{Decomposizione di payoff target in opzioni}
+Si osserva che ogni funzione di payoff \emph{continua} e \emph{a tratti lineare} può essere costruita (o approssimata) come combinazione di call e put con diversi strike. Operativamente si scompone un profilo target in segmenti lineari e si sceglie, per ciascuno strike rilevante, il numero di opzioni in modo da \textbf{replicare le pendenze} dei segmenti.
+
+\paragraph{Schema di case study con modello binomiale}
+Si combina la logica di portafoglio con gli strumenti precedenti considerando un investitore con una view sul prezzo futuro \(S_T\) e che accetta rischio per aumentare il rendimento atteso. Si analizzano tre alternative
+\[
+\text{(i) investimento nel titolo},\qquad
+\text{(ii) investimento in call},\qquad
+\text{(iii) investimento tramite forward}.
+\]
+Per modellare la distribuzione di \(S_T\) si usa un \textbf{modello binomiale} su \(N\) passi con probabilità uguali di up e down (\(p=1/2\)), fattori moltiplicativi \(\tilde u,\tilde d\) tali che \(S_{t+1}=S_t\tilde u\) oppure \(S_{t+1}=S_t\tilde d\). Ne segue la rappresentazione
+\[
+S_T = S_0 \tilde u^{k}\tilde d^{\,N-k},\qquad
+\mathbb{P}(k)=\binom{N}{k}\left(\frac12\right)^N.
+\]
+Il payoff di call è \(\phi(S_T)=(S_T-K)^+\). Il rendimento della call (in forma relativa al premio \(c\)) è espresso come \(\frac{\phi(S_T)-c}{c}\). Per il forward, con forward price \(F\), il payoff è \(S_T-F\), e se è previsto un deposito iniziale \(\text{Dep}\), il rendimento relativo è \(\frac{S_T-F}{\text{Dep}}\).
+
+\paragraph{Loss e Value at Risk (VaR)}
+Si considera una variabile aleatoria di perdita \(L\). Si definisce la funzione di ripartizione \(F_L(\ell)=\mathbb{P}(L\le \ell)\). Il \(\mathrm{VaR}_\alpha\) è definito come il più piccolo livello di perdita \(\ell\) tale che la probabilità cumulata raggiunge almeno \(\alpha\)
+\[
+\mathrm{VaR}_\alpha(L)=\inf\{\ell:\, F_L(\ell)\ge \alpha\}.
+\]
+Nel caso discreto, con valori \(\{\ell_i\}\) e probabilità \(\{p_i\}\), \(F_L\) è a gradini e \(\mathrm{VaR}_\alpha\) coincide con il primo valore \(\ell\) per cui la somma cumulata delle probabilità dei punti \(\le \ell\) supera (o eguaglia) \(\alpha\).
+
 
 \end{document}
