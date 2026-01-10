@@ -94,26 +94,62 @@
 
 
 % Impostazioni per i numeri di pagina
-\pagestyle{empty}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
 
 
 % Dettagli del documento
 \title{Financial Engineering}
 \date{}
 \titlespacing*{\section}{0pt}{-20pt}{4pt}
-\definecolor{PastelGreenYellow}{RGB}{230,238,156}
-\definecolor{MutedGreenYellow}{RGB}{205,237,176}
+% BLU → AZZURRO
+\definecolor{BlueDeep}{RGB}{28,58,117}
+\definecolor{BlueRoyal}{RGB}{41,98,166}
+\definecolor{AzureSoft}{RGB}{70,140,200}
+\definecolor{CyanLight}{RGB}{102,180,210}
+
+% AZZURRO → VERDE
+\definecolor{AquaPastel}{RGB}{120,200,190}
+\definecolor{MintGreen}{RGB}{120,200,150}
+\definecolor{GreenSoft}{RGB}{90,170,120}
+\definecolor{GreenLeaf}{RGB}{60,140,90}
+
+% VERDE → GIALLO
+\definecolor{OliveSoft}{RGB}{130,160,80}
+\definecolor{LimePastel}{RGB}{180,200,90}
+\definecolor{YellowSoft}{RGB}{240,220,120}
+
+% GIALLO → ARANCIONE
+\definecolor{GoldenSoft}{RGB}{240,190,90}
+\definecolor{OrangeSoft}{RGB}{240,160,90}
+\definecolor{OrangeWarm}{RGB}{230,130,70}
+
+% ARANCIONE → ROSSO
+\definecolor{RedSoft}{RGB}{220,100,80}
+\definecolor{RedMuted}{RGB}{200,70,70}
+
+% ROSSO → ROSA
+\definecolor{RoseSoft}{RGB}{210,120,150}
+\definecolor{PinkPastel}{RGB}{220,150,180}
+
+% ROSA → VIOLA
+\definecolor{LilacSoft}{RGB}{180,140,200}
+\definecolor{PurpleSoft}{RGB}{140,110,180}
+
 
 
 \begin{document}
 
-%\maketitle
+\maketitle
 %\tableofcontents
 
-%\vspace{-5cm}
-\textcolor{NavyBlue}{\section{Recap Lezione 1 -- Financial Instruments and Markets}}
+\vspace{-0.2cm}
+\textcolor{BlueDeep}{\section{Financial Instruments and Markets}}
 
-\paragraph{Idea generale della lezione}
+\paragraph{RECAP}
 La lezione introduce i \textbf{financial instruments} e i \textbf{financial markets}, presentando le principali categorie di \textbf{securities e contratti}, con particolare attenzione a \textbf{bonds}, \textbf{stocks}, \textbf{derivatives}, \textbf{forwards}, \textbf{futures} e \textbf{options}.  
 L’obiettivo è fornire le definizioni di base, chiarire le differenze tra strumenti e introdurre i concetti di \textbf{payoff}, \textbf{price}, \textbf{risk} e \textbf{posizioni long/short}.
 
@@ -121,31 +157,25 @@ L’obiettivo è fornire le definizioni di base, chiarire le differenze tra stru
 Una \textbf{security} è un documento che conferisce diritti di proprietà su un \textbf{financial claim}.  
 I mercati finanziari vengono classificati in base alle caratteristiche degli strumenti dal punto di vista dell’investitore.
 
-\paragraph{Classificazione principale}
+\textbf{Classificazione principale}
 \begin{itemize}[label=-]
 \item \textbf{Basic securities}
   \begin{itemize}[label=-]
   \item \textbf{Stocks} Securities che rappresentano una quota di proprietà di un’impresa
-  \item \textbf{Fixed income (bonds)} Securities di debito che prevedono pagamenti determinati o predeterminabili
-  \item \textbf{Foreign exchange (FX)} Strumenti legati allo scambio tra valute diverse
+  \item \textbf{Bonds} Securities di debito che prevedono pagamenti determinati o predeterminabili
+  \item \textbf{Foreign exchange} Strumenti legati allo scambio tra valute diverse
   \item \textbf{Commodities} Beni fisici standardizzati scambiati nei mercati finanziari
   \end{itemize}
 \item \textbf{Derivatives and contracts}
   \begin{itemize}[label=-]
   \item \textbf{Forwards e futures} Contratti che fissano oggi le condizioni di uno scambio futuro
-  \item \textbf{Options (call e put)} Contratti che conferiscono il diritto, ma non l’obbligo, di comprare o vendere un underlying
+  \item \textbf{Options} Contratti che danno il diritto, ma non l’obbligo, di comprare o vendere un underlying
   \end{itemize}
 \end{itemize}
 
 \paragraph{Bonds}
-Un \textbf{bond} è una security che rappresenta uno strumento di debito e conferisce al detentore il diritto a ricevere flussi di cassa futuri determinati.
+Un \textbf{bond} è una security che rappresenta uno strumento di debito e conferisce al detentore il diritto a ricevere flussi di cassa futuri determinati $\rightarrow$ pagamento predeterminato a una data futura (\textbf{maturity}).
 
-\begin{itemize}[label=-]
-\item Un pagamento predeterminato a una data futura detta \textbf{maturity}
-\item Un \textbf{nominal value} detto anche face value, par value o principal
-\end{itemize}
-
-Caratteristiche principali
 \begin{itemize}[label=-]
 \item Il \textbf{bond price} è il prezzo pagato dal creditore al debitore
 \item Il \textbf{nominal value} è l’importo rimborsato alla maturity
@@ -153,12 +183,12 @@ Caratteristiche principali
 \item I bonds sono soggetti a \textbf{default risk}
 \end{itemize}
 
-\paragraph{Tipologie di bonds}
+\textbf{Tipologie di bonds}
 \begin{itemize}[label=-]
 \item \textbf{Maturity}
   \begin{itemize}[label=-]
-  \item Short-term bond con maturity minore o uguale a un anno
-  \item Long-term bond con maturity superiore a un anno
+  \item \textbf{Short-term} bond con maturity minore o uguale a un anno
+  \item \textbf{Long-term} bond con maturity superiore a un anno
   \end{itemize}
 \item \textbf{Pure discount bond / zero coupon bond}
   \begin{itemize}[label=-]
@@ -181,28 +211,26 @@ Una \textbf{stock} è una security che conferisce al detentore una quota di prop
 \item Il prezzo è noto al tempo iniziale ma non nel futuro
 \end{itemize}
 
-\paragraph{Risk}
 L’acquisto e la successiva vendita di una stock può generare un risultato incerto.
+Il \textbf{return} dipende dalla differenza tra prezzo di vendita e prezzo di acquisto.  
+La \textbf{capital gain} è la differenza tra selling price e initial price, mentre il rapporto tra dividend e prezzo è detto \textbf{dividend yield}.
 
 \begin{itemize}[label=-]
 \item \textbf{Profit} Quando il return è positivo
 \item \textbf{Loss} Quando il return è negativo
 \end{itemize}
 
-Il \textbf{return} dipende dalla differenza tra prezzo di vendita e prezzo di acquisto.  
-La \textbf{capital gain} è la differenza tra selling price e initial price, mentre il rapporto tra dividend e prezzo è detto \textbf{dividend yield}.
-
-\paragraph{Posizioni}
+\textbf{Posizioni}
 \begin{itemize}[label=-]
-\item \textbf{Long position} Posizione che consiste nell’acquisto di una security
-\item \textbf{Short position} Posizione che consiste nella vendita di una security non posseduta
+\item \textbf{Long position} Posizione che consiste nell’acquisto (buy) di una security
+\item \textbf{Short position} Posizione che consiste nella vendita (sell) di una security non posseduta
 \item Il venditore short beneficia di una riduzione del prezzo
 \item Ogni contratto è uno \textbf{zero-sum game}
 \end{itemize}
 
 \paragraph{Derivatives}
 Un \textbf{derivative} è uno strumento finanziario il cui valore dipende dal valore di un \textbf{underlying asset}.  
-I derivatives sono anche detti \textbf{contingent claims} e permettono il trasferimento del rischio tra operatori.
+I derivatives, \textbf{contingent claims}, permettono il trasferimento del rischio tra operatori.
 
 \paragraph{Forwards e Futures}
 Un \textbf{forward contract} è un accordo in cui le parti fissano oggi prezzo, quantità e data futura di consegna, con regolamento alla maturity e tipica negoziazione \textbf{OTC}.  
@@ -210,74 +238,50 @@ Un \textbf{future contract} è un contratto simile ma scambiato in un \textbf{ex
 
 \paragraph{Spot price, forward price e payoff}
 Lo \textbf{spot price} è il prezzo corrente dell’underlying.  
-Il \textbf{forward price} è il prezzo fissato oggi per uno scambio futuro.
+Il \textbf{forward price} è il prezzo fissato oggi per uno scambio futuro. Il forward contract è uno \textbf{zero-sum game}.
 
 \begin{itemize}[label=-]
-\item Payoff long position pari a $S_T - K$
-\item Payoff short position pari a $K - S_T$
+\item \textbf{Payoff long position} pari a $S_T - K$
+\item \textbf{Payoff short position} pari a $K - S_T$
 \end{itemize}
-
-Il forward contract è uno \textbf{zero-sum game}.
 
 \paragraph{Options}
 Una \textbf{option} è una security che conferisce al detentore il diritto, ma non l’obbligo, di comprare o vendere un underlying a un prezzo prefissato.
+Il prezzo dell’opzione è detto \textbf{option price} ed è pagato dal buyer al writer.
 
-\paragraph{Tipologie di options}
+\textbf{Tipologie di options}
 \begin{itemize}[label=-]
-\item \textbf{Call option} Diritto di acquistare l’underlying
-\item \textbf{Put option} Diritto di vendere l’underlying
+\item \textbf{Call option} Diritto di acquistare (buy) l’underlying
+\item \textbf{Put option} Diritto di vendere (sell) l’underlying
 \end{itemize}
 
-\paragraph{Payoff delle options}
+\textbf{Payoff delle options}
 \begin{itemize}[label=-]
 \item Call long con payoff $(S_T - K)^+$
 \item Put long con payoff $(K - S_T)^+$
 \end{itemize}
 
-Il prezzo dell’opzione è detto \textbf{option price} ed è pagato dal buyer al writer.
+\vspace{0.5cm}
 
-\newpage
-\textcolor{RoyalBlue}{\section{Recap Lezione 2 -- Time Value of Money and Bonds}}
-\paragraph{Idea generale della lezione}
-La lezione formalizza il concetto di \textbf{time value of money} e introduce gli strumenti base del \textbf{money market}, con focus su \textbf{zero-coupon bonds} e \textbf{coupon bonds}.  
+\textcolor{BlueRoyal}{\section{Time Value of Money and Bonds}}
+\paragraph{RECAP}
+La lezione formalizza il concetto di \textbf{time value of money} e introduce gli strumenti del \textbf{money market}, con focus su \textbf{zero-coupon bonds} e \textbf{coupon bonds}.  
 L’obiettivo è capire come confrontare valori monetari in tempi diversi tramite \textbf{capitalizzazione} e \textbf{sconto}, come definire correttamente un \textbf{return}, e come prezzare e confrontare investimenti tramite \textbf{discount factors}, \textbf{zero rates}, \textbf{yield} e \textbf{par yield}.
 
-\paragraph{Time value of money}
-Si investe oggi un capitale (principal) \(P\) e si vuole determinare il valore futuro \(A(t)\) al tempo \(t\), oppure viceversa si conosce un valore futuro e si vuole trovare il valore equivalente oggi.  
+\paragraph{Simple capitalization}
+Si investe oggi un capitale \(P\) e si vuole determinare il valore futuro \(A(t)\) al tempo \(t\), oppure viceversa si conosce un valore futuro e si vuole trovare il valore equivalente oggi.  
 L’interesse maturato è \(I(t)=A(t)-P\). Per unità di tempo \(t=1\), si ha \(A-P=I\).  
 Il \textbf{tasso di interesse} è definito come
-\[
-r=\frac{I}{P}
-\qquad\Rightarrow\qquad
+\(
 I=Pr.
-\]
-
-\paragraph{Simple compounding}
+\)
 L’interesse cresce in modo \textbf{lineare} nel tempo, senza ``interesse sull’interesse''.  
-L’ammontare al tempo \(t\) è
-\[
-A(t)=P+Prt=P(1+rt),
-\]
-con \textbf{growth factor} \(1+rt\).  
-Lo sconto corrispondente è
-\[
-P=\frac{A(t)}{1+rt}.
-\]
+L’ammontare al tempo \(t\) è$$A(t)=P(1+rt).$$
 La coerenza delle unità di tempo è essenziale, il tasso deve essere espresso nella stessa unità del tempo utilizzato.
 
-\paragraph{Compound compounding}
+\paragraph{Compounding}
 L’interesse viene \textbf{capitalizzato periodicamente}, quindi ogni periodo l’interesse maturato entra nel capitale e genera ulteriore interesse.  
 Con \(r\) \textbf{nominal annual rate} convertibile \(m\) volte l’anno, il tasso per periodo è \(\frac{r}{m}\) e dopo \(t\) anni
-\[
-A(t)=P\left(1+\frac{r}{m}\right)^{mt}.
-\]
-Il valore attuale si ottiene con lo sconto
-\[
-P=\frac{A(t)}{\left(1+\frac{r}{m}\right)^{mt}}.
-\]
-
-\paragraph{Nominal annual rate}
-Si introduce un tasso annuo \textbf{nominale} \(r\) quando la capitalizzazione avviene \(m\) volte l’anno, in modo che il tasso per periodo sia \(\frac{r}{m}\) e l’accumulazione su \(t\) anni sia coerente con la convenzione di capitalizzazione periodica
 \[
 A(t)=P\left(1+\frac{r}{m}\right)^{mt}.
 \]
@@ -310,26 +314,18 @@ r_e=e^r-1.
 
 \paragraph{Equation of value}
 Si hanno più flussi di cassa in tempi diversi (prestiti, rimborsi, pagamenti) e si vuole imporre che siano \textbf{equivalenti} rispetto a un tempo di riferimento (tipicamente \(t=0\)).  
-Il principio è riportare tutti i flussi allo stesso tempo con i fattori di sconto e imporre l’uguaglianza tra valori attuali. In forma generale
-\[
-\sum_{i} \text{CF}_i \cdot \text{DF}(t_i)=0,
-\]
-dove \(\text{DF}(t_i)\) è il discount factor coerente con la convenzione di capitalizzazione adottata.
+Il principio è riportare tutti i flussi allo stesso tempo con i fattori di sconto e imporre l’uguaglianza tra valori attuali. 
 
 \paragraph{Return: linear return e log-return}
 Si osserva un valore \(V(s)\) al tempo \(s\) e un valore \(V(t)\) al tempo \(t\), e si vuole misurare la performance dell’investimento tra \(s\) e \(t\).  
 Il \textbf{linear return} è
 \[
-LR(s,t)=\frac{V(t)-V(s)}{V(s)}.
+LR(s,t)=\frac{V(t)-V(s)}{V(s)} \qquad\Rightarrow\qquad LR(s,t)=r(t-s).
 \]
 Nel caso di interesse semplice, il return è coerente con l’additività su intervalli consecutivi. Con capitalizzazione non lineare (es.\ continua) tale additività non vale in generale.  
 Si introduce il \textbf{log-return}
 \[
-R(s,t)=\ln\!\left(\frac{V(t)}{V(s)}\right),
-\]
-che soddisfa sempre l’additività
-\[
-R(t_1,t_2)+R(t_2,t_3)=R(t_1,t_3).
+R(s,t)=\ln\!\left(\frac{V(t)}{V(s)}\right) \;\;\Rightarrow\;\; \text{che soddisfa sempre l’additività}\;\; R(t_1,t_2)+R(t_2,t_3)=R(t_1,t_3) \quad\text{\textbf{PROP}}.
 \]
 
 \paragraph{Money market}
@@ -337,65 +333,62 @@ Si considerano strumenti \textbf{risk-free} che generano flussi deterministici e
 Tra gli strumenti si considerano \textbf{zero coupon bonds}, \textbf{coupon bonds}, \textbf{bond forwards}, \textbf{annuities} e \textbf{bank account}.  
 Il formalismo chiave è quello dei \textbf{discount factors} e dei \textbf{zero rates}.
 
-\paragraph{Bank account}
+\emph{\textbf{Bank account}
 Si considera un conto bancario come strumento risk-free che permette di accumulare capitale nel tempo secondo una convenzione di capitalizzazione scelta.  
 Indicando con \(A(t)\) l’ammontare al tempo \(t\), le forme tipiche sono \(A(t)=P(1+rt)\), \(A(t)=P\left(1+\frac{r}{m}\right)^{mt}\) oppure \(A(t)=Pe^{rt}\), con attualizzazione ottenuta invertendo la rispettiva relazione.
+}
 
-\paragraph{Annuity}
-Si considera un’\textbf{annuity} come una sequenza di pagamenti deterministici a date prefissate.  
-Il valore oggi è la somma dei valori attuali dei pagamenti, ottenuti scontando ciascun flusso con il fattore di sconto coerente con la struttura dei tassi.
-
-\paragraph{Investment in bond}
+\emph{\textbf{Investment in bond}
 Si interpreta l’acquisto di un bond come un investimento che scambia un esborso certo oggi con una sequenza di flussi futuri deterministici.  
 Il confronto tra investimenti in bond passa attraverso attualizzazione dei flussi, uso di zero rates e sintesi tramite yield e par yield.
+}
 
-\paragraph{Zero-coupon bonds (ZCB)}
+\paragraph{1. Zero-coupon bonds (ZCB)}
 Si vuole prezzare oggi un titolo che paga \textbf{un solo} flusso certo a scadenza \(T\).  
 Indicando con \(B(t,T)\) il valore al tempo \(t<T\)
-\[
+\(\;
 B(T,T)=1.
-\]
+\)
 Se il bond è scambiato a mercato, lo \textbf{zero rate} implicito (continuamente composto) è definito da
 \[
-B(0,T)=e^{-r(0,T)T}
-\qquad\Rightarrow\qquad
-r(0,T)=-\ln\big(\frac{B(0,T)}{T}\big),
-\]
-e analogamente
-\[
-B(t,T)=e^{-r(t,T)(T-t)}
-\qquad\Rightarrow\qquad
-r(t,T)=-\ln\big(\frac{B(t,T)}{T-t}\big).
+\begin{aligned}
+B(0,T) &= e^{-r(0,T)T}
+&\Rightarrow\quad r(0,T) &= -\frac{1}{T}\ln\!\big(B(0,T)\big),
+\\[0.6em]
+B(t,T) &= e^{-r(t,T)(T-t)}
+&\Rightarrow\quad r(t,T) &= -\frac{1}{T-t}\ln\!\big(B(t,T)\big).
+\end{aligned}
 \]
 
-\paragraph{Coupon bonds}
+
+\paragraph{2. Coupon bonds}
 Si vuole prezzare oggi un titolo che paga cedole a date intermedie e rimborsa il face value alla maturity.  
-Il prezzo teorico è il valore attuale di tutti i flussi. Se le cedole \(c_i\) sono pagate ai tempi \(t_i\) e \(t_n=T\), con face value \(F=1\)
+Il prezzo teorico è il valore attuale di tutti i flussi. Se le cedole \(c_i\) sono pagate ai tempi \(t_i\) e \(t_n=T\), 
 \[
-C(0,T)=\sum_{i=1}^{n-1} c_i\,e^{-r_i t_i}+(c_n+1)e^{-r_n t_n},
+C(0,T)=\sum_{i=1}^{n-1} c_i\,e^{-r_i t_i}+(c_n+F)e^{-r_n t_n},
 \]
 dove \(r_i\) sono i tassi (zero rates) associati alle diverse scadenze.
 
-\paragraph{Bond yield}
+\paragraph{3. Bond yield}
 Si osserva un prezzo di mercato di un bond e si vuole riassumere l’intera struttura dei flussi con un \textbf{unico} tasso equivalente.  
-Lo \textbf{yield} \(y\) è il tasso (unico) che, applicato a tutti i flussi del bond, riproduce il prezzo
-\[
-P=\sum_{i=1}^{n} \text{CF}_i\,e^{-y t_i},
-\]
-dove \(\text{CF}_i\) sono i flussi di cassa (cedole e rimborso) ai tempi \(t_i\).
 
-\paragraph{Par yield}
+\textbf{Par yield}
 Si vuole determinare quale tasso cedolare rende un bond scambiato ``alla pari'', cioè con prezzo uguale al face value.  
 Il \textbf{par yield} è il coupon rate \(c\) tale che il prezzo del bond soddisfi
-\[
+\(
 P=F,
-\]
+\)
 con \(P\) dato dalla somma dei valori attuali dei flussi (cedole costruite con \(c\) e rimborso del face value) scontati tramite la struttura dei tassi.
 
-\newpage
-\textcolor{CadetBlue}{\section{Recap Lezione 3 -- Duration and Interest Rate Risk}}
+\textbf{4. Annuity}
+Si considera un’\textbf{annuity} come una sequenza di pagamenti deterministici a date prefissate.  
+Il valore oggi è la somma dei valori attuali dei pagamenti, ottenuti scontando ciascun flusso con il fattore di sconto coerente con la struttura dei tassi
+$$PV=c\frac{1-(1+r)^n}{r}.$$
 
-\paragraph{Idea generale della lezione}
+\newpage
+
+\textcolor{AzureSoft}{\section{Duration and Interest Rate Risk}}
+\paragraph{RECAP}
 La lezione analizza il \textbf{rischio di tasso di interesse} associato ai bond e introduce strumenti analitici per misurare la \textbf{sensibilità del prezzo di un titolo obbligazionario alle variazioni del rendimento}.  
 Il concetto centrale è la \textbf{duration}, ottenuta a partire da un’approssimazione di primo ordine del prezzo del bond, e il suo utilizzo nella gestione del rischio e nella costruzione di strategie di copertura.
 
@@ -459,7 +452,7 @@ Poiché il rendimento e il tempo influenzano il valore della duration, è necess
 Il \textbf{dynamic hedging} consiste nel ribilanciare dinamicamente le posizioni per mantenere sotto controllo l’esposizione al rischio di tasso.
 
 \newpage
-\textcolor{TealBlue}{\section{Recap Lezione 4 -- Term Structure, Bootstrap and Forward Rates}}
+\textcolor{CyanLight}{\section{Term Structure, Bootstrap and Forward Rates}}
 
 \paragraph{Idea generale della lezione}
 La lezione studia la \textbf{struttura a termine dei tassi di interesse} senza imporre l’ipotesi che il rendimento sia indipendente dalla maturity.  
@@ -564,7 +557,7 @@ Il FRA è un contratto con le seguenti caratteristiche
 \end{itemize}
 
 \newpage
-\textcolor{MediumSeaGreen}{\section{Recap Lezione 5 -- Forward and Futures Contracts}}
+\textcolor{AquaPastel}{\section{Forward and Futures Contracts}}
 
 \paragraph{Idea generale della lezione}
 La lezione introduce in modo formale i \textbf{forward contracts} e i \textbf{futures contracts}, analizzandone \textbf{payoff}, \textbf{pricing per assenza di arbitraggio}, \textbf{valore nel tempo} e differenze strutturali.  
@@ -723,7 +716,7 @@ F(0,T)=(S(0)+U)e^{rT}.
 La formula è ottenuta tramite argomenti di arbitraggio analoghi al caso senza costi.
 
 \newpage
-\textcolor{PineGreen}{\section{Recap Lezione 6 -- Hedging with Futures}}
+\textcolor{MintGreen}{\section{Hedging with Futures}}
 
 \paragraph{Idea generale della lezione}
 Si studia come coprire (hedging) un’esposizione al rischio di prezzo di un asset \(S(t)\) usando forward e soprattutto futures.  
@@ -840,7 +833,7 @@ Usando il valore ottimo \(N^*\), si ottiene che tale quantità coincide con \(\r
 L’efficacia dell’hedge dipende quindi dalla correlazione lineare tra \(\Delta S\) e \(\Delta f\): maggiore è \(|\rho|\), maggiore è la quota di rischio eliminabile, mentre \(|\rho|<1\) implica varianza residua e quindi presenza di basis risk.
 
 \newpage
-\textcolor{MutedGreenYellow}{\section{Recap Lezione 7 -- Options, Payoff, Parity and Bounds}}
+\textcolor{GreenSoft}{\section{Options, Payoff, Parity and Bounds}}
 
 \paragraph{Idea generale della lezione}
 La lezione introduce le \textbf{opzioni su azioni}, analizzandone payoff e profitto per le diverse posizioni, e sviluppa i principali risultati di \textbf{non arbitraggio}, in particolare la \textbf{put--call parity}, i \textbf{price bounds} per opzioni europee e americane e il teorema di equivalenza tra call americana ed europea in assenza di dividendi.
@@ -985,7 +978,7 @@ C^A = C^E
 Ne segue che non è mai ottimale esercitare anticipatamente una American call in assenza di dividendi.
 
 \newpage
-\textcolor{SoftGold}{\section{Recap Lezione 8 -- One-Period Binomial Model, Arbitrage and Risk-Neutral Valuation}}
+\textcolor{GreenLeaf}{\section{One-Period Binomial Model, Arbitrage and Risk-Neutral Valuation}}
 
 \paragraph{Idea generale della lezione}
 La lezione introduce il \textbf{modello binomiale a un periodo} come primo modello discreto per la valutazione di asset rischiosi e derivati finanziari.  
@@ -1184,7 +1177,7 @@ C=\frac{1}{1+r}\Bigl(q_u(Su-K)^+ + q_d(Sd-K)^+\Bigr)
 \end{itemize}
 
 \newpage
-\textcolor{DarkGold}{\section{Recap Lezione 9 -- Multi-Period Binomial Model}}
+\textcolor{OliveSoft}{\section{Multi-Period Binomial Model}}
 
 \paragraph{Idea generale della lezione}
 Si estende il modello binomiale a più periodi in tempo discreto \(t=0,\dots,T\), con due asset \((B,S)\).  
@@ -1258,7 +1251,7 @@ x_n(1+r)+y_n S(n)=x_{n+1}+y_{n+1}S(n).
 \]
 
 \newpage
-\textcolor{Orange!70!Black}{\section{Recap Lezione 10 -- Binomial Model, Contingent Claims and American Options}}
+\textcolor{LimePastel}{\section{Binomial Model, Contingent Claims and American Options}}
 
 \paragraph{Idea generale della lezione}
 La lezione estende il \textbf{modello binomiale} a più periodi per lo studio sistematico del pricing di derivati finanziari.  
@@ -1328,7 +1321,7 @@ Questo risultato è una conseguenza diretta del confronto tra payoff immediato e
 La lezione mostra come il modello binomiale fornisca un quadro completo e coerente per il pricing dei derivati, unificando approcci di arbitraggio, replicazione e valutazione risk-neutral, e costituendo la base concettuale per modelli più avanzati.
 
 \newpage
-\textcolor{Orange}{\section{Recap Lezione 11 -- Delta Hedging, Modello Binomiale e Limite Continuo}}
+\textcolor{YellowSoft}{\section{Delta Hedging, Modello Binomiale e Limite Continuo}}
 
 \paragraph{Obiettivo della lezione}
 La lezione introduce il concetto di \textbf{Delta} come misura di sensibilità del prezzo di un’opzione rispetto al prezzo del sottostante e mostra come sfruttarlo per costruire \textbf{portafogli privi di rischio} (Delta-hedging).  
@@ -1408,7 +1401,7 @@ La Delta permette di eliminare il rischio localmente nel modello binomiale.
 Il modello di Cox--Ross--Rubinstein fornisce un ponte naturale tra il mondo discreto e il modello continuo, mantenendo coerenza con assenza di arbitraggio e mercato efficiente.
 
 \newpage
-\textcolor{OrangeRed}{\section{Recap Lezione 12 -- Wiener Process and Stochastic Calculus}}
+\textcolor{GoldenSoft}{\section{Wiener Process and Stochastic Calculus}}
 
 \paragraph{Obiettivo della lezione}
 La lezione introduce il \textbf{processo di Wiener (o Brownian Motion)} come modello fondamentale per i rendimenti finanziari e come base dello \textbf{stochastic calculus}.  
@@ -1512,7 +1505,7 @@ Il processo di Wiener è il mattone fondamentale della modellistica continua in 
 Le sue proprietà di incremento, martingala, Markovianità e variazione quadratica permettono lo sviluppo dello stochastic calculus e dei modelli di pricing.
 
 \newpage
-\textcolor{Salmon}{\section{Recap Lezione 13 -- Trading Strategies with Options}}
+\textcolor{OrangeSoft}{\section{Trading Strategies with Options}}
 
 \paragraph{Idea generale}
 Si studiano strategie di trading costruite combinando opzioni europee (call e put) con la stessa maturity.  
@@ -1683,7 +1676,7 @@ Combinando opzioni con strike diversi è possibile costruire payoff molto flessi
 In linea teorica, disponendo di opzioni per ogni strike, qualsiasi payoff funzione di \(S_T\) può essere replicato.
 
 \newpage
-\textcolor{BrickRed}{\section{Recap Lezione 14 -- Black--Scholes Model and Stochastic Calculus}}
+\textcolor{OrangeWarm}{\section{Black--Scholes Model and Stochastic Calculus}}
 
 \paragraph{Obiettivo della lezione}
 L’obiettivo è introdurre un modello continuo nel tempo per i prezzi degli asset finanziari, basato su processi stocastici, e sviluppare il calcolo necessario per il pricing risk--neutral dei derivati, in particolare nel modello di Black--Scholes.
@@ -1815,7 +1808,7 @@ dX(t)=\mu(t,X(t))\,dt+\sigma(t,X(t))\,dW(t),
 la condizione \(\mu\equiv 0\) è necessaria e sufficiente affinché \(X(t)\) sia una martingala.
 
 \newpage
-\textcolor{BrickRed}{\section{Recap Lezione 15 -- Stochastic Calculus and Itô's Formula}}
+\textcolor{RedSoft}{\section{Stochastic Calculus and Itô's Formula}}
 
 \paragraph{Idea generale della lezione}
 La lezione introduce gli strumenti fondamentali del \textbf{calcolo stocastico}, con particolare attenzione al \textbf{processo di Wiener}, alla sua \textbf{variazione quadratica} e alla \textbf{formula di Itô}, che rappresenta l’analogo stocastico della regola della catena.  
@@ -1927,7 +1920,7 @@ che incorpora la proprietà di \textbf{mean reversion} verso il livello \(\mu\).
 - La mean reversion è cruciale nella modellazione dei tassi di interesse.
 
 \newpage
-\textcolor{RawSienna}{\section{Recap Lezione 16 -- Black--Scholes--Merton Model and Continuous-Time Pricing}}
+\textcolor{RedMuted}{\section{Black--Scholes--Merton Model and Continuous-Time Pricing}}
 
 \paragraph{Obiettivo della lezione}
 La lezione introduce il \textbf{modello di Black--Scholes--Merton} in tempo continuo e ne deriva la formula di pricing per claim contingenti mediante:
@@ -2060,7 +2053,7 @@ replicazione, assenza di arbitraggio e martingale pricing,
 unificando PDE, probabilità e finanza in un unico framework coerente.
 
 \newpage
-\textcolor{Plum}{\section{Recap Lezione 17 -- Black--Scholes, Forward Pricing and Parity Relations}}
+\textcolor{RoseSoft}{\section{Black--Scholes, Forward Pricing and Parity Relations}}
 
 \paragraph{Idea generale della lezione}
 La lezione estende il modello di Black--Scholes al pricing di opzioni scritte su \emph{forward/futures}.  
@@ -2158,7 +2151,7 @@ Il modello di Black--Scholes permette di prezzare opzioni su forward/futures tra
 
 
 \newpage
-\textcolor{Plum}{\section{Recap Lezione 18 -- The Greeks and Hedging}}
+\textcolor{PinkPastel}{\section{The Greeks and Hedging}}
 
 \paragraph{Idea generale della lezione}
 La lezione introduce le \textbf{Greeks}, ovvero le derivate parziali del valore di un portafoglio rispetto al prezzo dell’underlying e ai parametri del modello.  
@@ -2262,7 +2255,7 @@ Questo sfrutta il fatto che lo stock ha Gamma nulla.
 
 
 \newpage
-\textcolor{Orchid}{\section{Recap Lezione 19 -- Risk Measures, VaR, ES and Hedging}}
+\textcolor{LilacSoft}{\section{Risk Measures, VaR, ES and Hedging}}
 
 \paragraph{Obiettivo della lezione}
 La lezione introduce misure quantitative di rischio per variabili aleatorie che rappresentano perdite, con focus su \emph{Value at Risk} e \emph{Expected Shortfall}, e ne discute l’uso nella gestione del rischio e nelle strategie di hedging tramite strumenti derivati.
@@ -2373,7 +2366,7 @@ che giustifica strategie di hedging basate sulle sensitività (Delta-hedging).
 Il confronto tra VaR ed ES evidenzia i limiti del VaR come misura di rischio e motiva l’uso dell’Expected Shortfall nelle decisioni di gestione del rischio e nelle strategie di hedging con derivati.
 
 \newpage
-\textcolor{Orchid}{\section{Recap Lezione 20 -- Speculating with Derivatives}}
+\textcolor{PurpleSoft}{\section{Speculating with Derivatives}}
 
 \paragraph{Idea generale}
 Si usano i derivati (in particolare le opzioni) come \emph{building blocks} per progettare strumenti/portafogli con un \textbf{payoff prescritto}, coerente con le aspettative dell’investitore sull’andamento futuro del sottostante e con la sua propensione al rischio.
