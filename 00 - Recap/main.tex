@@ -344,7 +344,7 @@ Il confronto tra investimenti in bond passa attraverso attualizzazione dei fluss
 }
 
 \paragraph{1. Zero-coupon bonds (ZCB)}
-Si vuole prezzare oggi un titolo che paga \textbf{un solo} flusso certo a scadenza \(T\).  
+Si vuole prezzare oggi un titolo che paga \textbf{un solo} flusso certo a scadenza \(T\). Mettere i soldi in un deposito è uguale a comprare con gli stessi un ZCB perchè è un investimento senza rischi.
 Indicando con \(B(t,T)\) il valore al tempo \(t<T\)
 \(\;
 B(T,T)=1.
@@ -359,7 +359,6 @@ B(t,T) &= e^{-r(t,T)(T-t)}
 &\Rightarrow\quad r(t,T) &= -\frac{1}{T-t}\ln\!\big(B(t,T)\big).
 \end{aligned}
 \]
-
 
 \paragraph{2. Coupon bonds}
 Si vuole prezzare oggi un titolo che paga cedole a date intermedie e rimborsa il face value alla maturity.  
@@ -385,8 +384,6 @@ Si considera un’\textbf{annuity} come una sequenza di pagamenti deterministici
 Il valore oggi è la somma dei valori attuali dei pagamenti, ottenuti scontando ciascun flusso con il fattore di sconto coerente con la struttura dei tassi
 $$PV=c\frac{1-(1+r)^n}{r}.$$
 
-\newpage
-
 \textcolor{AzureSoft}{\section{Duration and Interest Rate Risk}}
 \paragraph{RECAP}
 La lezione analizza il \textbf{rischio di tasso di interesse} associato ai bond e introduce strumenti analitici per misurare la \textbf{sensibilità del prezzo di un titolo obbligazionario alle variazioni del rendimento}.  
@@ -395,7 +392,7 @@ Il concetto centrale è la \textbf{duration}, ottenuta a partire da un’appross
 \paragraph{Bond price come funzione del rendimento}
 Il prezzo di un bond può essere visto come una funzione del rendimento \(y\),
 \[
-B(y)=\sum_{i=1}^{n} c_i e^{-y t_i},
+B(0,T)=\sum_{i=1}^{n} c_i e^{-y t_i},
 \]
 dove \(c_i\) sono i flussi di cassa pagati ai tempi \(t_i\).
 
@@ -410,7 +407,7 @@ dove \(D(y_0)\) e \(C(y_0)\) rappresentano rispettivamente duration e convexity 
 La \textbf{duration} è definita come
 \[
 D(y) = -\frac{1}{B(y)}\frac{ dB(y)}{ dy}
-   = \sum_{i=1}^{n} t_i \bigg(\frac{c_i e^{-y t_i}}{B(y)}\bigg).
+   = \frac{\sum_{i=1}^{n} t_ic_i e^{-y t_i}}{B(y)}.
 \]
 La duration ammette le seguenti interpretazioni
 \begin{itemize}[label=-]
@@ -426,35 +423,36 @@ La duration ammette le seguenti interpretazioni
 La \textbf{convexity} è definita come
 \[
 C(y) = \frac{1}{B(y)}\frac{d^2 B(y)}{dy^2}
-  = \sum_{i=1}^{n} t_i^2 \bigg(\frac{c_i e^{-y t_i}}{B(y)}\bigg).
+  = \frac{\sum_{i=1}^{n} t_i^2 c_i e^{-y t_i}}{B(y)}.
 \]
 
 \paragraph{Portfolio of bonds}
-Si considera un portafoglio di \(n\) bond con quantità \(q_i\) e prezzi \(B_i(y)\), per cui il valore del portafoglio è
+Si considera un portafoglio $h=(h_1, \dots, h_n)$ di \(n\) bond con quantità \(h_i\) e prezzi \(B_i(y)\), per cui il valore del portafoglio è
 \[
-P(y)=\sum_{i=1}^{n} q_i B_i(y).
+V_p(y)=\sum_{i=1}^{n} h_i B_i(y).
 \]
 Imponendo che la duration del portafoglio soddisfi
 \[
--D_p(y)P(y)=\frac{dP(y)}{dy}=-\sum_{i=1}^{n} q_i D_i(y)B_i(y), \qquad
-D_p(y)=\frac{\sum_{i=1}^{n} q_i D_i(y)B_i(y)}{P(y)}
-      =\sum_{i=1}^{n} D_i(y)\bigg(\frac{q_i B_i(y)}{P(y)}\bigg).
+-D_p(y)V_p(y)=\frac{dV_p(y)}{dy}=-\sum_{i=1}^{n} h_i D_i(y)B_i(y), \qquad
+D_p(y)=\frac{\sum_{i=1}^{n} h_i D_i(y)B_i(y)}{V_p(y)}
+      =\sum_{i=1}^{n} D_i(y)\bigg(\frac{h_i B_i(y)}{V_p(y)}\bigg).
 \]
 Si definiscono quindi
 \[
-w_i=\frac{q_i B_i(y)}{P(y)}, \qquad
+w_i=\frac{h_i B_i(y)}{V_p(y)}, \qquad
 D_p(y)=\sum_{i=1}^{n} w_i D_i(y).
 \]
 
 \paragraph{Dynamic hedging}
 La duration fornisce una copertura valida localmente.  
 Poiché il rendimento e il tempo influenzano il valore della duration, è necessario un aggiornamento continuo del portafoglio.  
-Il \textbf{dynamic hedging} consiste nel ribilanciare dinamicamente le posizioni per mantenere sotto controllo l’esposizione al rischio di tasso.
+Il \textbf{dynamic hedging} consiste nel ribilanciare dinamicamente le posizioni per mantenere sotto controllo l’esposizione al tasso di rischio.
 
 \newpage
+
 \textcolor{CyanLight}{\section{Term Structure, Bootstrap and Forward Rates}}
 
-\paragraph{Idea generale della lezione}
+\paragraph{RECAP}
 La lezione studia la \textbf{struttura a termine dei tassi di interesse} senza imporre l’ipotesi che il rendimento sia indipendente dalla maturity.  
 Si introducono gli \textbf{spot rates}, la costruzione della \textbf{zero curve tramite bootstrap}, le proprietà di non arbitraggio nel caso di struttura a termine deterministica e il concetto di \textbf{forward rate}, con applicazione ai \textbf{Forward Rate Agreements (FRA)}.
 
@@ -465,19 +463,31 @@ Senza assumere rendimenti costanti sulle maturity, il prezzo del bond è espress
 B(t,T)=e^{-y(t,T)(T-t)}.
 \]
 
+\paragraph{PROP.} Se il rendimento (yield) per qualche $t>0$ fosse noto già al tempo $t=0$, allora
+\(
+y(t)=y(0)\qquad \forall t,
+\)
+altrimenti sarebbe possibile costruire strategie di arbitraggio.
+
+\paragraph{PROP.} Per un coupon bond, se $t \in (0,t_1] \; \Rightarrow \; D(t)=D(0)-t$, perchè la duration cambia con il tempo.
+\textbf{NB} La duration cambia anche in funzione dello yield. La \textbf{convexity} può, quindi, essere utile per misurare quanto rapidamente la duration cambia in funzione dello yield.
+
+\emph{
 \paragraph{General term structure of zero-coupon bonds}
 La struttura a termine dei zero-coupon bond è descritta dall’insieme dei prezzi \(B(t,T)\) al variare della maturity \(T\).  
 Essa è equivalente alla struttura a termine dei rendimenti \(y(t,T)\), che sintetizzano l’informazione contenuta nei prezzi dei bond per ogni scadenza.
-
+}
+\emph{
 \paragraph{Spot rate}
 Fissando \(t=0\), il rendimento \(y(0,T)\) associato al bond \(B(0,T)\) è detto \textbf{spot rate}.  
-Gli spot rates descrivono la struttura a termine iniziale dei tassi di interesse.
+Gli spot rates descrivono la struttura a termine iniziale dei tassi di interesse.}
 
+\emph{
 \paragraph{Prezzo di un coupon bond tramite spot rates}
 Se \(y(0,T)\) dipende solo dalla maturity \(T\), il prezzo di un coupon bond può essere scritto come somma dei valori attuali dei flussi di cassa
 \[
 P = c_1 e^{-y(0,t_1)t_1} + c_2 e^{-y(0,t_2)t_2} + \dots + (c_n+F)e^{-y(0,T)T}.
-\]
+\]}
 
 \paragraph{Bootstrap method}
 Definendo la funzione \(y(0,T)\) come \textbf{zero curve}, il \textbf{bootstrap method} viene utilizzato per costruirla a partire dai prezzi di mercato dei bond.  
@@ -489,22 +499,27 @@ Si procede in modo sequenziale
 \end{itemize}
 Nel caso di coupon pagati semestralmente, ciascun flusso viene scontato con il tasso corrispondente alla sua maturity.
 
-\paragraph{Term structure deterministica}
-Se la struttura a termine \(y(t,T)\) è deterministica, l’assenza di arbitraggio implica la relazione
-\[
-B(0,T)=B(0,t)\,B(t,T).
-\]
+La \emph{zero curve} è la curva dei tassi spot dei titoli zero-coupon e rappresenta la struttura a termine fondamentale dei tassi di interesse. A ogni maturity $T$ associa un tasso $y(0,T)$ tale che il prezzo del corrispondente zero-coupon bond sia
+\(
+B(0,T)=e^{-y(0,T)\,T}.
+\)
+
+
+\paragraph{Arbitrage} L'\textbf{arbitrage} è una strategia di trading che partendo senza soldi assume probabilità zero di perderne e probabilità di uno di guadagnarne.
 
 \paragraph{Argomento di non arbitraggio}
-La relazione viene dimostrata tramite la costruzione di un portafoglio che soddisfa le seguenti proprietà
+Nel mercato finanziario si assume che non ci siano possibilità di arbitraggio. La relazione viene dimostrata tramite la costruzione di un portafoglio che soddisfa le seguenti proprietà
 \begin{itemize}[label=-]
 \item Ha valore nullo a \(t=0\)
 \item Ha valore nullo a \(t\)
 \item Genera un payoff positivo certo a \(T\)
 \end{itemize}
-In violazione dell’assenza di arbitraggio se l’uguaglianza non fosse soddisfatta.
 
-\paragraph{Conseguenze}
+\paragraph{Term structure deterministica}
+Se la struttura a termine \(y(t,T)\) è deterministica, l’assenza di arbitraggio implica la relazione
+\[
+B(0,T)=B(0,t)\,B(t,T).
+\]
 Se i tassi sono deterministici, la struttura a termine futura \(B(t,T)\) è completamente determinata dalla struttura iniziale.  
 Vale inoltre la relazione
 \[
@@ -512,6 +527,7 @@ B(t,T)=\frac{B(0,T)}{B(0,t)}=e^{y(0,t)t-y(0,T)T}.
 \]
 In generale, tuttavia, la struttura a termine futura non dipende interamente da quella iniziale.
 
+\textbf{ARRIVA QUA---}
 \paragraph{Forward rates deterministici}
 Assumendo che
 \[
