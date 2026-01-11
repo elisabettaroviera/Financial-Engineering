@@ -449,6 +449,7 @@ Poiché il rendimento e il tempo influenzano il valore della duration, è necess
 Il \textbf{dynamic hedging} consiste nel ribilanciare dinamicamente le posizioni per mantenere sotto controllo l’esposizione al tasso di rischio.
 
 
+\vspace{0.5cm}
 
 \textcolor{CyanLight}{\section{Term Structure, Bootstrap and Forward Rates}}
 
@@ -471,7 +472,6 @@ altrimenti sarebbe possibile costruire strategie di arbitraggio.
 
 \paragraph{PROP.} Per un coupon bond, se $t \in (0,t_1] \; \Rightarrow \; D(t)=D(0)-t$, perchè la duration cambia con il tempo.
 \textbf{NB} La duration cambia anche in funzione dello yield. La \textbf{convexity} può, quindi, essere utile per misurare quanto rapidamente la duration cambia in funzione dello yield.
-
 \emph{
 \paragraph{General term structure of zero-coupon bonds}
 La struttura a termine dei zero-coupon bond è descritta dall’insieme dei prezzi \(B(t,T)\) al variare della maturity \(T\).  
@@ -481,7 +481,6 @@ Essa è equivalente alla struttura a termine dei rendimenti \(y(t,T)\), che sint
 \paragraph{Spot rate}
 Fissando \(t=0\), il rendimento \(y(0,T)\) associato al bond \(B(0,T)\) è detto \textbf{spot rate}.  
 Gli spot rates descrivono la struttura a termine iniziale dei tassi di interesse.}
-
 \emph{
 \paragraph{Prezzo di un coupon bond tramite spot rates}
 Se \(y(0,T)\) dipende solo dalla maturity \(T\), il prezzo di un coupon bond può essere scritto come somma dei valori attuali dei flussi di cassa
@@ -574,6 +573,7 @@ Il FRA è un contratto con le seguenti caratteristiche
 }
 
 \vspace{0.5cm}
+
 \textcolor{AquaPastel}{\section{Forward and Futures Contracts}}
 
 \paragraph{RECAP}
@@ -682,8 +682,6 @@ f(t,T)=S(t)e^{r(T-t)}.
 \]
 Se i tassi sono deterministici ma variabili nel tempo, la relazione rimane valida con opportune modifiche.}
 
-\textbf{ARRIVATA QUA---}
-
 \paragraph{Portfolio}
 Un \textbf{portfolio} è un vettore \(h=(x,y)\) che rappresenta le quantità detenute di due asset.  
 Il valore del portafoglio è
@@ -705,13 +703,20 @@ V_h(0)=-F(0,T)e^{-rT}+S(0),
 \qquad
 V_h(T)=S(T)-F(0,T).
 \]
-
+\emph{
 \paragraph{Principio di no-arbitrage pricing}
 Se un claim è replicabile tramite un portafoglio, allora il suo prezzo iniziale deve coincidere con il valore iniziale del portafoglio.  
 Per un forward
-\[
+\(
 V_f(0)=0.
-\]
+\)}
+
+\textbf{NB} 
+\begin{itemize}[label=-]
+  \item \textbf{Arbitrage strategy}: cerca di costruire un arbitrage
+  \item \textbf{Replicating strategy}: cerca di replicare un payoff di un derivative
+  \item \textbf{Hedging strategy}: cerca di rimuovere un rischio
+\end{itemize}
 
 \paragraph{Consumption assets}
 Un \textbf{consumption asset} è un bene fisico che deve essere stoccato.  
@@ -726,19 +731,17 @@ F(0,T)=S(0)e^{rT}.
 \paragraph{Storage costs}
 I consumption assets comportano costi di stoccaggio che possono essere interpretati come flussi negativi durante la vita del contratto.  
 Indicando con \(U\) il valore attuale dei storage costs.
-
-\paragraph{Consumption asset}
 Se l’asset è un consumption asset
 \[
 F(0,T)=(S(0)+U)e^{rT}.
 \]
-La formula è ottenuta tramite argomenti di arbitraggio analoghi al caso senza costi.
 
+\vspace{0.5cm}
 
 \textcolor{MintGreen}{\section{Hedging with Futures}}
 
-\paragraph{Idea generale della lezione}
-Si studia come coprire (hedging) un’esposizione al rischio di prezzo di un asset \(S(t)\) usando forward e soprattutto futures.  
+\paragraph{RECAP}
+La lezione introduce come coprire (hedging) un’esposizione al rischio di prezzo di un asset \(S(t)\) usando forward e soprattutto futures.  
 Si evidenzia che il forward può dare copertura perfetta quando l’orizzonte di hedging coincide con la maturity, mentre con i futures in generale compare il \textbf{basis risk}, quindi l’hedging viene impostato come un problema di \textbf{minimizzazione della varianza}.
 
 \paragraph{Scenario e motivazione}
@@ -751,11 +754,6 @@ Il valore di un forward stipulato a \(0\) e osservato a \(t\) è
 \[
 V_F(t)=\big(F(t,T)-F(0,T)\big)e^{-r(T-t)}.
 \]
-In modo analogo, il valore del futures (nella formulazione vista a lezione) si scrive
-\[
-V_f(t)=\big(f(t,T)-f(0,T)\big)e^{-r(T-t)},
-\]
-e spesso si usa l’ipotesi operativa \(r=0\), per cui \(e^{rt}=1\).
 
 \paragraph{Hedging con forward e copertura perfetta}
 Si considera un portafoglio \(P=(1,N)\) composto da 1 unità dell’asset e \(N\) forward con maturity \(T\), con \(N>0\) long forward e \(N<0\) short forward.  
@@ -775,22 +773,19 @@ Si definisce la \textbf{basis} come \(b(t,T)=S(t)-f(t,T)\). Si ha \(b(T,T)=0\) e
 
 Si costruisce un portafoglio \(P=(1,N)\) con 1 unità dell’asset e \(N\) futures. Con l’ipotesi operativa \(r=0\), si usa \(V_p(0)=S(0)\) e
 \[
-V_p(t_h)=S(t_h)+N\big(f(t_h,T)-f(0,T)\big),
-\]
-quindi
-\[
+V_p(t_h)=S(t_h)+N\big(f(t_h,T)-f(0,T)\big), \quad \Rightarrow \quad
 \Delta V_p(t_h)=\big(S(t_h)-S(0)\big)+N\big(f(t_h,T)-f(0,T)\big).
 \]
 Ponendo \(\Delta S(t_h)=S(t_h)-S(0)\) e \(\Delta f(t_h)=f(t_h,T)-f(0,T)\), si ottiene
-\[
+\(
 \Delta V_p(t_h)=\Delta S(t_h)+N\Delta f(t_h).
-\]
+\)
 
 \paragraph{Obiettivo e funzione varianza}
 Si sceglie \(N\) per minimizzare la varianza della variazione di valore del portafoglio,
-\[
+\(
 \operatorname{Var}\big(\Delta V_p(t_h)\big).
-\]
+\)
 Usando la formula della varianza della somma di due variabili aleatorie,
 \[
 \operatorname{Var}\big(\Delta V_p(t_h)\big)
@@ -815,34 +810,34 @@ N^*=-\frac{\operatorname{Cov}\big(\Delta S(t_h),\Delta f(t_h)\big)}
 
 \paragraph{Interpretazione economica di \(N^*\)}
 La quantità \(N^*\) rappresenta il \textbf{numero ottimo di contratti futures} da includere nel portafoglio per ridurre al minimo la variabilità complessiva della variazione di valore sull’orizzonte \((0,t_h)\).  
-Il termine al numeratore misura quanto le variazioni del futures si muovono insieme a quelle dell’asset, mentre il denominatore misura la volatilità del futures stesso.  
-Se la covarianza è elevata in valore assoluto, il futures è efficace nel compensare le fluttuazioni dell’asset; se invece la varianza del futures è grande, ne servono meno contratti in valore assoluto per ottenere lo stesso effetto di copertura.
-
 Se \(\operatorname{Cov}(\Delta S,\Delta f)>0\), allora \(N^*<0\) e si assume una posizione \textbf{short} nei futures, poiché le variazioni positive dell’asset tendono a essere compensate da variazioni negative della componente futures del portafoglio.
-
 Scrivendo \(\operatorname{Cov}(\Delta S,\Delta f)=\rho\,\sigma_S\sigma_f\), si ottiene anche
 \[
 N^*=-\rho\,\frac{\sigma_S}{\sigma_f},
 \]
 che evidenzia come l’hedge ratio dipenda dalla \textbf{correlazione} tra asset e futures e dal rapporto tra le loro deviazioni standard.
 
+\textbf{NB} L'effetto dell'hedging è definito come la differenza relativa tra asset variance e il hedgin portfolio asset.
+\emph{
 \paragraph{Collegamento con regressione lineare}
 La forma di \(N^*\) richiama la regressione lineare
-\[
+\(
 \Delta S=\alpha+\beta \Delta f+\varepsilon,
-\]
+\)
 in cui
 \[
 \beta=\frac{\operatorname{Cov}(\Delta S,\Delta f)}{\operatorname{Var}(\Delta f)},
 \]
 quindi \(\beta=-N^*\).  
 Il coefficiente di regressione identifica la quantità di futures che minimizza la varianza della variazione di valore del portafoglio sull’intervallo \((0,t_h)\).
-
+}
+\emph{
 \paragraph{Casi notevoli e unitary hedge}
 Se \(N^*=0\), allora \(\beta=0\) e non si riesce a fare hedging in modo efficace.  
 Se \(N^*=1\), allora \(\beta=-1\) e si ha \textbf{unitary hedge}.  
 Il \textbf{perfect hedge} è un caso particolare di unitary hedge quando \(t_h=T\) e l’underlying del derivato coincide con l’asset, condizione che elimina il basis risk.
-
+}
+\emph{
 \paragraph{Effectiveness of the hedge}
 Si definisce l’\textbf{effectiveness} come la riduzione relativa della varianza passando dall’asset non coperto al portafoglio coperto,
 \[
@@ -850,18 +845,20 @@ Si definisce l’\textbf{effectiveness} come la riduzione relativa della varianz
 \]
 Usando il valore ottimo \(N^*\), si ottiene che tale quantità coincide con \(\rho^2\) e anche con \(\beta^2\).  
 L’efficacia dell’hedge dipende quindi dalla correlazione lineare tra \(\Delta S\) e \(\Delta f\): maggiore è \(|\rho|\), maggiore è la quota di rischio eliminabile, mentre \(|\rho|<1\) implica varianza residua e quindi presenza di basis risk.
+}
 
+\vspace{0.5cm}
 
 \textcolor{GreenSoft}{\section{Options, Payoff, Parity and Bounds}}
 
-\paragraph{Idea generale della lezione}
+\paragraph{RECAP}
 La lezione introduce le \textbf{opzioni su azioni}, analizzandone payoff e profitto per le diverse posizioni, e sviluppa i principali risultati di \textbf{non arbitraggio}, in particolare la \textbf{put--call parity}, i \textbf{price bounds} per opzioni europee e americane e il teorema di equivalenza tra call americana ed europea in assenza di dividendi.
 
 \paragraph{Tipologie di opzioni}
 Si considerano opzioni su azioni, distinguendo
 \begin{itemize}[label=-]
-\item \textbf{Call option}: diritto di acquistare l’asset sottostante
-\item \textbf{Put option}: diritto di vendere l’asset sottostante
+\item \textbf{Call option}: diritto di acquistare (buy) l’asset sottostante
+\item \textbf{Put option}: diritto di vendere (sell) l’asset sottostante
 \end{itemize}
 
 \paragraph{European e American options}
@@ -869,7 +866,7 @@ Si considerano opzioni su azioni, distinguendo
 \item \textbf{European options}: esercitabili solo a maturity \(T\)
 \item \textbf{American options}: esercitabili in qualunque istante \(t \in [0,T]\)
 \end{itemize}
-
+\emph{
 \paragraph{Assunzioni e notazione}
 Si assume inizialmente \(r=0\).  
 La notazione utilizzata è
@@ -878,60 +875,60 @@ La notazione utilizzata è
 \item \(S(T)\) prezzo dell’asset a maturity
 \item \((x)^+ = \max\{x,0\}\)
 \end{itemize}
-
+}
 \paragraph{Posizioni long e short}
-Per ciascuna opzione si distinguono due posizioni
+Per ciascuna opzione si distinguono due posizioni in cui vale \(\text{short} = -\,\text{long}\).
 \begin{itemize}[label=-]
 \item \textbf{Long}: acquisto (buy) del diritto
 \item \textbf{Short}: vendita (sell) del diritto
 \end{itemize}
-Vale sempre la relazione \(\text{short} = -\,\text{long}\).
 
-\paragraph{Long call}
-Il payoff di una long call è
-\[
-(S(T)-K)^+
-\]
-Il profit è
-\[
-(S(T)-K)^+ - C
-\]
+\paragraph{Long call position}
+Il \textbf{payoff} di una long call è
+\(
+(S(T)-K)^+,
+\)
+mentre il \textbf{profit} è
+\(
+(S(T)-K)^+ - C,
+\)
 dove \(C\) è il call price.  
 Si ha perdita limitata pari a \(C\) e profitto potenzialmente illimitato.  
 Il break-even è \(S(T)=K+C\).
 
-\paragraph{Short call}
-Il payoff è
-\[
--(S(T)-K)^+
-\]
-Il profit è
-\[
-C-(S(T)-K)^+
-\]
+\paragraph{Short call position} 
+Il \textbf{payoff} è
+\(
+-(S(T)-K)^+,
+\)
+mentre il \textbf{profit} è
+\(
+C-(S(T)-K)^+.
+\)
 Il guadagno massimo è limitato a \(C\), mentre la perdita è illimitata per \(S(T)\to +\infty\).
 
-\paragraph{Long put}
-Il payoff di una long put è
-\[
+\paragraph{Long put position}
+Il \textbf{payoff} di una long put è
+\(
 (K-S(T))^+
-\]
-Il profit è
-\[
+\),
+mentre
+il \textbf{profit} è
+\(
 (K-S(T))^+ - P
-\]
+\),
 dove \(P\) è il put price.  
 Il break-even è \(S(T)=K-P\).
 
-\paragraph{Short put}
-Il payoff è
-\[
+\paragraph{Short put position}
+Il \textbf{payoff} è
+\(
 -(K-S(T))^+
-\]
-Il profit è
-\[
-P-(K-S(T))^+
-\]
+\),
+mentre il \textbf{profit} è
+\(
+P-(K-S(T))^+.
+\)
 Il guadagno massimo è \(P\), mentre la perdita cresce al diminuire di \(S(T)\).
 
 \paragraph{Terminologia}
@@ -947,33 +944,34 @@ Inoltre
 \item \textbf{Out of the money}: cashflow negativo
 \end{itemize}
 
-\paragraph{Put--call parity per European options}
+\paragraph{TEO. Put--call parity per European options}
 Per opzioni europee su asset che non paga dividendi vale
 \[
-C - P = S(0) - K e^{-rT}
+V_F(0)=C - P = S(0) - K e^{-rT}
 \]
-La relazione è ottenuta confrontando il payoff di un portafoglio long call e short put con quello di una long forward position.
+La relazione è ottenuta confrontando il payoff di un portafoglio long call e short put con quello di una long forward position e rapprsenta il valore di una foreward $F$ con delivey price $k \ne F(0,T)$.
 
 \paragraph{Put--call parity con dividendi}
 Se l’asset paga dividendi con valore attuale \(\text{div}(0)\), la parità diventa
 \[
 C - P = S(0) - \text{div}(0) - K e^{-rT}
 \]
-
+\emph{
 \paragraph{Bounds per European call}
 Il prezzo di una European call soddisfa
 \[
 S(0) - K e^{-rT} \le C \le S(0)
 \]
-I bounds derivano da argomenti di non arbitraggio.
-
+I bounds derivano da argomenti di non arbitraggio.}
+\emph{
 \paragraph{Bounds per European put}
 Il prezzo di una European put soddisfa
 \[
 - S(0) + K e^{-rT} \le P \le K e^{-rT}
-\]
+\]}
 
-\paragraph{Bounds e parità per American options}
+\textbf{ARRIVATA QUA --- CONTINUA DA QUI}
+\paragraph{TEO. Bounds e parità per American options}
 Per opzioni americane su asset senza dividendi vale
 \[
 S(0) - K e^{-rT} \ge C^A - P^A \ge S(0) - K
