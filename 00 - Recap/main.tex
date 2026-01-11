@@ -448,7 +448,7 @@ La duration fornisce una copertura valida localmente.
 Poiché il rendimento e il tempo influenzano il valore della duration, è necessario un aggiornamento continuo del portafoglio.  
 Il \textbf{dynamic hedging} consiste nel ribilanciare dinamicamente le posizioni per mantenere sotto controllo l’esposizione al tasso di rischio.
 
-\newpage
+
 
 \textcolor{CyanLight}{\section{Term Structure, Bootstrap and Forward Rates}}
 
@@ -526,44 +526,44 @@ Vale inoltre la relazione
 B(t,T)=\frac{B(0,T)}{B(0,t)}=e^{y(0,t)t-y(0,T)T}.
 \]
 In generale, tuttavia, la struttura a termine futura non dipende interamente da quella iniziale.
-
-\textbf{ARRIVA QUA---}
+\emph{
 \paragraph{Forward rates deterministici}
 Assumendo che
-\[
+\(
 B(0,T)=B(0,t)\,B(t,T),
-\]
+\)
 i forward rates \(y(t,T)\) risultano deterministici e dipendono solo dalla struttura iniziale.  
-Si sottolinea esplicitamente che questa è un’assunzione utile, ma non necessariamente realistica.
-
+Si sottolinea esplicitamente che questa è un’assunzione utile, ma non necessariamente realistica.}
+\emph{
 \paragraph{Calcolo dei forward rates}
 Assumendo continuous compounding, dalla relazione
 \[
 e^{-y(0,T)T}=e^{-y(0,t)t}\,e^{-y(t,T)(T-t)}, \qquad
 y(t,T)=\frac{y(0,T)T-y(0,t)t}{T-t}.
 \]
-Conoscendo gli spot rates iniziali è quindi possibile determinare tutti i forward rates.
-
+Conoscendo gli spot rates iniziali è quindi possibile determinare tutti i forward rates.}
+\emph{
 \paragraph{Forward Rate Agreement (FRA)}
 Un \textbf{Forward Rate Agreement (FRA)} è un contratto derivato in cui le parti si scambiano, alla maturity del contratto, la differenza tra due tassi di interesse
 \begin{itemize}[label=-]
 \item Un tasso fisso detto forward rate
 \item Un tasso variabile di mercato detto settlement rate
 \end{itemize}
-La differenza è moltiplicata per la durata del contratto e per il notional principal.
-
+La differenza è moltiplicata per la durata del contratto e per il notional principal.}
+\emph{
 \paragraph{Interpretazione economica del FRA}
 Le posizioni contrattuali nel FRA sono così definite
 \begin{itemize}[label=-]
-\item Il seller dell’FRA riceve il tasso fisso e paga il tasso variabile
-\item Il buyer dell’FRA riceve il tasso variabile e paga il tasso fisso
+\item Il seller del FRA riceve il tasso fisso e paga il tasso variabile
+\item Il buyer del FRA riceve il tasso variabile e paga il tasso fisso
 \end{itemize}
 Il FRA consente di coprirsi contro variazioni future dei tassi di interesse e permette di fissare oggi il rendimento di un investimento o di un prestito futuro.
-
+}
+\emph{
 \paragraph{Determinazione anticipata dei forward rates}
 Attraverso gli spot rates osservabili \(y(0,1)\) e \(y(0,2)\), è possibile costruire un’operazione equivalente tramite zero-coupon bond e determinare il forward rate \(y(1,2)\).  
-Il forward rate rappresenta il tasso implicito che rende equivalente il valore attuale dei flussi futuri.
-
+Il forward rate rappresenta il tasso implicito che rende equivalente il valore attuale dei flussi futuri.}
+\emph{
 \paragraph{Caratteristiche del FRA}
 Il FRA è un contratto con le seguenti caratteristiche
 \begin{itemize}[label=-]
@@ -571,11 +571,12 @@ Il FRA è un contratto con le seguenti caratteristiche
 \item Negoziato over-the-counter (OTC)
 \item Utilizzabile per hedging, speculazione e arbitraggio
 \end{itemize}
+}
 
-\newpage
+\vspace{0.5cm}
 \textcolor{AquaPastel}{\section{Forward and Futures Contracts}}
 
-\paragraph{Idea generale della lezione}
+\paragraph{RECAP}
 La lezione introduce in modo formale i \textbf{forward contracts} e i \textbf{futures contracts}, analizzandone \textbf{payoff}, \textbf{pricing per assenza di arbitraggio}, \textbf{valore nel tempo} e differenze strutturali.  
 L’attenzione è posta sulla costruzione di strategie di arbitraggio e di \textbf{replicating portfolios}, sul ruolo dei \textbf{dividends}, del \textbf{dividend yield}, dei \textbf{storage costs} e sul funzionamento dei mercati futures con \textbf{marking to market} e \textbf{margin system}.
 
@@ -586,13 +587,13 @@ Alla stipula non avviene alcun pagamento iniziale.
 \paragraph{Forward price}
 Il \textbf{forward price} \(F(0,T)\) è il prezzo che rende nullo il valore del forward contract al tempo iniziale.  
 Esso è determinato in modo univoco dall’assenza di arbitraggio e dipende dal prezzo spot dell’asset, dal tasso di interesse e da eventuali flussi intermedi.
-
+\emph{
 \paragraph{Long e short forward position}
 \begin{itemize}[label=-]
 \item \textbf{Long forward position} Obbligo di acquistare l’asset a \(T\) al prezzo \(F(0,T)\)
 \item \textbf{Short forward position} Obbligo di vendere l’asset a \(T\) al prezzo \(F(0,T)\)
-\end{itemize}
-
+\end{itemize}}
+\emph{
 \paragraph{Payoff del forward}
 Alla data di consegna \(T\) il payoff è
 \[
@@ -600,13 +601,13 @@ Alla data di consegna \(T\) il payoff è
 \qquad
 \text{Short}: F(0,T)-S(T).
 \]
-Il forward è uno \textbf{zero-sum game}.
+Il forward è uno \textbf{zero-sum game}.}
 
-\paragraph{Teorema: Pricing del forward su stock senza dividendi}
+\paragraph{TEO. Pricing del forward su stock senza dividendi}
 Si assume un tasso risk-free costante \(r\) con continuous compounding.  
 Il forward price su uno stock che non paga dividendi è
 \[
-F(0,T)=S(0)e^{rT}.
+F(0,T)=S(0)e^{rT} \quad \Rightarrow \quad F(t,T)=S(t)e^{r(T-t)}.
 \]
 La relazione deriva dall’assenza di arbitraggio e dalla possibilità di replicare il payoff del forward tramite una strategia di trading dinamicamente coerente.
 
@@ -614,7 +615,7 @@ La relazione deriva dall’assenza di arbitraggio e dalla possibilità di replic
 Se \(F(0,T)>S(0)e^{rT}\) oppure \(F(0,T)<S(0)e^{rT}\), è possibile costruire una strategia con valore nullo a \(t=0\) e payoff positivo certo a \(T\), generando arbitraggio.  
 L’assenza di arbitraggio impone l’uguaglianza.
 
-\paragraph{Teorema: Pricing del forward su stock con dividendi discreti}
+\paragraph{TEO. Pricing del forward su stock con dividendi discreti}
 Se lo stock paga un dividendo discreto \(d_t\) a una data intermedia \(t\) con \(0<t<T\), il forward price è
 \[
 F(0,T)=\bigl(S(0)-e^{-rt}d_t\bigr)e^{rT}.
@@ -635,7 +636,7 @@ F(0,T)=S(0)e^{(r-\delta)T}.
 Alla stipula il valore del forward è nullo.  
 Nel tempo, il valore può diventare positivo o negativo in funzione dell’evoluzione del forward price.
 
-\paragraph{Valore del forward a una data intermedia}
+\paragraph{PROP. Valore del forward a una data intermedia}
 Per \(0\le t\le T\), il valore al tempo \(t\) di un long forward stipulato a \(t=0\) è
 \[
 V(t)=\bigl[F(t,T)-F(0,T)\bigr]e^{-r(T-t)}.
@@ -643,21 +644,21 @@ V(t)=\bigl[F(t,T)-F(0,T)\bigr]e^{-r(T-t)}.
 
 \paragraph{Caso specifico senza dividendi}
 Se l’asset non paga dividendi
-\[
+\(
 V(t)=S(t)-S(0)e^{rt}.
-\]
+\)
 
 \paragraph{Futures contracts}
 Un \textbf{futures contract} è simile a un forward ma è scambiato su un exchange ed è standardizzato.  
 Il rischio di default è eliminato tramite il sistema di \textbf{marking to market} e di margini.
 
-\paragraph{Marking to market}
+\textbf{Marking to market}
 \begin{itemize}[label=-]
 \item Regolazione quotidiana di profitti e perdite
 \item Valore nullo della posizione futures a ogni istante
 \end{itemize}
 
-\paragraph{Margin system}
+\textbf{Margin system}
 \begin{itemize}[label=-]
 \item \textbf{Initial margin} Deposito iniziale a garanzia
 \item \textbf{Maintenance margin} Livello minimo del deposito
@@ -671,7 +672,7 @@ Un’importante caratteristica dei futures markets è l’elevata \textbf{liquid
 \item Standardizzazione dei contratti che rende gli strumenti omogenei e facilmente scambiabili
 \item Presenza del clearing house che garantisce l’adempimento delle obbligazioni
 \end{itemize}
-
+\emph{
 \paragraph{Pricing dei futures}
 Se il tasso di interesse è costante
 \[
@@ -679,7 +680,9 @@ f(0,T)=F(0,T),
 \qquad
 f(t,T)=S(t)e^{r(T-t)}.
 \]
-Se i tassi sono deterministici ma variabili nel tempo, la relazione rimane valida con opportune modifiche.
+Se i tassi sono deterministici ma variabili nel tempo, la relazione rimane valida con opportune modifiche.}
+
+\textbf{ARRIVATA QUA---}
 
 \paragraph{Portfolio}
 Un \textbf{portfolio} è un vettore \(h=(x,y)\) che rappresenta le quantità detenute di due asset.  
@@ -731,7 +734,7 @@ F(0,T)=(S(0)+U)e^{rT}.
 \]
 La formula è ottenuta tramite argomenti di arbitraggio analoghi al caso senza costi.
 
-\newpage
+
 \textcolor{MintGreen}{\section{Hedging with Futures}}
 
 \paragraph{Idea generale della lezione}
@@ -848,7 +851,7 @@ Si definisce l’\textbf{effectiveness} come la riduzione relativa della varianz
 Usando il valore ottimo \(N^*\), si ottiene che tale quantità coincide con \(\rho^2\) e anche con \(\beta^2\).  
 L’efficacia dell’hedge dipende quindi dalla correlazione lineare tra \(\Delta S\) e \(\Delta f\): maggiore è \(|\rho|\), maggiore è la quota di rischio eliminabile, mentre \(|\rho|<1\) implica varianza residua e quindi presenza di basis risk.
 
-\newpage
+
 \textcolor{GreenSoft}{\section{Options, Payoff, Parity and Bounds}}
 
 \paragraph{Idea generale della lezione}
@@ -993,7 +996,7 @@ C^A = C^E
 \]
 Ne segue che non è mai ottimale esercitare anticipatamente una American call in assenza di dividendi.
 
-\newpage
+
 \textcolor{GreenLeaf}{\section{One-Period Binomial Model, Arbitrage and Risk-Neutral Valuation}}
 
 \paragraph{Idea generale della lezione}
@@ -1192,7 +1195,7 @@ C=\frac{1}{1+r}\Bigl(q_u(Su-K)^+ + q_d(Sd-K)^+\Bigr)
 \item \textbf{Replicating portfolio} e \textbf{risk-neutral valuation} sono metodi equivalenti
 \end{itemize}
 
-\newpage
+
 \textcolor{OliveSoft}{\section{Multi-Period Binomial Model}}
 
 \paragraph{Idea generale della lezione}
@@ -1266,7 +1269,7 @@ Usando \(V^h(n)=x_n(1+r)+y_n S(n)\) e \(V^{h_{n+1}}(n)=x_{n+1}+y_{n+1}S(n)\), la
 x_n(1+r)+y_n S(n)=x_{n+1}+y_{n+1}S(n).
 \]
 
-\newpage
+
 \textcolor{LimePastel}{\section{Binomial Model, Contingent Claims and American Options}}
 
 \paragraph{Idea generale della lezione}
@@ -1336,7 +1339,7 @@ Questo risultato è una conseguenza diretta del confronto tra payoff immediato e
 \paragraph{Osservazione conclusiva}
 La lezione mostra come il modello binomiale fornisca un quadro completo e coerente per il pricing dei derivati, unificando approcci di arbitraggio, replicazione e valutazione risk-neutral, e costituendo la base concettuale per modelli più avanzati.
 
-\newpage
+
 \textcolor{YellowSoft}{\section{Delta Hedging, Modello Binomiale e Limite Continuo}}
 
 \paragraph{Obiettivo della lezione}
@@ -1416,7 +1419,7 @@ Di conseguenza, i rendimenti sono indipendenti e il prezzo futuro dipende solo d
 La Delta permette di eliminare il rischio localmente nel modello binomiale.  
 Il modello di Cox--Ross--Rubinstein fornisce un ponte naturale tra il mondo discreto e il modello continuo, mantenendo coerenza con assenza di arbitraggio e mercato efficiente.
 
-\newpage
+
 \textcolor{GoldenSoft}{\section{Wiener Process and Stochastic Calculus}}
 
 \paragraph{Obiettivo della lezione}
@@ -1520,7 +1523,7 @@ Per questo si modellano i log-rendimenti e non i livelli di prezzo.
 Il processo di Wiener è il mattone fondamentale della modellistica continua in finanza.  
 Le sue proprietà di incremento, martingala, Markovianità e variazione quadratica permettono lo sviluppo dello stochastic calculus e dei modelli di pricing.
 
-\newpage
+
 \textcolor{OrangeSoft}{\section{Trading Strategies with Options}}
 
 \paragraph{Idea generale}
@@ -1691,7 +1694,7 @@ p+C=5
 Combinando opzioni con strike diversi è possibile costruire payoff molto flessibili.  
 In linea teorica, disponendo di opzioni per ogni strike, qualsiasi payoff funzione di \(S_T\) può essere replicato.
 
-\newpage
+
 \textcolor{OrangeWarm}{\section{Black--Scholes Model and Stochastic Calculus}}
 
 \paragraph{Obiettivo della lezione}
@@ -1823,7 +1826,7 @@ dX(t)=\mu(t,X(t))\,dt+\sigma(t,X(t))\,dW(t),
 \]
 la condizione \(\mu\equiv 0\) è necessaria e sufficiente affinché \(X(t)\) sia una martingala.
 
-\newpage
+
 \textcolor{RedSoft}{\section{Stochastic Calculus and Itô's Formula}}
 
 \paragraph{Idea generale della lezione}
@@ -1935,7 +1938,7 @@ che incorpora la proprietà di \textbf{mean reversion} verso il livello \(\mu\).
 - Forward price e altri derivati ereditano dinamiche stocastiche tramite Itô.
 - La mean reversion è cruciale nella modellazione dei tassi di interesse.
 
-\newpage
+
 \textcolor{RedMuted}{\section{Black--Scholes--Merton Model and Continuous-Time Pricing}}
 
 \paragraph{Obiettivo della lezione}
@@ -2068,7 +2071,7 @@ La lezione mostra come il pricing in tempo continuo derivi da:
 replicazione, assenza di arbitraggio e martingale pricing,
 unificando PDE, probabilità e finanza in un unico framework coerente.
 
-\newpage
+
 \textcolor{RoseSoft}{\section{Black--Scholes, Forward Pricing and Parity Relations}}
 
 \paragraph{Idea generale della lezione}
@@ -2166,7 +2169,7 @@ Il modello di Black--Scholes permette di prezzare opzioni su forward/futures tra
 
 
 
-\newpage
+
 \textcolor{PinkPastel}{\section{The Greeks and Hedging}}
 
 \paragraph{Idea generale della lezione}
@@ -2270,7 +2273,7 @@ Una procedura efficiente consiste in:
 Questo sfrutta il fatto che lo stock ha Gamma nulla.
 
 
-\newpage
+
 \textcolor{LilacSoft}{\section{Risk Measures, VaR, ES and Hedging}}
 
 \paragraph{Obiettivo della lezione}
@@ -2381,7 +2384,7 @@ che giustifica strategie di hedging basate sulle sensitività (Delta-hedging).
 \paragraph{Conclusione}
 Il confronto tra VaR ed ES evidenzia i limiti del VaR come misura di rischio e motiva l’uso dell’Expected Shortfall nelle decisioni di gestione del rischio e nelle strategie di hedging con derivati.
 
-\newpage
+
 \textcolor{PurpleSoft}{\section{Speculating with Derivatives}}
 
 \paragraph{Idea generale}
