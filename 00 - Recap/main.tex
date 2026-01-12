@@ -970,7 +970,6 @@ Il prezzo di una European put soddisfa
 - S(0) + K e^{-rT} \le P \le K e^{-rT}
 \]}
 
-\textbf{ARRIVATA QUA --- CONTINUA DA QUI}
 \paragraph{TEO. Bounds e parità per American options}
 Per opzioni americane su asset senza dividendi vale
 \[
@@ -978,26 +977,33 @@ S(0) - K e^{-rT} \ge C^A - P^A \ge S(0) - K
 \]
 Con dividendi
 \[
-S(0) - K e^{-rT} \ge C^A - P^A \ge S(0) - \text{div}(0) - K
+S(0) - \text{div}(0) - K e^{-rT} \ge C^A - P^A \ge S(0) - \text{div}(0) - K
 \]
 
 \paragraph{Relazione tra European e American prices}
 Le opzioni europee sono un caso particolare di quelle americane, quindi
-\[
-C \le C^A, \qquad P \le P^A
-\]
+\(
+C \le C^A, \; P \le P^A
+\), inoltre $C \leq S(0)$, $C\geq S(0)-ke^{-rT}$, $P \leq ke^{-rT}$ e $P\geq ke^{-rT}-S(0)$.
 
-\paragraph{No-dividend American call theorem}
+\paragraph{TEO. No-dividend American call theorem}
 Se l’asset non paga dividendi, il prezzo della call americana coincide con quello della call europea
 \[
-C^A = C^E
+C^A = C
 \]
 Ne segue che non è mai ottimale esercitare anticipatamente una American call in assenza di dividendi.
 
+\paragraph{Time value di un'option} Il \textbf{time value of an option} è la differenza tra il suo prezzo a $t$ e il suo payoff 
+\begin{itemize}[label=-]
+\item \textbf{European}: \textbf{call} $C(t)-(S(t)-K)^+$, \textbf{put} $P(t)-(K-S(t))^+$
+\item \textbf{American}: \textbf{call} $C^A(t)-(S(t)-K)^+$, \textbf{put} $P^A(t)-(K-S(t))^+$
+\end{itemize}
+
+\vspace{0.5cm}
 
 \textcolor{GreenLeaf}{\section{One-Period Binomial Model, Arbitrage and Risk-Neutral Valuation}}
 
-\paragraph{Idea generale della lezione}
+\paragraph{RECAP}
 La lezione introduce il \textbf{modello binomiale a un periodo} come primo modello discreto per la valutazione di asset rischiosi e derivati finanziari.  
 Vengono formalizzati i concetti di \textbf{arbitrage} e \textbf{assenza di arbitrage} e si mostra come, in tale contesto, emergano in modo naturale la \textbf{misura risk-neutral}, i \textbf{contingent claims}, i \textbf{replicating portfolios} e la \textbf{completezza del mercato}.  
 Nel modello binomiale privo di arbitraggio, ogni derivato ammette un \textbf{prezzo unico}.
@@ -1019,15 +1025,15 @@ S(1)=
 \begin{cases}
 Su & \text{se } p_u\\
 Sd & \text{se } p_d=1-p_u
-\end{cases}
+\end{cases} \quad u> d, \; u>1, \; \; d<1, \; p_u+p_d=1
 \]
+\emph{
 È spesso conveniente riscrivere la dinamica dello stock introducendo una variabile aleatoria \(Z\)
 \[
 S(0)=S,
 \qquad
 S(1)=S\cdot Z
 \]
-
 dove \(Z\) è una \textbf{variabile aleatoria} tale che
 \[
 Z =
@@ -1038,7 +1044,6 @@ d & \text{con probabilità } p_d,
 \qquad
 p_u+p_d=1.
 \]
-
 I parametri \(u\) e \(d\) sono detti rispettivamente \textbf{up factor} e \textbf{down factor} e si assume
 \(
 u>1,
@@ -1046,7 +1051,7 @@ u>1,
 d<1.
 \)
 La variabile aleatoria \(Z\) rappresenta quindi il \textbf{fattore moltiplicativo} che governa l’evoluzione dello stock tra \(t=0\) e \(t=1\).
-
+}
 
 \paragraph{Portafoglio e value process}
 Un portafoglio fisso è descritto da \(h=(x,y)\), dove
@@ -1065,21 +1070,17 @@ V^h(0)=x+yS, \qquad
 V^h(1)=x(1+r)+ySZ
 \]
 
-\paragraph{Arbitrage}
+\paragraph{PROP. Arbitrage}
 Un portafoglio \(h\) è detto un \textbf{arbitrage} se
-\[
-V^h(0)=0
-\]
-\[
-V^h(1)>0 \quad \text{con probabilità } 1
-\]
-
-\paragraph{Assenza di arbitrage}
+\(
+V^h(0)=0, \; \text{e} \;
+V^h(1)>0 \; \text{con probabilità } 1.
+\)
 Il modello binomiale è \textbf{arbitrage-free} se e solo se
 \[
 d < 1+r < u
 \]
-In tal caso, il fattore risk-free \(1+r\) è una \textbf{combinazione convessa} di \(u\) e \(d\)
+In tal caso, il fattore risk-free \(1+r\) è una \textbf{combinazione convessa} di \(u\) e \(d\).
 
 \paragraph{Probabilità risk-neutral}
 Se vale \(d < 1+r < u\), esistono \textbf{uniche} probabilità \(q_u,q_d>0\) tali che
@@ -1088,29 +1089,27 @@ Se vale \(d < 1+r < u\), esistono \textbf{uniche} probabilità \(q_u,q_d>0\) tal
 1+r = q_u u + q_d d\\
 q_u + q_d = 1
 \end{cases}
-\]
-con
-\[
+\Rightarrow
+\quad
 q_u = \frac{(1+r)-d}{u-d},
 \qquad
-q_d = \frac{u-(1+r)}{u-d}
+q_d = 1-q_u=\frac{u-(1+r)}{u-d}
 \]
-
+\emph{
 \paragraph{Misura risk-neutral}
 La misura di probabilità \(Q\) definita da
-\[
+\(
 Q(Z=u)=q_u,
-\qquad
+\;
 Q(Z=d)=q_d
-\]
-è detta \textbf{risk-neutral measure} (o \textbf{martingale measure})
-
+\)
+è detta \textbf{risk-neutral measure} (o \textbf{martingale measure}).
 Sotto \(Q\) vale
 \[
 S=\mathbb{E}^Q\!\left[\frac{S(1)}{1+r}\right]
 \]
-cioè il \textbf{prezzo scontato dello stock è una martingala}
-
+cioè il \textbf{prezzo scontato dello stock è una martingala}.
+}
 \paragraph{Risk-neutral valuation formula}
 Nel modello binomiale privo di arbitraggio il prezzo dello stock soddisfa
 \[
@@ -1118,31 +1117,31 @@ S=\mathbb{E}^Q\!\left[\frac{S(1)}{1+r}\right]
 \]
 La formula è \textbf{indipendente dalle probabilità oggettive} \(P\). 
 Il modello di mercato \((B,S)\) è \textbf{arbitrage-free} se e solo se esiste una \textbf{martingale measure} \(Q\).
-
-
+\emph{
 \paragraph{Contingent claims}
 Un \textbf{contingent claim} è una variabile aleatoria della forma
-\[
+\(
 X=\phi(Z)
-\]
+\)
 equivalentemente
-\[
+\(
 X=\phi(S(1))
-\]
-e rappresenta il payoff di un contratto al tempo \(t=1\)
-
+\)
+e rappresenta il payoff di un contratto al tempo \(t=1\).}
+\emph{
 \paragraph{Replicating portfolio e raggiungibilità}
 Un claim \(X\) è detto \textbf{raggiungibile} se esiste un portafoglio \(h=(x,y)\) tale che
-\[
+\(
 V^h(1)=X \quad \text{con probabilità } 1
-\]
-In tal caso \(h\) è detto \textbf{replicating portfolio}
-
+\).
+In tal caso \(h\) è detto \textbf{replicating portfolio}.
+}
+\emph{
 \paragraph{Completezza del mercato}
-Un mercato è detto \textbf{completo} se ogni contingent claim è raggiungibile  
-Nel modello binomiale a un periodo, \textbf{assenza di arbitraggio implica completezza}
-
-\paragraph{Pricing principle}
+Un mercato è detto \textbf{completo} se ogni contingent claim è raggiungibile.  
+Nel modello binomiale a un periodo, \textbf{assenza di arbitraggio implica completezza}.
+}
+\paragraph{PROP. Pricing principle 1}
 Se un claim \(X\) è replicabile da un portafoglio \(h\), allora il suo \textbf{unico prezzo privo di arbitraggio} è
 \[
 \Pi(t,X)=V^h(t), \qquad t=0,1
@@ -1151,7 +1150,7 @@ in particolare
 \[
 \Pi(0,X)=V^h(0)
 \]
-
+\emph{
 \paragraph{Pricing tramite sistema lineare}
 Dato \(X=\phi(Z)\), il portafoglio replicante \(h=(x,y)\) risolve il sistema
 \[
@@ -1166,34 +1165,28 @@ x=\frac{1}{1+r}\frac{u\phi(d)-d\phi(u)}{u-d},
 \qquad
 y=\frac{1}{S}\frac{\phi(u)-\phi(d)}{u-d}
 \]
-
+}
+\emph{
 \paragraph{Risk-neutral pricing dei derivati}
 Nel modello binomiale arbitrage-free, il prezzo di un contingent claim è
 \[
 \Pi(0,X)=\frac{1}{1+r}\mathbb{E}^Q[X]
 \]
-ossia il \textbf{valore atteso scontato del payoff sotto la misura risk-neutral}
-
+ossia il \textbf{valore atteso scontato del payoff sotto la misura risk-neutral}.
+}
+\emph{
 \paragraph{Call option}
 Una call europea con strike \(K\) ha payoff
-\[
+\(
 X=(S(1)-K)^+
-\]
+\).
 Il suo prezzo è
 \[
 C=\frac{1}{1+r}\Bigl(q_u(Su-K)^+ + q_d(Sd-K)^+\Bigr)
 \]
+}
 
-\paragraph{Conclusioni}
-\begin{itemize}[label=-]
-\item Le probabilità oggettive determinano solo quali eventi sono possibili
-\item I prezzi si calcolano come se il mondo fosse \textbf{risk-neutral}
-\item La valutazione è indipendente dalle preferenze individuali
-\item Il pricing è detto \textbf{preference-free valuation}
-\item \textbf{Replicating portfolio} e \textbf{risk-neutral valuation} sono metodi equivalenti
-\end{itemize}
-
-
+\vspace{0.5cm}
 \textcolor{OliveSoft}{\section{Multi-Period Binomial Model}}
 
 \paragraph{Idea generale della lezione}
