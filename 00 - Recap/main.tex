@@ -1188,26 +1188,20 @@ C=\frac{1}{1+r}\Bigl(q_u(Su-K)^+ + q_d(Sd-K)^+\Bigr)
 \vspace{0.5cm}
 
 \textcolor{OliveSoft}{\section{Multi-Period Binomial Model}}
-\textbf{ARRVATA QUA --}
-\paragraph{Idea generale della lezione}
-Si estende il modello binomiale a più periodi in tempo discreto \(t=0,\dots,T\), con due asset \((B,S)\).  
+
+\paragraph{RECAP}
+La lezione estende il modello binomiale a più periodi in tempo discreto \(t=0,\dots,T\), con due asset \((B,S)\).  
 Si introduce la dinamica ad albero (ricombinante), la rappresentazione tramite variabili indicatrici e la definizione formale di strategia di portafoglio, valore del portafoglio, predicibilità e self-financing.
 
 \paragraph{Modello multi-periodo e dinamica dei due asset}
 Si considera un orizzonte fissato \(T\) e un mercato con un bond \(B_t\) e uno stock \(S_t\).  
-Si assume un tasso risk-free costante deterministico \(r\) (simple period rate). La dinamica del bond è
-\[
-B_{n+1}=(1+r)B_n,\qquad B_0=1.
-\]
-La dinamica dello stock è
-\[
-S_{n+1}=S_n Z_n,\qquad S_0=s,
-\]
-dove \(Z_0,\dots,Z_{T-1}\) sono i.i.d. e assumono i due valori \(u\) e \(d\) con probabilità
-\[
-\mathbb{P}(Z_n=u)=p_u,\qquad \mathbb{P}(Z_n=d)=p_d.
-\]
-
+Si assume un tasso risk-free costante deterministico \(r\) (simple period rate). 
+\begin{itemize}[label=-]
+\item La dinamica del bond è $B_{n+1}=(1+r)B_n,\; B_0=B.$
+\item La dinamica dello stock è $S_{n+1}=S_n Z_n,\; S_0=S,$ dove \(Z_0,\dots,Z_{T-1}\) sono i.i.d. e assumono i due valori \(u\) e \(d\) con probabilità
+$\mathbb{P}(Z_n=u)=p_u,\; \mathbb{P}(Z_n=d)=p_d.$
+\end{itemize}
+\emph{
 \paragraph{Dinamica ad albero ed esempio \(T=3\)}
 Nel caso \(T=3\), gli stati terminali hanno la forma \(S\,u^k d^{3-k}\).  
 Si definiscono le variabili indicatrici
@@ -1224,64 +1218,109 @@ dove \(Y\) è il numero di up. Allora \(Y\) è binomiale e
 \[
 \mathbb{P}(Y=k)=\binom{3}{k}p_u^{k}p_d^{3-k}.
 \]
-Osservazione: l’indipendenza dei passi è cruciale per calcolare correttamente le probabilità.
-
+Osservazione: l’indipendenza dei passi è cruciale per calcolare correttamente le probabilità.}
+\emph{
 \paragraph{Proprietà implicita dell’albero}
 L’albero è ricombinante nel senso che una mossa ``up'' seguita da una ``down'' dà lo stesso risultato di una ``down'' seguita da una ``up'' (up--down \(\equiv\) down--up).
-
-\paragraph{Definizione: Portfolio strategy e value process}
+}
+\paragraph{Portfolio strategy}
 Una strategia di portafoglio è un processo stocastico \(\{h_t=(x_t,y_t),\ t=1,\dots,T\}\) tale che \(h_t\) è funzione dell’informazione disponibile \((S_0,\dots,S_{t-1})\). Per convenzione si pone \(h_0=h_1\).  
 Il value process associato alla strategia \(h\) è
-\[
+\(
 V_t(h)=x_t(1+r)+y_t S_t.
-\]
+\)
 Interpretazione: \(x_t\) è l’ammontare investito nel bond tra \(t-1\) e \(t\), \(y_t\) è il numero di azioni detenute tra \(t-1\) e \(t\). La strategia è contingente (non anticipativa): può dipendere solo dall’informazione passata.
 
-\paragraph{Definizione: Predicibilità}
-Un portafoglio è predicibile se \(\forall n=0,1,\dots,T\) il portafoglio \(h_n\) costruito al tempo \(n\) dipende solo dai nodi dell’albero fino al tempo \(n-1\), cioè
-\[
+\paragraph{Predicibilità}
+Un portafoglio è \textbf{predictable} se \(\forall n=0,1,\dots,T\) il portafoglio \(h_n\) costruito al tempo \(n\) dipende solo dai nodi dell’albero fino al tempo \(n-1\), cioè
+\(
 h_n=\varphi(S_0,\dots,S_{n-1}).
-\]
-Osservazione: una strategia di portafoglio è un portafoglio predicibile.
+\)\\
+\textbf{NB} Una strategia di portafoglio è un portafoglio predicibile.
 
-\paragraph{Convenzioni e notazione sul valore}
-Per ogni strategia, per convenzione
+\paragraph{Self-financing}
+Per ogni strategia, 
 \[
 h_0=h_1,\qquad V^h(0)=x_1+y_1S(0),\qquad V^h(1)=x_1(1+r)+y_1S(1).
 \]
-
-\paragraph{Definizione: Self-financing}
-Una strategia di investimento è self-financing se il portafoglio costruito al tempo \(n\) per essere mantenuto fino a \(n+1\) è finanziato interamente dalla ricchezza corrente. In particolare,
+Una strategia di investimento è \textbf{self-financing} se il portafoglio costruito al tempo \(n\) per essere mantenuto fino a \(n+1\) è finanziato interamente dalla ricchezza corrente. In particolare,
 \[
 V^h(n)=V^{h_{n+1}}(n).
 \]
-Usando \(V^h(n)=x_n(1+r)+y_n S(n)\) e \(V^{h_{n+1}}(n)=x_{n+1}+y_{n+1}S(n)\), la condizione è equivalente alla budget equation
-\[
+\emph{Usando \(V^h(n)=x_n(1+r)+y_n S(n)\) e \(V^{h_{n+1}}(n)=x_{n+1}+y_{n+1}S(n)\), la condizione è equivalente alla budget equation
+\(
 x_n(1+r)+y_n S(n)=x_{n+1}+y_{n+1}S(n).
-\]
+\)}
 
+\vspace{0.5cm}
 
 \textcolor{LimePastel}{\section{Binomial Model, Contingent Claims and American Options}}
 
-\paragraph{Idea generale della lezione}
+\paragraph{RECAP}
 La lezione estende il \textbf{modello binomiale} a più periodi per lo studio sistematico del pricing di derivati finanziari.  
 Vengono introdotti i concetti di \textbf{contingent claim}, \textbf{replicating portfolio}, \textbf{misura risk-neutral} e \textbf{completezza del mercato}.  
 Si studia il pricing di opzioni europee tramite \textbf{backward induction} e si introduce la valutazione delle \textbf{opzioni americane}, evidenziando il ruolo dell’esercizio anticipato.
 
+\paragraph{Investment strategy}
+Una investment strategy è detta \emph{self-financing} se il portafoglio costruito al tempo \(n\) per
+essere mantenuto fino a \(n+1\) è finanziato interamente dalla ricchezza corrente, cioè
+\[
+X_n(1+r) + Y_n S(n) = X_{n+1} + Y_{n+1} S(n).
+\]
+Il valore del portafoglio al tempo \(n+1\) è dato da
+\[
+V^{h_n}(n+1) = X_n(1+r) + Y_n S(n+1).
+\]
+
+\paragraph{TEO. Fundamental Theorem of Asset Pricing}
+Il principio di non arbitraggio è equivalente all'esistenza di una probabilità \(Q\)
+tale che il prezzo scontato del titolo sia una martingala, cioè
+\[
+S(0)=\frac{1}{1+r}\,\mathbb{E}^Q[S(1)|S(0)].
+\]
+\begin{itemize}[label=-]
+\item \textbf{Q esiste?} Sì $\Rightarrow \;d < 1+r < u$
+\item \textbf{Q è unica?} Sì $\Rightarrow$ il binomial model è completo
+\end{itemize}
+Stiamo cercando l'\textbf{equivalent martingale measure} \(Q\) tale che
+\[
+s=\frac{1}{1+r}\,\mathbb{E}^Q[S(t+1)|S(t)=s].
+\]
+\textbf{Risk neutral valuation formula} $\Pi(0,X)=\mathbb{E}^Q\big(\frac{\phi(S(t))}{1+r}\big)$.
+
+\paragraph{The general binomial algorithm}
+Nel modello binomiale generale il prezzo dell’asset al tempo \(t\) può assumere i valori \(S_t = S_0 u^k d^{\,t-k}\), \(k=0,\dots,t\). Un claim \(X\) ha payoff \(X=\varphi(S_T)\), quindi dipende solo dal valore dell’asset a scadenza. Indicando con \(V_t(k)\) il valore del portafoglio replicante al tempo \(t\) e al nodo \(k\), esso si calcola per backward induction come
+$$
+V_t(k)=\frac{1}{1+r}\big(q_u V_{t+1}(k+1)+q_d V_{t+1}(k)\big),
+$$
+con condizione terminale \(V_T(k)=\varphi(S_0 u^k d^{\,T-k})\), dove le probabilità risk-neutral sono
+$$
+q_u=\frac{(1+r)-d}{u-d}, \qquad q_d=\frac{u-(1+r)}{u-d}.
+$$
+I pesi del portafoglio replicante \(h_t(k)=(x_t(k),y_t(k))\) sono dati da
+$$
+x_t(k)=\frac{1}{1+r}\frac{uV_{t+1}(k)-dV_{t+1}(k+1)}{u-d}, \qquad
+y_t(k)=\frac{1}{S_t}\frac{V_{t+1}(k+1)-V_{t+1}(k)}{u-d}.
+$$
+Equivalentemente, il prezzo privo di arbitraggio al tempo \(t=0\) di un derivato con maturity \(T\) è
+$$
+\Pi(0,X)=\frac{1}{(1+r)^T}\mathbb{E}^Q[\phi(S_T)].
+$$
+\emph{
 \paragraph{Contingent claims}
 Un \textbf{contingent claim} è un contratto finanziario il cui payoff a maturity dipende dal valore dell’asset sottostante.  
 Nel modello binomiale multi-periodo, un claim è tipicamente della forma
-\[
-X = \varphi(S(T)),
-\]
+\(
+X = \phi(S(T)),
+\)
 dove \(S(T)\) è il prezzo dello stock al tempo finale \(T\).  
-L’obiettivo del pricing è determinare il valore del claim ai tempi intermedi e al tempo iniziale.
+L’obiettivo del pricing è determinare il valore del claim ai tempi intermedi e al tempo iniziale.}
 
 \paragraph{Misura risk-neutral e martingala}
 Nel modello binomiale privo di arbitraggio esiste un’unica \textbf{misura di probabilità risk-neutral} \(Q\).  
 Sotto \(Q\), il prezzo scontato dello stock è una martingala:
 \[
-S(t) = \mathbb{E}^Q\!\left[ \frac{S(t+1)}{1+r} \,\middle|\, \mathcal{F}_t \right].
+S(t) = \mathbb{E}^Q\!\left[ \frac{S(t+1)}{1+r} \,\middle|\, S{t} \right].
 \]
 Le probabilità risk-neutral \(q_u\) e \(q_d\) sono determinate imponendo che il rendimento atteso dello stock coincida con il tasso risk-free.
 
@@ -1292,22 +1331,58 @@ Il prezzo di un contingent claim replicabile è dato dalla \textbf{valutazione r
 \]
 Nel modello binomiale multi-periodo, questa valutazione è implementata operativamente tramite \textbf{backward induction} lungo l’albero dei prezzi.
 
+\paragraph{TEO: Fundamental theorem of asset pricing (general formulation)}
+Si assuma che esista un asset risk--free in un mercato con \(n+1\) asset \((B,S_1,\dots,S_n)\).
+Il mercato è \emph{arbitrage free} se e solo se esiste una misura di probabilità \(Q\) tale che
+\[
+S_i(0)
+=
+\mathbb{E}^Q\!\left[
+\frac{1}{1+r}\,
+\mathbb{E}^Q\!\left(S_i(1)\mid S_i(0)\right)
+\right],
+\qquad \forall i=1,\dots,n.
+\]
+Il mercato è \emph{completo} se ogni derivato è raggiungibile.
+
+\paragraph{TEO: Second fundamental theorem of asset pricing}
+Si assuma che il mercato sia arbitrage free. Il mercato è completo se e solo se la misura martingala
+risk--neutral \(Q\) è unica.\\
+\textbf{NB} Se la misura \(Q\) non è unica, allora esistono derivati non replicabili.
+Se il mercato è completo, esiste un’unica misura \(Q\) e ogni derivato ha un solo prezzo:
+\[
+\Pi(0,X)
+=
+\frac{1}{1+r}\,\mathbb{E}^Q[X]
+=
+V^h(0).
+\]
+Se il mercato è incompleto, esistono più misure risk--neutral \(\widetilde Q\) e in questo caso
+alcuni derivati \(X^\ast\) non sono raggiungibili. I possibili prezzi sono dati da
+\[
+\widetilde{\Pi}(0,X)
+=
+\frac{1}{1+r}\,\mathbb{E}^{\widetilde Q}[X].
+\]
+\emph{
 \paragraph{Backward induction}
 La valutazione procede partendo dai nodi terminali, dove il valore del claim coincide con il payoff, e risalendo l’albero calcolando, a ogni nodo,
 \[
 V(t) = \frac{1}{1+r}\bigl(q_u V_u(t+1) + q_d V_d(t+1)\bigr).
 \]
-Questo metodo permette di ottenere in modo ricorsivo il prezzo del claim a ogni tempo.
-
+Questo metodo permette di ottenere in modo ricorsivo il prezzo del claim a ogni tempo.}
+\emph{
 \paragraph{Replicating portfolio e completezza}
 Un claim è detto \textbf{replicabile} se esiste una strategia self-financing che ne replica esattamente il payoff finale.  
 Nel modello binomiale multi-periodo, l’assenza di arbitraggio implica la \textbf{completezza del mercato}: ogni contingent claim è replicabile e ammette un prezzo unico.
-
+}
+\emph{
 \paragraph{Opzioni europee}
 Per un’opzione europea, il valore a ogni nodo è dato esclusivamente dal valore di continuazione ottenuto tramite aspettativa risk-neutral scontata.  
 Non è possibile l’esercizio anticipato, quindi il pricing coincide con quello del corrispondente contingent claim.
-
-\paragraph{Opzioni americane}
+}
+\textbf{ARRIVATA QUA}
+\paragraph{Opzioni americane nel binomial model}
 Un’opzione americana può essere esercitata in qualunque istante \(t \le T\).  
 Il valore dell’opzione a un nodo intermedio è dato dal massimo tra:
 \[
@@ -1332,6 +1407,8 @@ La lezione mostra come il modello binomiale fornisca un quadro completo e coeren
 
 
 \textcolor{YellowSoft}{\section{Delta Hedging, Modello Binomiale e Limite Continuo}}
+
+
 
 \paragraph{Obiettivo della lezione}
 La lezione introduce il concetto di \textbf{Delta} come misura di sensibilità del prezzo di un’opzione rispetto al prezzo del sottostante e mostra come sfruttarlo per costruire \textbf{portafogli privi di rischio} (Delta-hedging).  
