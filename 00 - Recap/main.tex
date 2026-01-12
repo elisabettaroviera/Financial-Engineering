@@ -397,11 +397,10 @@ B(0,T)=\sum_{i=1}^{n} c_i e^{-y t_i},
 dove \(c_i\) sono i flussi di cassa pagati ai tempi \(t_i\).
 
 \paragraph{Sviluppo di Taylor del prezzo del bond}
-Si considera lo sviluppo di Taylor del prezzo del bond attorno a un valore \(y_0\),
+Si considera lo sviluppo di Taylor del prezzo del bond attorno a un valore \(y_0\), dove \(D(y_0)\) e \(C(y_0)\) rappresentano rispettivamente duration e convexity valutate in \(y_0\).
 \[
 B(y)=B(y_0)-D(y_0)B(y_0)\Delta y+\frac{1}{2}C(y_0)B(y_0)(\Delta y)^2+\dots
 \]
-dove \(D(y_0)\) e \(C(y_0)\) rappresentano rispettivamente duration e convexity valutate in \(y_0\).
 
 \paragraph{Duration}
 La \textbf{duration} è definita come
@@ -412,10 +411,10 @@ D(y) = -\frac{1}{B(y)}\frac{ dB(y)}{ dy}
 La duration ammette le seguenti interpretazioni
 \begin{itemize}[label=-]
 \item È una \textbf{combinazione convessa dei tempi di pagamento}, poiché i pesi \(\frac{c_i e^{-y t_i}}{B(y)}\) sono positivi e sommano a uno
-\item Misura la \textbf{sensitività del prezzo del bond} rispetto a variazioni del rendimento secondo
-\[
+\item Misura la \textbf{sensitività del prezzo del bond} rispetto a variazioni del rendimento
+\(
 \frac{\Delta B}{B}\approx -D(y)\,\Delta y
-\]
+\)
 \item Costituisce una \textbf{misura di rischio di tasso di interesse}, quantificando l’esposizione del valore del bond a shock sui tassi
 \end{itemize}
 
@@ -466,7 +465,7 @@ B(t,T)=e^{-y(t,T)(T-t)}.
 
 \paragraph{PROP.} Se il rendimento (yield) per qualche $t>0$ fosse noto già al tempo $t=0$, allora
 \(
-y(t)=y(0)\qquad \forall t,
+y(t)=y(0)\; \forall t,
 \)
 altrimenti sarebbe possibile costruire strategie di arbitraggio.
 
@@ -1187,8 +1186,9 @@ C=\frac{1}{1+r}\Bigl(q_u(Su-K)^+ + q_d(Sd-K)^+\Bigr)
 }
 
 \vspace{0.5cm}
-\textcolor{OliveSoft}{\section{Multi-Period Binomial Model}}
 
+\textcolor{OliveSoft}{\section{Multi-Period Binomial Model}}
+\textbf{ARRVATA QUA --}
 \paragraph{Idea generale della lezione}
 Si estende il modello binomiale a più periodi in tempo discreto \(t=0,\dots,T\), con due asset \((B,S)\).  
 Si introduce la dinamica ad albero (ricombinante), la rappresentazione tramite variabili indicatrici e la definizione formale di strategia di portafoglio, valore del portafoglio, predicibilità e self-financing.
