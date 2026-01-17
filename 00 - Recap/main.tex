@@ -1462,14 +1462,14 @@ R_t^{(L)}=\frac{S(t)-S(t-1)}{S(t-1)}, \qquad
 R_t^{(\log)}=\ln\!\left(\frac{S(t)}{S(t-1)}\right).
 \]
 I rendimenti logaritmici sono \textbf{additivi nel tempo}, a differenza dei rendimenti lineari, e risultano più adatti allo studio del limite continuo.
-\emph{
+
 \paragraph{Scelta di \(u\), \(d\) e probabilità}
 Nel modello di Cox--Ross--Rubinstein, i parametri vengono scelti in funzione di \(h\) in modo che media e varianza dei log-rendimenti convergano a quelle osservate empiricamente.  
 Una possibile scelta è
 \(
 u=e^{\sigma\sqrt{h}}, \; d=e^{-\sigma\sqrt{h}},
 \)
-con probabilità tali da riprodurre il drift desiderato.}
+con probabilità tali da riprodurre il drift desiderato.
 \emph{
 \paragraph{Ipotesi di mercato efficiente}
 La costruzione del modello si basa sull’ipotesi di \textbf{mercato efficiente}:  
@@ -1613,7 +1613,7 @@ Il moto browniano
 Per questo si modellano i log-rendimenti e non i livelli di prezzo.
 
 \vspace{0.5cm}
-\textcolor{OrangeSoft}{\section{Trading Strategies with Options -- MANCA DA RIVEDERE SE POI NOTI CHE PROPRIO NON CI SONO ELIMINA}}
+\textcolor{OrangeSoft}{\section{Trading Strategies with Options}}
 {\itshape
 \paragraph{RECAP}
 Si studiano strategie di trading costruite combinando opzioni europee (call e put) con la stessa maturity.  
@@ -1625,125 +1625,99 @@ Strategia rialzista costruita con
 \item Long call con strike \(K_1\),
 \item Short call con strike \(K_2>K_1\).
 \end{itemize}
-
-\[
+Il profitto massimo è limitato, così come la perdita massima: \(
 \text{Profit} = \text{Payoff} - (C_1 - C_2)
-\]
+\).
 
-Il profitto massimo è limitato, così come la perdita massima.
-
-\paragraph{3. Bull spread using puts}
-Strategia rialzista costruita con:
+\paragraph{2. Bull spread using puts}
+Strategia rialzista costruita con
 \begin{itemize}[label=-]
-\item long put con strike \(K_1\),
-\item short put con strike \(K_2>K_1\).
+\item Long put con strike \(K_1\),
+\item Short put con strike \(K_2>K_1\).
 \end{itemize}
-
-\[
+Il flusso di cassa iniziale può essere positivo: \(
 \text{Profit} = \text{Payoff} - (p_1 - p_2)
-\]
+\).
 
-Il flusso di cassa iniziale può essere positivo.
-
-\paragraph{4. Bear spread using puts}
-Strategia ribassista costruita con:
+\paragraph{3. Bear spread using puts}
+Strategia ribassista costruita con
 \begin{itemize}[label=-]
-\item short put con strike \(K_1\),
-\item long put con strike \(K_2>K_1\).
+\item Short put con strike \(K_1\),
+\item Long put con strike \(K_2>K_1\).
 \end{itemize}
-
-\[
+Il profitto è limitato e si realizza per prezzi bassi del sottostante \(
 \text{Profit} = \text{Payoff} + p_1 - p_2
-\]
+\).
 
-Il profitto è limitato e si realizza per prezzi bassi del sottostante.
-
-\paragraph{6. Butterfly spread using calls}
+\paragraph{4. Butterfly spread using calls}
 Strategia che beneficia di \textbf{bassa volatilità}.  
-Costruzione:
+Costruzione
 \begin{itemize}[label=-]
-\item long call \(K_1\),
-\item short due call \(K_2=\frac{K_1+K_3}{2}\),
-\item long call \(K_3\).
+\item Long call \(K_1\),
+\item Short due call \(K_2=\frac{K_1+K_3}{2}\),
+\item Long call \(K_3\).
 \end{itemize}
-
-\[
+Il profitto massimo si ottiene per \(S_T = K_2\): \(
 \text{Profit} = \text{Payoff} + 2C_2 - C_1 - C_3
-\]
+\).
 
-Il profitto massimo si ottiene per \(S_T = K_2\).
-
-\paragraph{8. Butterfly spread using puts}
-Costruzione analoga usando put:
+\paragraph{5. Butterfly spread using puts}
+Costruzione analoga usando put
 \begin{itemize}[label=-]
-\item long put \(K_1\),
-\item short due put \(K_2\),
-\item long put \(K_3\).
+\item Long put \(K_1\),
+\item Short due put \(K_2\),
+\item Long put \(K_3\).
 \end{itemize}
-
 \[
 \text{Profit} = \text{Payoff} + 2p_2 - p_1 - p_3
 \]
 
-\paragraph{9. Combinations}
-Le combinations combinano call e put sullo stesso sottostante.
-
-\paragraph{10. Long straddle}
+\paragraph{6. Long straddle}
 Strategia che beneficia di \textbf{movimenti ampi} del prezzo.
-
 \begin{itemize}[label=-]
-\item long call \(K\),
-\item long put \(K\).
+\item Long call \(K\),
+\item Long put \(K\).
 \end{itemize}
-
-\[
+La perdita massima è pari al costo iniziale: \(
 \text{Profit} = \text{Payoff} - (C + p)
-\]
+\).
 
-La perdita massima è pari al costo iniziale.
-
-\paragraph{12. Short straddle}
-Strategia opposta al long straddle:
+\paragraph{7. Short straddle}
+Strategia opposta al long straddle
 \begin{itemize}[label=-]
-\item short call \(K\),
-\item short put \(K\).
+\item Short call \(K\),
+\item Short put \(K\).
 \end{itemize}
-
-\[
+Il profitto è limitato, la perdita è potenzialmente illimitata: \(
 \text{Profit} = \text{Payoff} + (C + p)
-\]
+\).
 
-Il profitto è limitato, la perdita è potenzialmente illimitata.
-
-\paragraph{13. Strangle}
-Strategia simile allo straddle ma con strike diversi:
+\paragraph{8. Strangle}
+Strategia simile allo straddle ma con strike diversi
 \begin{itemize}[label=-]
-\item long put \(K_1\),
-\item long call \(K_2>K_1\).
+\item Long put \(K_1\),
+\item Long call \(K_2>K_1\).
 \end{itemize}
-
-\[
+Richiede movimenti più ampi rispetto allo straddle: \(
 \text{Profit} = \text{Payoff} - (p + C)
-\]
-
-Richiede movimenti più ampi rispetto allo straddle.}
+\).}
 
 \vspace{0.5cm}
-\textcolor{OrangeWarm}{\section{Black--Scholes Model and Stochastic Calculus -- ARRIVATA }}
+\textcolor{OrangeWarm}{\section{Black--Scholes Model and Stochastic Calculus}}
 
 \paragraph{RECAP}
 L’obiettivo è introdurre un modello continuo nel tempo per i prezzi degli asset finanziari, basato su processi stocastici, e sviluppare il calcolo necessario per il pricing risk--neutral dei derivati, in particolare nel modello di Black--Scholes.
-
+\vspace{0.5cm}
 \paragraph{Setting di Black--Scholes}
-Si considera un mercato continuo nel tempo con:
+Si considera un mercato continuo nel tempo con
 \begin{itemize}[label=-]
-\item un bond privo di rischio \(B(t)\),
-\item un’azione \(S(t)\).
+\item Un bond privo di rischio \(B(t)\),
+\item Un’azione \(S(t)\).
 \end{itemize}
 Il bond evolve secondo
-\[
-B(t)=e^{rt}B(0),
-\]
+\(
+B(t)=e^{rt},
+\)
 dove \(r\) è il tasso di interesse costante.
 
 \paragraph{European call option}
@@ -1758,18 +1732,18 @@ Il prezzo al tempo \(0\) di una European call option è dato da
 C(0)=\mathbb{E}^{\mathbb{P}^*}\!\left[e^{-rT}\,(S(T)-K)^+\right],
 \]
 dove \(\mathbb{P}^*\) è una misura di probabilità tale che il processo scontato \(S(t)e^{-rt}\) sia una martingala.
-
+\emph{
 \paragraph{Log--returns e moto browniano}
 Si assume che i log--returns siano normalmente distribuiti, cioè
 \[
 Y(t)=\ln\!\frac{S(t)}{S(0)} = mt+\sigma W(t),
 \]
 dove \(W(t)\) è un moto browniano standard. Ne segue che
-\[
+\(
 S(t)=S(0)\exp\!\bigl(mt+\sigma W(t)\bigr).
-\]
+\)}
 
-\paragraph{Osservazione (Condizione di martingala)}
+\paragraph{Condizione di martingala}
 Una condizione necessaria affinché \(S(t)e^{-rt}\) sia una martingala è
 \[
 \mathbb{E}\!\left[S(t)e^{-rt}\right]=S(0).
@@ -1778,7 +1752,7 @@ Nel modello precedente questa condizione impone
 \[
 m-r+\frac{\sigma^2}{2}=0.
 \]
-
+\emph{
 \paragraph{Cambio di misura e misura risk--neutral}
 Si introduce una nuova misura di probabilità \(\mathbb{P}^*\) tale che il processo
 \[
@@ -1786,10 +1760,11 @@ W^*(t)=W(t)+\frac{m-r+\sigma^2/2}{\sigma}\,t
 \]
 sia un moto browniano standard sotto \(\mathbb{P}^*\).  
 Questo cambio di misura (giustificato dal teorema di Girsanov) consente di rendere il prezzo scontato un processo martingala.
-
+}
+\emph{
 \paragraph{Conclusione fondamentale}
 Sotto la misura risk--neutral \(\mathbb{P}^*\), il processo \(S(t)e^{-rt}\) è una martingala e il pricing dei derivati può essere effettuato tramite aspettativa scontata.
-
+}
 \paragraph{Deduzione esplicita della formula di Black--Scholes}
 Nel modello di Black--Scholes il prezzo di una European call option è
 \[
@@ -1799,12 +1774,24 @@ dove
 \[
 d_1=\frac{\ln\!\bigl(S(0)/K\bigr)+\left(r+\frac{1}{2}\sigma^2\right)T}{\sigma\sqrt{T}},
 \qquad
-d_2=d_1-\sigma\sqrt{T},
+d_2=\frac{\ln\!\bigl(S(0)/K\bigr)+\left(r-\frac{1}{2}\sigma^2\right)T}{\sigma\sqrt{T}},
 \]
 e \(N(\cdot)\) è la funzione di ripartizione della normale standard.
-
-\paragraph{Osservazione cruciale}
 Il prezzo dell’opzione non dipende dal drift \(m\) sotto la misura storica, ma solo dai parametri \(r\) e \(\sigma\).
+
+\paragraph{Black--Scholes formule} Si considera $C(t)$ il prezzo della call e $P(t)$ il prezzo della put
+$$C(t)=S(t)N(d_1)-Ke^{-r(T-t)}N(d_2), \qquad P(t)=Ke^{-r(T-t)}N(-d_2)-S(t)N(-d_1).$$
+
+\paragraph{Moto browniano geometrico}
+Il moto browniano geometrico può essere visto come una trasformazione non lineare di \(B(t)\).  
+Infatti, ponendo
+\[
+Y(t) = e^{B(t)}=e^{\mu t + \sigma W(t)+x_0},
+\]
+si ottiene un processo sempre positivo.
+Il processo è sempre positivo e può essere usato per modellare i prezzi.  
+I rendimenti sono proporzionali al livello del processo.
+
 
 \paragraph{Motivazione del calcolo stocastico}
 Poiché le traiettorie del moto browniano hanno variazione non limitata, non è possibile interpretare \(dW(t)\) in senso classico. È quindi necessario introdurre il concetto di integrale stocastico.
@@ -1818,7 +1805,7 @@ dX(t)=\mu(t,X(t))\,dt+\sigma(t,X(t))\,dW(t),
 dove \(\mu\) è il termine di drift e \(\sigma\) il termine di diffusione.
 
 \paragraph{Definizione (Spazio \(L^2\))}
-Un processo \(g(t)\) appartiene a \(L^2([a,b])\) se:
+Un processo \(g(t)\) appartiene a \(L^2([a,b])\) se
 \begin{itemize}[label=-]
 \item \(\displaystyle \int_a^b \mathbb{E}[g^2(s)]\,ds<\infty\),
 \item \(g(t)\) è adattato alla filtrazione generata dal moto browniano.
@@ -1831,7 +1818,7 @@ Per \(g\in L^2([a,b])\) si definisce l’integrale stocastico
 \]
 come limite in \(L^2\) di integrali definiti per processi semplici.
 
-\paragraph{Proposizione (Propriet\`a fondamentali dell’integrale di It\^o)}
+\paragraph{PROP. Propriet\`a fondamentali dell’integrale di It\^o}
 Sia \(g\in L^2([a,b])\). Allora:
 \begin{itemize}[label=-]
 \item \(\displaystyle \mathbb{E}\!\left[\int_a^b g(s)\,dW(s)\right]=0\),
@@ -1840,54 +1827,59 @@ Sia \(g\in L^2([a,b])\). Allora:
 \item \(\displaystyle \int_a^b g(s)\,dW(s)\) è \(\mathcal{F}_b\)-misurabile.
 \end{itemize}
 
-\paragraph{Corollario (Martingala)}
+\paragraph{PROP. Proprietà martingala dell’integrale di It\^o}
+Per ogni processo \(g\in L^2([a,b])\), vale 
+\[
+\mathbb{E}\left[\int_a^b g(s)\,dW(s) | \mathcal{F}_s^w\right]=0.
+\]
+
+\paragraph{COROLLARIO. Martingala}
 Per ogni \(g\in L^2\), il processo
 \[
 X(t)=\int_0^t g(s)\,dW(s)
 \]
-è una martingala rispetto alla filtrazione naturale del moto browniano.
+è una martingala $\mathcal{F}_t^w$ rispetto alla filtrazione naturale del moto browniano.
 
-\paragraph{Lemma (Caratterizzazione delle martingale)}
+\paragraph{LEMMA. Caratterizzazione delle martingale}
 Un processo stocastico \(X(t)\) che ammette una rappresentazione differenziale è una martingala se e solo se la sua equazione differenziale non contiene il termine \(dt\), cioè
-\[
+\(
 dX(t)=g(t)\,dW(t).
-\]
-
-\paragraph{Implicazione}
-Per un processo di It\^o
+\)
+Quindi, per un processo di It\^o
 \[
 dX(t)=\mu(t,X(t))\,dt+\sigma(t,X(t))\,dW(t),
 \]
 la condizione \(\mu\equiv 0\) è necessaria e sufficiente affinché \(X(t)\) sia una martingala.
 
-
+\vspace{0.5cm}
 \textcolor{RedSoft}{\section{Stochastic Calculus and Itô's Formula}}
 
-\paragraph{Idea generale della lezione}
+\paragraph{RECAP}
 La lezione introduce gli strumenti fondamentali del \textbf{calcolo stocastico}, con particolare attenzione al \textbf{processo di Wiener}, alla sua \textbf{variazione quadratica} e alla \textbf{formula di Itô}, che rappresenta l’analogo stocastico della regola della catena.  
 Tali strumenti sono alla base della modellazione dei prezzi finanziari e del pricing dei derivati nel continuo.
 
 \paragraph{Processo di Wiener}
-Un processo \(W(t)\) è detto \textbf{processo di Wiener} se soddisfa:
-- \(W(0)=0\);
-- incrementi indipendenti e stazionari;
-- \(W(t)-W(s)\sim \mathcal{N}(0,t-s)\) per \(t>s\);
-- traiettorie continue ma quasi sicuramente non derivabili.
-
-Per un incremento temporale \(\Delta t\), vale:
-\[
+Un processo \(W(t)\) è detto \textbf{processo di Wiener} se soddisfa
+\begin{itemize}[label=-]
+\item \(W(0)=0\)
+\item Incrementi indipendenti e stazionari
+\item \(W(t)-W(s)\sim \mathcal{N}(0,t-s)\) per \(t>s\)
+\item Traiettorie continue ma quasi sicuramente non derivabili
+\end{itemize}
+Per un incremento temporale \(\Delta t\), vale
+\(
 \mathbb{E}[\Delta W(t)] = 0, 
-\qquad 
+\; 
 \mathbb{E}[(\Delta W(t))^2] = \Delta t,
-\qquad
+\;
 \mathrm{Var}((\Delta W(t))^2)=2(\Delta t)^2.
-\]
+\)
 
 \paragraph{Variazione quadratica}
 La proprietà chiave del processo di Wiener è la \textbf{variazione quadratica}:
-\[
+\(
 (dW(t))^2 = dt,
-\]
+\)
 intesa in senso limite.  
 Ne segue che
 \[
@@ -1902,14 +1894,14 @@ dX(t) = \mu(t,X(t))\,dt + \sigma(t,X(t))\,dW(t),
 \qquad X(0)=x_0,
 \]
 dove \(\mu\) è il termine di \textbf{drift} e \(\sigma\) il termine di \textbf{diffusione}.  
-In forma integrale:
+In forma integrale
 \[
 X(t)=x_0+\int_0^t \mu(s,X(s))\,ds + \int_0^t \sigma(s,X(s))\,dW(s).
 \]
 
-\paragraph{Formula di Itô}
+\paragraph{LEMMA. Formula di Itô}
 Sia \(X(t)\) soluzione di una SDE e sia \(f(t,x)\in C^{1,2}\).  
-Definendo \(Z(t)=f(t,X(t))\), la dinamica di \(Z(t)\) è data dalla \textbf{formula di Itô}:
+Definendo \(Z(t)=f(t,X(t))\), la dinamica di \(Z(t)\) è data dalla \textbf{formula di Itô}
 \[
 dZ(t)=
 \left(
@@ -1921,20 +1913,7 @@ dZ(t)=
 \]
 
 Il termine \(\frac{1}{2}\sigma^2 \frac{\partial^2 f}{\partial x^2}\) è la principale differenza rispetto al calcolo deterministico ed è dovuto alla variazione quadratica di \(W(t)\).
-
-\paragraph{Moto Browniano con drift}
-Se \(\mu(t)=\mu\) e \(\sigma(t)=\sigma\) sono costanti, allora
-\[
-X(t)=x_0+\mu t+\sigma W(t),
-\]
-con
-\[
-\mathbb{E}[X(t)] = x_0+\mu t,
-\qquad
-\mathrm{Var}(X(t))=\sigma^2 t.
-\]
-Il processo è detto \textbf{Brownian Motion with drift}.
-
+Si usa la formula di Itô per trovare la dinamica dei processi continui (continuous time stock prime $S(t)$) e trovare la dinamica della funzione $S(t)$.
 \paragraph{Processo dei prezzi azionari}
 Il prezzo di un’azione non dividend-paying è modellato come
 \[
@@ -1956,89 +1935,81 @@ Usando la formula di Itô:
 dF(t)= (\mu-r)F(t)\,dt + \sigma F(t)\,dW(t),
 \]
 quindi il forward segue anch’esso un moto browniano geometrico.
-
+\emph{
 \paragraph{Modelli a mean reversion}
 Un esempio di dinamica per il tasso di interesse è il modello di \textbf{Vasicek (Ornstein–Uhlenbeck)}:
 \[
 dr(t)=\alpha(\mu-r(t))\,dt+\sigma\,dW(t),
 \qquad \alpha>0,
 \]
-che incorpora la proprietà di \textbf{mean reversion} verso il livello \(\mu\).
+che incorpora la proprietà di \textbf{mean reversion} verso il livello \(\mu\).}
 
-\paragraph{Risultati chiave}
-- Il processo di Wiener ha variazione quadratica non nulla.
-- La formula di Itô è la regola fondamentale del calcolo stocastico.
-- I prezzi azionari seguono un moto browniano geometrico.
-- Forward price e altri derivati ereditano dinamiche stocastiche tramite Itô.
-- La mean reversion è cruciale nella modellazione dei tassi di interesse.
-
-
+\vspace{0.5cm}
 \textcolor{RedMuted}{\section{Black--Scholes--Merton Model and Continuous-Time Pricing}}
 
-\paragraph{Obiettivo della lezione}
+\paragraph{RECAP}
 La lezione introduce il \textbf{modello di Black--Scholes--Merton} in tempo continuo e ne deriva la formula di pricing per claim contingenti mediante:
 assenza di arbitraggio, portafogli auto-finanzianti e valutazione risk-neutral.
 Si stabilisce il legame tra \textbf{replicazione}, \textbf{equazione alle derivate parziali} e \textbf{aspettativa sotto misura martingala}.
 
 \paragraph{Setting di mercato}
-Si considera un mercato continuo con due asset:
+Si considera un mercato continuo con due asset
 \begin{itemize}[label=-]
-\item \textbf{Bond} \(B(t)\) con dinamica deterministica
-\[
+\item \textbf{Bond} \(B(t)\) con dinamica deterministica:
+\(
 dB(t)=rB(t)\,dt,
-\]
-\item \textbf{Stock} \(S(t)\) con dinamica stocastica
-\[
+\)
+\item \textbf{Stock} \(S(t)\) con dinamica stocastica:
+\(
 dS(t)=\mu S(t)\,dt+\sigma S(t)\,dW(t),
-\]
+\)
 dove \(r,\mu,\sigma\) sono costanti e \(W(t)\) è un moto browniano.
 \end{itemize}
-
+\emph{
 \paragraph{Claim contingente}
 Un claim europeo è definito come
-\[
+\(
 X=\phi(S(T)),
-\]
+\)
 con valore al tempo \(t\) indicato come
-\[
+\(
 V_X(t)=f(t,S(t)),
-\]
-dove \(f\) è una funzione sufficientemente regolare.
+\)
+dove \(f\) è una funzione sufficientemente regolare.}
 
 \paragraph{Portafogli auto-finanzianti in tempo continuo}
-Un portafoglio \(h(t)=(h_S(t),h_B(t))\) è \textbf{self-financing} se la variazione del suo valore dipende solo dalle variazioni dei prezzi degli asset:
+Un portafoglio (\textbf{riskless portfolio}) \(h(t)=(h_S(t),h_B(t))\) è \textbf{self-financing} se la variazione del suo valore dipende solo dalle variazioni dei prezzi degli asset
 \[
 dV^h(t)=h_S(t)\,dS(t)+h_B(t)\,dB(t).
 \]
-
-\paragraph{Proposizione}
+\emph{
+\paragraph{PROP.}
 Se un portafoglio è auto-finanziante, allora la sua dinamica non dipende dalle variazioni delle strategie \(h(t)\), ma solo dalle variazioni dei prezzi degli asset.
-
+}
+\emph{
 \paragraph{Costruzione del portafoglio replicante}
-Si considera un portafoglio costituito da:
+Si considera un portafoglio costituito da
 \begin{itemize}[label=-]
-\item una posizione \(n(t)\) sullo stock,
-\item una posizione unitaria sul claim.
+\item Una posizione \(n(t)\) sullo stock
+\item Una posizione unitaria sul claim
 \end{itemize}
 Il valore del portafoglio è
-\[
+\(
 V^h(t)=n(t)S(t)+f(t,S(t)).
-\]
-
-Applicando Itô a \(f(t,S(t))\) e imponendo l’assenza del termine stocastico, si ottiene la condizione di copertura:
+\)
+Applicando Itô a \(f(t,S(t))\) e imponendo l’assenza del termine stocastico, si ottiene la condizione di copertura
 \[
 n(t)=-\frac{\partial f}{\partial s}(t,S(t)).
-\]
-
+\]}\emph{
 \paragraph{Condizione di assenza di arbitraggio}
 Un portafoglio privo di rischio deve crescere al tasso risk-free:
-\[
+\(
 dV^h(t)=rV^h(t)\,dt.
-\]
-Da questa condizione segue che \(f\) deve soddisfare una PDE.
-
+\)
+Da questa condizione segue che \(f\) deve soddisfare una PDE.}
+\emph{
 \paragraph{Equazione di Black--Scholes--Merton}
-La funzione di prezzo \(f(t,s)\) soddisfa il problema:
+La funzione di prezzo \(f(t,s)\) soddisfa il problema
 \[
 \begin{cases}
 \displaystyle
@@ -2048,51 +2019,50 @@ La funzione di prezzo \(f(t,s)\) soddisfa il problema:
 - r f = 0, \\[0.6em]
 f(T,s)=\phi(s).
 \end{cases}
-\]
+\]}
 
-\paragraph{Teorema di Feynman--Kac}
-Sotto opportune condizioni di regolarità, la soluzione della PDE ammette la rappresentazione:
+\paragraph{TEO. Teorema di Feynman--Kac}
+Sotto opportune condizioni di regolarità, la soluzione della PDE ammette la rappresentazione
 \[
-f(t,s)=e^{-r(T-t)}\mathbb{E}^Q\!\left[\phi(S(T))\,\big|\,S(t)=s\right],
+f(t,s)=e^{-r(T-t)}\mathbb{E}^Q\!\left[\phi(X(T))\,\big|\,X(t)=x\right],
 \]
-dove sotto la misura \(Q\) il processo \(S(t)\) soddisfa
-\[
-dS(t)=rS(t)\,dt+\sigma S(t)\,dW^Q(t).
-\]
+dove sotto la misura \(Q\) il processo \(X(t)\) soddisfa
+\(
+dX(t)=rX(t)\,dt+\sigma X(t)\,dW^Q(t).
+\)
 
-\paragraph{Misura risk-neutral}
+\paragraph{PROP. Misura risk-neutral}
 La misura \(Q\) è tale che il prezzo scontato
-\[
+\(
 S(t)e^{-rt}
-\]
-è una martingala. Nel modello di Black--Scholes tale misura:
-\begin{itemize}[label=-]
-\item esiste,
-\item è unica,
-\item implica la completezza del mercato.
-\end{itemize}
-
+\)
+è una martingala. Nel modello di Black--Scholes tale misura: esiste, è unica e implica la completezza del mercato.
+\emph{
 \paragraph{Formula di pricing}
 Il prezzo di un claim europeo è dato da:
-\[
+\(
 \Pi(t,X)=e^{-r(T-t)}\mathbb{E}^Q\!\left[\phi(S(T))\,\big|\,S(t)\right].
-\]
+\)}
 
-\paragraph{Applicazione: Call europea}
+\paragraph{Call europea}
 Per il payoff
-\[
+\(
 \phi(S(T))=(S(T)-K)^+,
-\]
+\)
 il prezzo al tempo \(0\) è
-\[
-C_0=S_0 N(d_1)-Ke^{-rT}N(d_2),
-\]
-con
-\[
-d_1=\frac{\ln(S_0/K)+(r+\tfrac12\sigma^2)T}{\sigma\sqrt{T}},
-\qquad
-d_2=d_1-\sigma\sqrt{T}.
-\]
+\(
+C_0=S_0 N(d_1)-Ke^{-rT}N(d_2).
+\)
+
+\paragraph{Put europea}
+Per il payoff
+\(
+\phi(S(T))=(K-S(T))^+,
+\)
+il prezzo al tempo \(0\) è
+\(
+P_0=Ke^{-rT}N(-d_2)-S_0 N(-d_1).
+\)
 
 \paragraph{Interpretazione probabilistica}
 La quantità \(N(d_2)\) rappresenta la probabilità, sotto la misura risk-neutral \(Q\), che l’opzione call venga esercitata:
@@ -2100,194 +2070,183 @@ La quantità \(N(d_2)\) rappresenta la probabilità, sotto la misura risk-neutra
 N(d_2)=\mathbb{P}^Q(S(T)\ge K).
 \]
 
-\paragraph{Conclusione}
-La lezione mostra come il pricing in tempo continuo derivi da:
-replicazione, assenza di arbitraggio e martingale pricing,
-unificando PDE, probabilità e finanza in un unico framework coerente.
-
-
+\vspace{0.5cm}
 \textcolor{RoseSoft}{\section{Black--Scholes, Forward Pricing and Parity Relations}}
 
-\paragraph{Idea generale della lezione}
+\paragraph{RECAP}
 La lezione estende il modello di Black--Scholes al pricing di opzioni scritte su \emph{forward/futures}.  
 L’idea chiave è che il prezzo forward ha una dinamica di tipo geometrico browniano analoga a quella del sottostante, permettendo l’applicazione diretta di una formula di tipo Black--Scholes (detta \emph{Black formula}).  
 Si introducono inoltre le relazioni di parità e il principio di linearità del pricing.
-
-\paragraph{Definizione -- Forward price}
+\emph{
+\paragraph{Forward price}
 Si considera uno stock senza dividendi e un tasso risk--free costante \(r\) in capitalizzazione continua.  
 Il forward price con maturity \(T\) è
-\[
+\(
 F(0,T)=S(0)e^{rT}.
-\]
+\)
 Più in generale, per \(t\le T\),
-\[
+\(
 F(t,T)=S(t)e^{r(T-t)}.
-\]
-
-\paragraph{Proposizione -- Dinamica del forward}
+\)
+}
+\emph{
+\paragraph{PROP. Dinamica del forward}
 Sotto la misura storica, il prezzo dello stock segue
 \[
 \mathrm{d}S(t)=\mu S(t)\,\mathrm{d}t+\sigma S(t)\,\mathrm{d}W(t).
 \]
 Ne segue che il forward price \(F(t,T)=S(t)e^{r(T-t)}\) soddisfa
-\[
+\(
 \mathrm{d}F(t,T)=(\mu-r)F(t,T)\,\mathrm{d}t+\sigma F(t,T)\,\mathrm{d}W(t).
-\]
+\)
 Il forward ha quindi la stessa volatilità del sottostante.
-
+}
+\emph{
 \paragraph{Idea di pricing}
 Poiché il forward price ha dinamica di tipo GBM, il pricing di opzioni su forward può essere ricondotto al caso standard di Black--Scholes, trattando il forward come sottostante.
-
-\paragraph{Teorema -- Call europea su forward (Black formula)}
+}
+\emph{
+\paragraph{TEO. Call europea su forward (Black formula)}
 Si considera una call europea con maturity \(T\) e payoff
-\[
+\(
 (F(T,T)-K)^+.
-\]
+\)
 Indicando con \(F_0\) il forward price osservato al tempo zero, il prezzo della call è
-\[
+\(
 C_0=e^{-rT}\bigl[F_0 N(d_1)-K N(d_2)\bigr],
-\]
+\)
 dove
 \[
 d_1=\frac{\ln(F_0/K)+\tfrac12\sigma^2 T}{\sigma\sqrt{T}},
 \qquad
 d_2=d_1-\sigma\sqrt{T}.
 \]
-
-\paragraph{Corollario -- Put europea su forward}
+}\emph{
+\paragraph{COROLLARIO. Put europea su forward}
 Il prezzo della put europea con payoff \((K-F(T))^+\) è
-\[
+\(
 P_0=e^{-rT}\bigl[K N(-d_2)-F_0 N(-d_1)\bigr].
-\]
-
-\paragraph{Definizione -- Log--returns e volatilità (modello)}
+\)}
+\emph{
+\paragraph{Log--returns e volatilità (modello)}
 Fissato un passo temporale \(\Delta t\), si definisce il log--return
 \[
 Y=\ln\frac{S(t+\Delta t)}{S(t)}.
 \]
 Nel modello di Black--Scholes vale
-\[
+\(
 Y=(\mu-\tfrac12\sigma^2)\Delta t+\sigma\sqrt{\Delta t}\,Z,
 \qquad Z\sim\mathcal{N}(0,1).
-\]
-
+\)}
+\emph{
 \paragraph{Volatilità storica e volatilità implicita}
 La volatilità \(\sigma\) può essere stimata a partire da una serie storica di log--returns (volatilità storica) oppure determinata invertendo la formula di prezzo dell’opzione in modo da riprodurre il prezzo di mercato (volatilità implicita).
-
-\paragraph{Proposizione -- Linearità del pricing}
-Per payoff \(X\) e \(Y\) e per ogni \(\alpha,\beta\in\mathbb{R}\) vale
-\[
+}
+\paragraph{PROP. Linearità del pricing}
+Per payoff \(X\) e \(Y\) e \(\forall \alpha,\beta\in\mathbb{R}\) vale
+\(
 \Pi(t,\alpha X+\beta Y)=\alpha\Pi(t,X)+\beta\Pi(t,Y).
-\]
-
-\paragraph{Teorema -- Put--call parity su stock}
+\)
+\emph{
+\paragraph{TEO. Put--call parity su stock}
 Per opzioni europee su uno stock non dividend--paying, con stessa maturity \(T\) e strike \(K\), vale
-\[
+\(
 C_0-P_0=S_0-Ke^{-rT}.
-\]
-
-\paragraph{Teorema -- Put--call parity su forward}
+\)
+}
+\emph{
+\paragraph{TEO. Put--call parity su forward}
 Per opzioni europee scritte su forward con stessa maturity \(T\) e strike \(K\), vale
-\[
+\(
 C_0-P_0=e^{-rT}(F_0-K).
-\]
-
+\)}
+\emph{
 \paragraph{Stock con dividend yield continuo}
 Se lo stock paga un dividend yield continuo \(q\), il forward price è
-\[
+\(
 F(0,T)=S_0e^{(r-q)T}.
-\]
+\)}
 
-\paragraph{Conclusione}
-Il modello di Black--Scholes permette di prezzare opzioni su forward/futures tramite la Black formula, verificare coerenza tramite relazioni di parità e costruire payoff complessi mediante combinazioni lineari di strumenti base.
+\paragraph{PROP.} Ogni $\phi$ con supporto compatto può essere replicata con un portfolio di basic derivative S, B e C.
 
-
-
-
+\vspace{0.5cm}
 \textcolor{PinkPastel}{\section{The Greeks and Hedging}}
 
-\paragraph{Idea generale della lezione}
+\paragraph{RECAP}
 La lezione introduce le \textbf{Greeks}, ovvero le derivate parziali del valore di un portafoglio rispetto al prezzo dell’underlying e ai parametri del modello.  
 Le Greeks forniscono una misura quantitativa dell’esposizione al rischio e costituiscono la base teorica delle strategie di \textbf{hedging}.
 
 \paragraph{Valore del portafoglio e sensitività}
 Sia \(V_p(t,S)\) il valore al tempo \(t\) di un portafoglio basato su un singolo underlying con prezzo \(S\).  
-Si è interessati alla sensibilità di \(V_p\) rispetto a:
+Si è interessati alla sensibilità di \(V_p\) rispetto a
 \begin{itemize}[label=-]
-\item variazioni del prezzo dell’underlying;
-\item variazioni dei parametri del modello.
+\item Variazioni del prezzo dell’underlying
+\item Variazioni dei parametri del modello
 \end{itemize}
-
 Formalmente si scrive \(V_p = V_p(t,S,r,\sigma)\).
 
-\paragraph{Definizione (Greeks)}
-Le principali Greeks sono definite come:
+\paragraph{PROP.} Se $\phi$ è una call option europea sotto il modello di Black-Scholes, allora $\Delta_\phi = N(d_1)$.
+
+\paragraph{Greeks parameters}
+Le principali Greeks sono definite come
 \[
-\Delta_p = \frac{\partial V_p}{\partial S}, \qquad
-\Gamma_p = \frac{\partial^2 V_p}{\partial S^2},
-\]
-\[
-\Theta_p = \frac{\partial V_p}{\partial t}, \qquad
-\nu_p = \frac{\partial V_p}{\partial \sigma}, \qquad
+\Delta_p = \frac{\partial V_p}{\partial S}, \;
+\Gamma_p = \frac{\partial^2 V_p}{\partial S^2}, \;
+\Theta_p = \frac{\partial V_p}{\partial t}, \;
+\nu_p = \frac{\partial V_p}{\partial \sigma}, \;
 \rho_p = \frac{\partial V_p}{\partial r}.
 \]
-
 Un portafoglio è detto \textbf{neutrale} rispetto a una Greek se la corrispondente derivata è nulla.
-
+\emph{
 \paragraph{Approssimazione di Taylor}
-Per piccole variazioni dei parametri, la variazione del valore del portafoglio è approssimata da:
+Per piccole variazioni dei parametri, la variazione del valore del portafoglio è approssimata da
 \[
 \Delta V_p \approx \Delta_p\,\Delta S + \Theta_p\,\Delta t + \nu_p\,\Delta \sigma + \rho_p\,\Delta r + \frac{1}{2}\Gamma_p (\Delta S)^2.
 \]
-
-\paragraph{Proposizione (Greeks della call europea in Black--Scholes)}
-Nel modello Black--Scholes, per una call europea con strike \(K\) e maturity \(T\), valgono:
+}
+\paragraph{PROP. Greeks della call europea in Black--Scholes}
+Nel modello Black--Scholes, per una call europea con strike \(K\) e maturity \(T\), valgono
 \[
-\Delta_c = N(d_1), \qquad
-\Gamma_c = \frac{\varphi(d_1)}{S\sigma\sqrt{T-t}},
+\Delta_c = N(d_1), \;
+\Gamma_c = \frac{N(d_1)}{S\sigma\sqrt{T-t}}, \;
+\Theta_c = \frac{SN(d_1)\sigma}{2\sqrt{T-t}} - rK e^{-r(T-t)}N(d_2),\;
+\nu_c = SN(d_1)\sqrt{T-t},
 \]
-\[
-\Theta_c = -\frac{S\varphi(d_1)\sigma}{2\sqrt{T-t}} - rK e^{-r(T-t)}N(d_2),
-\]
-\[
-\nu_c = S\varphi(d_1)\sqrt{T-t},
-\]
-dove \(N(\cdot)\) è la funzione di ripartizione della normale standard e \(\varphi(\cdot)\) la sua densità.
-
+dove \(N(\cdot)\) è la funzione di ripartizione della normale standard.
+\emph{
 \paragraph{Delta hedging}
 Si considera un portafoglio con valore \(V_p(t,S)\).  
 Per piccole variazioni del prezzo, al primo ordine si ha:
-\[
+\(
 \Delta V_p \approx \Delta_p \Delta S.
-\]
-Se \(\Delta_p=0\), il portafoglio è insensibile a piccole variazioni di \(S\) ed è detto \textbf{Delta-neutral}.
-
+\)
+Se \(\Delta_p=0\), il portafoglio è insensibile a piccole variazioni di \(S\) ed è detto \textbf{Delta-neutral}.}
+\emph{
 \paragraph{Costruzione di un portafoglio Delta-neutral}
 Sia \(f(t,S)\) il prezzo di un derivato e si consideri una posizione short su \(f\).  
 Un portafoglio della forma
-\[
+\(
 V(t,S) = x_S S + y - f(t,S)
-\]
-è Delta-neutral se:
-\[
-\Delta_p = x_S - \Delta_f = 0 \quad \Rightarrow \quad x_S = \Delta_f.
-\]
+\)
+è Delta-neutral se:\\
+\(
+\Delta_p = x_S - \Delta_f = 0 \; \Rightarrow \; x_S = \Delta_f.
+\)}
 
-\paragraph{Lemma}
+\paragraph{LEMMA.}
 Per l’underlying stock vale:
-\[
-\Delta_S = 1, \qquad \Gamma_S = 0.
-\]
+\(
+\Delta_S = 1, \; \Gamma_S = 0.
+\)
 Ne segue che lo stock non può essere utilizzato per modificare la Gamma di un portafoglio.
 
 \paragraph{Delta--Gamma hedging}
 Per rendere un portafoglio sia Delta- che Gamma-neutral è necessario introdurre almeno due derivati.  
-Siano \(F(t,S)\) e \(G(t,S)\) due derivati, e si consideri il portafoglio:
+Siano \(F(t,S)\) e \(G(t,S)\) due derivati, e si consideri il portafoglio
 \[
 V(t,S) = V_p(t,S) + x_F F(t,S) + x_G G(t,S).
 \]
-
-Le condizioni di neutralità sono:
+Le condizioni di neutralità sono
 \[
 \begin{cases}
 \Delta_p + x_F \Delta_F + x_G \Delta_G = 0,\\
@@ -2298,79 +2257,75 @@ Le condizioni di neutralità sono:
 Il sistema ammette soluzione se i due derivati hanno Gamma diversa da zero.
 
 \paragraph{Schema operativo}
-Una procedura efficiente consiste in:
+Una procedura efficiente consiste in
 \begin{itemize}[label=-]
-\item rendere il portafoglio Gamma-neutral usando un derivato;
-\item aggiungere l’underlying per ripristinare la Delta-neutralità.
+\item Rendere il portafoglio Gamma-neutral usando un derivato
+\item Aggiungere l’underlying per ripristinare la Delta-neutralità
 \end{itemize}
-
 Questo sfrutta il fatto che lo stock ha Gamma nulla.
 
 
-
+\vspace{0.5cm}
 \textcolor{LilacSoft}{\section{Risk Measures, VaR, ES and Hedging}}
 
-\paragraph{Obiettivo della lezione}
+\paragraph{RECAP}
 La lezione introduce misure quantitative di rischio per variabili aleatorie che rappresentano perdite, con focus su \emph{Value at Risk} e \emph{Expected Shortfall}, e ne discute l’uso nella gestione del rischio e nelle strategie di hedging tramite strumenti derivati.
-
+\emph{
 \paragraph{Definizione di Loss}
 Sia \(V(t)\) il valore di un portafoglio al tempo \(t\).  
 Si definisce il profitto come \(V(t+1)-V(t)\) e la perdita (loss) come
-\[
+\(
 L(t+1) = -\bigl(V(t+1)-V(t)\bigr).
-\]
+\)}
 
 \paragraph{Value at Risk (VaR)}
-\paragraph{Definizione}
 Dato un livello di confidenza \(\alpha\in(0,1)\), il \emph{Value at Risk} di una variabile aleatoria \(L\) è definito come
 \[
 \mathrm{VaR}_\alpha(L)
 := \inf\{y\in\mathbb{R} : \mathbb{P}(L \le y)\ge \alpha\}
 = \inf\{y\in\mathbb{R} : F_L(y)\ge \alpha\}.
 \]
-
-\paragraph{Osservazione}
+\emph{
 Se \(L\) ha distribuzione continua e \(F_L\) è strettamente crescente, allora
-\[
+\(
 \mathrm{VaR}_\alpha(L) = F_L^{-1}(\alpha).
-\]
+\)}
 
-\paragraph{Proposizione (VaR per una variabile normale)}
+\paragraph{PROP. VaR per una variabile normale}
 Se \(L \sim \mathcal{N}(\mu,\sigma^2)\), allora
-\[
+\(
 \mathrm{VaR}_\alpha(L) = \mu + \sigma\,\Phi^{-1}(\alpha),
-\]
+\)
 dove \(\Phi\) è la funzione di distribuzione cumulativa della \(\mathcal{N}(0,1)\).
 
 \paragraph{Misure di rischio coerenti}
 Una misura di rischio \(\rho : \mathcal{M}\to\mathbb{R}\) è detta coerente se soddisfa i seguenti assiomi.
 
-\paragraph{A1. Invarianza per traslazione}
-\[
+\textbf{A1. Invarianza per traslazione}
+\(
 \rho(L+\ell)=\rho(L)+\ell \qquad \forall\,\ell\in\mathbb{R}.
-\]
+\) 
 
-\paragraph{A2. Subadditività}
-\[
+\textbf{A2. Subadditività}
+\(
 \rho(L_1+L_2)\le \rho(L_1)+\rho(L_2).
-\]
+\)
 
-\paragraph{A3. Omogeneità positiva}
-\[
+\textbf{A3. Omogeneità positiva}
+\(
 \rho(\lambda L)=\lambda \rho(L) \qquad \forall\,\lambda\ge 0.
-\]
+\)
 
-\paragraph{A4. Monotonicità}
+\textbf{A4. Monotonicità}
 Se \(L_1\le L_2\) quasi sicuramente, allora
-\[
+\(
 \rho(L_1)\le \rho(L_2).
-\]
+\)
 
-\paragraph{Osservazione}
+\textbf{NB}
 Il \(\mathrm{VaR}\) non è una misura di rischio coerente poiché, in generale, non soddisfa la subadditività.
 
 \paragraph{Expected Shortfall (ES)}
-\paragraph{Definizione}
 Dato \(\alpha\in(0,1)\), l’\emph{Expected Shortfall} (o Conditional Value at Risk) è definito come
 \[
 \mathrm{ES}_\alpha(L)
@@ -2378,10 +2333,10 @@ Dato \(\alpha\in(0,1)\), l’\emph{Expected Shortfall} (o Conditional Value at R
 = \mathbb{E}\bigl[L \mid L > \mathrm{VaR}_\alpha(L)\bigr].
 \]
 
-\paragraph{Osservazione}
+\textbf{NB}
 L’Expected Shortfall misura la perdita media condizionata al superamento del VaR ed è una misura di rischio coerente.
 
-\paragraph{Proposizione (ES per una variabile normale)}
+\paragraph{PROP. ES per una variabile normale}
 Se \(L \sim \mathcal{N}(\mu,\sigma^2)\), allora
 \[
 \mathrm{ES}_\alpha(L)
@@ -2396,10 +2351,10 @@ Indicando con \(R_i(t)\) i rendimenti dei singoli asset e con \(w_i=\frac{h_i S_
 R_V(t)=\sum_{i=1}^n w_i R_i(t).
 \]
 La perdita è approssimata da
-\[
+\(
 L(t+1)\approx -V(t)\,R_V(t).
-\]
-
+\)
+\emph{
 \paragraph{Hedging e fattori di rischio}
 Il valore di un portafoglio o di un derivato dipende da un insieme di fattori di rischio \(z=(z_1,\dots,z_m)\).  
 Per piccole variazioni,
@@ -2407,82 +2362,12 @@ Per piccole variazioni,
 \Delta V \approx \frac{\partial V}{\partial t}\Delta t
 + \sum_{i=1}^m \frac{\partial V}{\partial z_i}\Delta z_i,
 \]
-che giustifica strategie di hedging basate sulle sensitività (Delta-hedging).
-
+che giustifica strategie di hedging basate sulle sensitività (Delta-hedging).}
+\emph{
 \paragraph{Confronto tra strategie di copertura}
 \begin{itemize}[label=-]
-\item \emph{Forward}: elimina il rischio fissando il tasso futuro, ma rinuncia a qualsiasi beneficio da movimenti favorevoli.
-\item \emph{Opzioni}: consentono una copertura con protezione dal downside e mantenimento dell’upside, al costo del premio.
-\end{itemize}
-
-\paragraph{Conclusione}
-Il confronto tra VaR ed ES evidenzia i limiti del VaR come misura di rischio e motiva l’uso dell’Expected Shortfall nelle decisioni di gestione del rischio e nelle strategie di hedging con derivati.
-
-
-\textcolor{PurpleSoft}{\section{Speculating with Derivatives}}
-
-\paragraph{Idea generale}
-Si usano i derivati (in particolare le opzioni) come \emph{building blocks} per progettare strumenti/portafogli con un \textbf{payoff prescritto}, coerente con le aspettative dell’investitore sull’andamento futuro del sottostante e con la sua propensione al rischio.
-
-\paragraph{Opzioni come strumenti di costruzione}
-Se l’investitore si attende un rialzo del prezzo del titolo e vuole scommettere su tale evento, una scelta naturale è l’acquisto di una call. Poiché una call con strike \(K\) vicino al prezzo corrente è tipicamente più economica del titolo, essa può generare un’esposizione \emph{leveraged} e quindi più rischiosa. Il premio può essere ridotto combinando posizioni long e short su opzioni con strike diversi, ottenendo payoff a tratti lineari.
-
-\paragraph{Bull spread con call}
-Si considerano due strike \(K_1<K_2\). Un \emph{bull spread} si ottiene con
-\[
-\text{Long Call}(K_1) \;+\; \text{Short Call}(K_2).
-\]
-Il payoff a maturity \(T\) è
-\[
-\Pi_{\text{bull}}(S_T)= (S_T-K_1)^+-(S_T-K_2)^+,
-\]
-quindi cresce per \(K_1<S_T<K_2\) e si \emph{satura} per \(S_T\ge K_2\). È adatto quando si prevede un aumento moderato del prezzo.
-
-\paragraph{Bear spread con put}
-Si considerano due strike \(K_1<K_2\). Un \emph{bear spread} si costruisce con put a strike diversi, con payoff positivo per valori bassi del sottostante
-\[
-\text{Short Put}(K_1)\;+\;\text{Long Put}(K_2),
-\]
-e payoff
-\[
-\Pi_{\text{bear}}(S_T)=-(K_1-S_T)^+ + (K_2-S_T)^+.
-\]
-È coerente con l’aspettativa di un calo moderato del prezzo.
-
-\paragraph{Butterfly spread con call}
-Si scelgono tre strike \(K_1<K_2<K_3\) e si impone \(K_2=\frac{K_1+K_3}{2}\). La \emph{butterfly} si ottiene con
-\[
-\text{Long Call}(K_1)\;-\;2\,\text{Short Call}(K_2)\;+\;\text{Long Call}(K_3),
-\]
-e payoff
-\[
-\Pi_{\text{butterfly}}(S_T)=(S_T-K_1)^+ -2(S_T-K_2)^+ + (S_T-K_3)^+,
-\]
-che è massimo in prossimità di \(S_T=K_2\) e tende a \(0\) fuori dall’intervallo \([K_1,K_3]\). È coerente con l’idea che il prezzo rimanga circa stabile (o vari poco).
-
-\paragraph{Decomposizione di payoff target in opzioni}
-Si osserva che ogni funzione di payoff \emph{continua} e \emph{a tratti lineare} può essere costruita (o approssimata) come combinazione di call e put con diversi strike. Operativamente si scompone un profilo target in segmenti lineari e si sceglie, per ciascuno strike rilevante, il numero di opzioni in modo da \textbf{replicare le pendenze} dei segmenti.
-
-\paragraph{Schema di case study con modello binomiale}
-Si combina la logica di portafoglio con gli strumenti precedenti considerando un investitore con una view sul prezzo futuro \(S_T\) e che accetta rischio per aumentare il rendimento atteso. Si analizzano tre alternative
-\[
-\text{(i) investimento nel titolo},\qquad
-\text{(ii) investimento in call},\qquad
-\text{(iii) investimento tramite forward}.
-\]
-Per modellare la distribuzione di \(S_T\) si usa un \textbf{modello binomiale} su \(N\) passi con probabilità uguali di up e down (\(p=1/2\)), fattori moltiplicativi \(\tilde u,\tilde d\) tali che \(S_{t+1}=S_t\tilde u\) oppure \(S_{t+1}=S_t\tilde d\). Ne segue la rappresentazione
-\[
-S_T = S_0 \tilde u^{k}\tilde d^{\,N-k},\qquad
-\mathbb{P}(k)=\binom{N}{k}\left(\frac12\right)^N.
-\]
-Il payoff di call è \(\phi(S_T)=(S_T-K)^+\). Il rendimento della call (in forma relativa al premio \(c\)) è espresso come \(\frac{\phi(S_T)-c}{c}\). Per il forward, con forward price \(F\), il payoff è \(S_T-F\), e se è previsto un deposito iniziale \(\text{Dep}\), il rendimento relativo è \(\frac{S_T-F}{\text{Dep}}\).
-
-\paragraph{Loss e Value at Risk (VaR)}
-Si considera una variabile aleatoria di perdita \(L\). Si definisce la funzione di ripartizione \(F_L(\ell)=\mathbb{P}(L\le \ell)\). Il \(\mathrm{VaR}_\alpha\) è definito come il più piccolo livello di perdita \(\ell\) tale che la probabilità cumulata raggiunge almeno \(\alpha\)
-\[
-\mathrm{VaR}_\alpha(L)=\inf\{\ell:\, F_L(\ell)\ge \alpha\}.
-\]
-Nel caso discreto, con valori \(\{\ell_i\}\) e probabilità \(\{p_i\}\), \(F_L\) è a gradini e \(\mathrm{VaR}_\alpha\) coincide con il primo valore \(\ell\) per cui la somma cumulata delle probabilità dei punti \(\le \ell\) supera (o eguaglia) \(\alpha\).
-
+\item \textbf{Forward}: elimina il rischio fissando il tasso futuro, ma rinuncia a qualsiasi beneficio da movimenti favorevoli.
+\item \textbf{Opzioni}: consentono una copertura con protezione dal downside e mantenimento dell’upside, al costo del premio.
+\end{itemize}}
 
 \end{document}
